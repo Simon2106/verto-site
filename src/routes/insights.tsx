@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { INSIGHTS, CONTENT_TYPES, type Audience, type ContentType } from "@/lib/insights";
+import { INSIGHTS, WHATS_GOING_ON, CONTENT_TYPES, type Audience, type ContentType } from "@/lib/insights";
 import { BRAND_LIST, BRANDS } from "@/lib/brands";
 import { ArrowUpRight } from "lucide-react";
 import { InsightThumb } from "@/components/site/InsightThumb";
@@ -12,9 +12,9 @@ type BrandFilter = "all" | "verto" | "edison-lux" | "vertek" | "modulr";
 export const Route = createFileRoute("/insights")({
   head: () => ({
     meta: [
-      { title: "Insights — Verto Group" },
-      { name: "description", content: "Market reports, salary and comp guides, case studies and field notes from Edison Lux, Vertek and Modulr." },
-      { property: "og:title", content: "Insights — Verto Group" },
+      { title: "What's going on — Verto Group" },
+      { name: "description", content: "Incentive trips, awards, promotions and market notes — what's going on across the Verto Group." },
+      { property: "og:title", content: "What's going on — Verto Group" },
       { property: "og:description", content: "Specialist knowledge from inside the markets we work in." },
     ],
   }),
@@ -26,11 +26,12 @@ function InsightsPage() {
   const [type, setType] = useState<ContentType | "all">("all");
   const [audience, setAudience] = useState<Audience | "all">("all");
 
-  const filtered = useMemo(() => INSIGHTS.filter(i =>
+  const ALL = [...WHATS_GOING_ON, ...INSIGHTS.filter(i => i.contentType !== "Case Study")];
+  const filtered = useMemo(() => ALL.filter(i =>
     (brand === "all" || i.brand === brand) &&
     (type === "all" || i.contentType === type) &&
     (audience === "all" || i.audience === audience || i.audience === "All")
-  ), [brand, type, audience]);
+  ), [ALL, brand, type, audience]);
 
   const featured = filtered.find(i => i.featured) ?? filtered[0];
   const rest = filtered.filter(i => i !== featured);
@@ -40,10 +41,10 @@ function InsightsPage() {
       <SiteHeader />
       <main className="flex-1">
         <section className="container-wide pt-20 lg:pt-28">
-          <span className="eyebrow">Insights</span>
-          <h1 className="display-1 mt-6 max-w-4xl">Field notes from inside power, engineering and the built environment.</h1>
+          <span className="eyebrow">What&apos;s going on</span>
+          <h1 className="display-1 mt-6 max-w-4xl">What&apos;s going on at Verto.</h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Market reports, salary guides, candidate resources and case studies — published by the consultants who live inside each sector.
+            Incentive trips, awards, promotions and the occasional market note — straight from the team. Case studies now live with each brand.
           </p>
         </section>
 
@@ -80,7 +81,7 @@ function InsightsPage() {
           ))}
           {filtered.length === 0 && (
             <div className="col-span-full rounded-2xl card-surface p-10 text-center text-muted-foreground">
-              No insights match those filters yet.
+              Nothing matches those filters yet.
             </div>
           )}
         </section>

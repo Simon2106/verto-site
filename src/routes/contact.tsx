@@ -7,10 +7,10 @@ import { Mail, MapPin, Phone } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Verto Group" },
-      { name: "description", content: "Tell us what you're building. We'll route you to the right specialist brand and consultant." },
-      { property: "og:title", content: "Contact Verto Group" },
-      { property: "og:description", content: "One group. Three brands. Every conversation starts the same way — tell us what you're building." },
+      { title: "Join us — Verto Group" },
+      { name: "description", content: "Thinking about a career at Verto? Tell us about yourself — we reply to every note within one business day." },
+      { property: "og:title", content: "Join us — Verto Group" },
+      { property: "og:description", content: "40% commission, a share scheme for everyone and two incentive trips a year. Start the conversation." },
     ],
   }),
   component: ContactPage,
@@ -23,15 +23,15 @@ function ContactPage() {
       <main className="flex-1 container-wide py-20 lg:py-28">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <span className="eyebrow">Get in touch</span>
-            <h1 className="display-1 mt-6">Tell us what you're building.</h1>
+            <span className="eyebrow">Join us</span>
+            <h1 className="display-1 mt-6">Start the conversation.</h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-md">
-              Hiring leader, candidate or curious — tell us what you're working on and we'll come back within one business day.
+              This page is about joining Verto — whether you're an experienced consultant or just think you'd be good at this. Tell us about yourself and we'll come back within one business day. (Hiring or job-seeking? Head to the brand that owns your market.)
             </p>
             <div className="mt-12 space-y-5 text-sm">
               <Row icon={Mail}>hello@vertogroup.com</Row>
-              <Row icon={Phone}>+44 (0)20 0000 0000</Row>
-              <Row icon={MapPin}>London · New York · Houston</Row>
+              <Row icon={Phone}>+44 23 9298 5450 (UK) · +1 737 285 3760 (US)</Row>
+              <Row icon={MapPin}>Solent, UK · Austin, TX · Miami (soon)</Row>
             </div>
           </div>
           <div className="rounded-3xl card-surface p-8 md:p-10">

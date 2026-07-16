@@ -172,3 +172,45 @@ export const INSIGHTS: Insight[] = [
 export const CONTENT_TYPES: ContentType[] = [
   "Market Report", "Guide", "Article", "Case Study", "Salary Guide", "Template",
 ];
+
+/* ─────────── WHAT'S GOING ON ───────────
+ * Culture & company-news posts for the Verto (group) site — replaces the old
+ * "insights" concept at group level per client feedback.
+ * ⚠️ PLACEHOLDER CONTENT — the client is sending the real "what's going on"
+ * material; these entries are drawn from their public timeline. */
+export const WHATS_GOING_ON: Insight[] = [
+  {
+    slug: "sunday-times-best-places-to-work-2026",
+    title: "Verto named in The Sunday Times Best Places to Work 2026",
+    excerpt: "Officially one of the UK's best small organisations to work for. Six years from a lockdown start-up to a Sunday Times listing — built on the same five values we started with.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 3,
+    date: "2026-05-01",
+    featured: true,
+  },
+  {
+    slug: "prague-2026-incentive-trip",
+    title: "Prague 2026 — the whole company, one incentive trip",
+    excerpt: "Our second international incentive trip. Everyone who hit target, flights and all — this is what the 2× annual holiday incentive actually looks like.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 4,
+    date: "2026-01-20",
+  },
+  {
+    slug: "ibiza-2026-reveal",
+    title: "Next stop: Ibiza — the 2026 summer incentive revealed",
+    excerpt: "Barcelona 2025. Prague, January 2026. And this summer, the team that delivers gets Ibiza. The countdown is on.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 2,
+    date: "2026-02-10",
+  },
+];

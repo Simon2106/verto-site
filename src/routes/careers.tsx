@@ -1,147 +1,111 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Instagram } from "lucide-react";
+import { ArrowRight, GraduationCap, Plane, Trophy, TrendingUp } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import aboutImage from "@/assets/about-image.jpg";
-import { BRAND_LIST } from "@/lib/brands";
+import { SocialsFeed } from "@/components/site/SocialsFeed";
+import { JobsBoard } from "@/components/site/JobsBoard";
+import ibizaTeam from "@/assets/client/ibiza8.jpg";
+import { INTERNAL_JOBS } from "@/lib/jobs";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — Work for Verto Group" },
+      { title: "Why join us — Verto Group" },
       {
         name: "description",
         content:
-          "Build a career inside one of Verto's three specialist brands — Edison Lux, Vertek and Modulr. Process-driven search, real desks, a real seat.",
+          "40% commission, a share scheme for everyone, two holiday incentives a year and international relocation. Open roles across Verto Group, Edison Lux, Vertek and ModulR.",
       },
-      { property: "og:title", content: "Careers — Work for Verto Group" },
+      { property: "og:title", content: "Why join us — Verto Group" },
       {
         property: "og:description",
         content:
-          "Join a group of specialist recruitment brands built on process, not luck. Open desks across the UK, EU and US.",
+          "The market's best commission split, ownership for everyone, and two incentive trips a year. See the roles we're hiring now.",
       },
     ],
   }),
   component: CareersPage,
 });
 
-const PRINCIPLES = [
+/* Why Verto — per client feedback: share scheme, 40% comms,
+   relocation opportunities, 2 holidays per year. */
+const WHY_VERTO = [
   {
-    n: "01",
-    title: "One market, real depth",
-    body: "Every consultant sits inside one brand and one sector. You'll go a mile deep — not a foot deep across ten industries.",
+    icon: TrendingUp,
+    title: "40% commission",
+    body: "One of the best splits in the market, transparent from day one. No thresholds designed to be missed, no clawbacks buried in a handbook.",
   },
   {
-    n: "02",
-    title: "Process, not pressure",
-    body: "Structured search, real briefings, honest feedback loops. No sink-or-swim smiling-and-dialling — you're here to build a market, not survive a month.",
+    icon: Trophy,
+    title: "Share scheme",
+    body: "Everyone owns a piece. Not a senior-only perk — every person in the business is in the share scheme, so the group's growth is your growth.",
   },
   {
-    n: "03",
-    title: "Bill share, not lottery",
-    body: "Transparent commission from day one. No thresholds designed to be missed, no clawbacks buried in a handbook.",
+    icon: Plane,
+    title: "2 holiday incentives a year",
+    body: "Barcelona 2025. Prague, January 2026. Ibiza this summer. Hit target and you're on the plane with the whole company — twice a year.",
   },
   {
-    n: "04",
-    title: "Built to stay",
-    body: "The average Verto consultant has been with us for over four years. Longevity is designed in — with training, mobility across the three brands, and equity for senior operators.",
-  },
-];
-
-const STAGES = [
-  {
-    n: "01",
-    title: "Conversation",
-    body: "A 30-minute call with the MD of the brand you're closest to. No forms, no aptitude tests — just a real conversation about the market and what you want.",
-  },
-  {
-    n: "02",
-    title: "Desk day",
-    body: "Half a day inside the team. Meet the consultants, sit on live briefings, look at pipeline. You interview us as much as we interview you.",
-  },
-  {
-    n: "03",
-    title: "Offer",
-    body: "A written offer within a week of the desk day. Base, commission, tools and 90-day plan on one page — nothing hidden.",
+    icon: GraduationCap,
+    title: "International relocation",
+    body: "UK to Austin. Austin to Miami. When you've built a market, we'll back you to take it abroad — desk, visa and first 90 days planned before you fly.",
   },
 ];
 
-const OPENINGS: {
-  role: string;
-  brand: string;
-  location: string;
-  type: string;
-}[] = [
-  {
-    role: "Principal Consultant — US Energy",
-    brand: "Edison Lux",
-    location: "Houston, TX",
-    type: "Full-time",
-  },
-  {
-    role: "Senior Consultant — Fluid Power & Hydraulics",
-    brand: "Vertek",
-    location: "Manchester, UK",
-    type: "Full-time",
-  },
-  {
-    role: "Consultant — Data Centres & Critical Environments",
-    brand: "Modulr",
-    location: "London, UK",
-    type: "Full-time",
-  },
-  {
-    role: "Research Associate — Group Research Bench",
-    brand: "Verto Group",
-    location: "London, UK",
-    type: "Full-time",
-  },
-  {
-    role: "Business Development — Vertek EU",
-    brand: "Vertek",
-    location: "Amsterdam, NL",
-    type: "Full-time",
-  },
+/* Career path — placeholder structure, refine with client's real ladder */
+const CAREER_PATH = [
+  { stage: "Trainee Consultant", time: "Months 0–12", body: "Phone-first training inside a live team. Structured L&D, a named mentor and your first placements." },
+  { stage: "Consultant", time: "Year 1–2", body: "Your own market and your own clients. Full 40% commission and your first incentive trips." },
+  { stage: "Senior Consultant", time: "Year 2–4", body: "A market you're known in. Bigger deals, international briefs, and the option to relocate with your desk." },
+  { stage: "Principal / Team Manager", time: "Year 4+", body: "Lead a team or go deeper as a biller — both paths carry equity and a seat in how the group grows." },
 ];
 
 function CareersPage() {
+  const locations = [
+    {
+      name: "Solent, UK",
+      leader: "Site leader — TBC",
+      why: "Where Verto started in 2020. Our largest office: Vertek, ModulR and the life sciences desk, five minutes from the south coast.",
+      note: "Founding office",
+    },
+    {
+      name: "Austin, TX",
+      leader: "Site leader — TBC",
+      why: "US HQ on Balcones Drive. Edison Lux and the Vertek US build-out — the fastest-growing part of the group.",
+      note: "US headquarters",
+    },
+    {
+      name: "Miami, FL",
+      leader: "Site leader — TBC",
+      why: "Opening soon. ModulR's US practice and founding desks — ground-floor opportunity, Brickell energy.",
+      note: "Coming soon",
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
-        {/* HERO */}
-        <section className="container-wide pt-20 lg:pt-28">
-          <span className="eyebrow">Careers at Verto Group</span>
+        {/* HERO — compact, straight to the point.
+            ⚠️ DRAFT COPY — replaces "Build a market. Not a month." per client feedback */}
+        <section className="container-wide pt-20 lg:pt-24">
+          <span className="eyebrow">Why join us</span>
           <h1 className="display-1 mt-6 max-w-4xl">
-            Build a market.<br />Not a month.
+            Back yourself.<br />We'll match it.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Verto is a group of three specialist recruitment brands — Edison
-            Lux, Vertek and Modulr — built on the belief that great search is a
-            long game played by people who actually know their sector. If
-            that's the career you want, this is where it happens.
+            40% commission. A share scheme that includes everyone. Two incentive holidays a year and a genuine route to the US. If you're going to work this hard anyway, do it somewhere that pays you properly — in money, ownership and experiences.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#openings" className="btn-base btn-pill btn-ink">
-              See open desks
-            </a>
-            <Link to="/contact" className="btn-base btn-pill btn-ghost-outline">
-              Talk to a leader
-            </Link>
-
-          </div>
         </section>
 
-        <section className="container-wide mt-16">
-          <div className="relative aspect-[16/8] overflow-hidden rounded-3xl">
-            <img
-              src={aboutImage}
-              alt="Verto Group workplace"
-              className="h-full w-full object-cover"
-              loading="lazy"
-              width={1400}
-              height={1000}
-            />
+        {/* ROLES — at the very top per client feedback */}
+        <section
+          className="mt-16 py-20 lg:py-24"
+          style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
+          id="openings"
+        >
+          <div className="container-wide">
+            <JobsBoard heading="Roles we're hiring right now." />
           </div>
         </section>
 
@@ -149,168 +113,120 @@ function CareersPage() {
         <section className="container-wide py-24 grid gap-14 lg:grid-cols-[1fr_2fr]">
           <div>
             <span className="eyebrow">Why Verto</span>
-            <h2 className="display-3 mt-5">Four things every desk gets.</h2>
+            <h2 className="display-3 mt-5">Four reasons people join. One reason they stay.</h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              The package gets you in the door. The team is why the average consultant is still here years later.
+            </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
-            {PRINCIPLES.map((p) => (
-              <div key={p.n} className="hairline-top pt-8">
-                <div className="font-display text-3xl text-muted-foreground">
-                  {p.n}
-                </div>
+            {WHY_VERTO.map((p) => (
+              <div key={p.title} className="hairline-top pt-8">
+                <p.icon className="h-8 w-8" strokeWidth={1.5} style={{ color: "var(--accent)" }} />
                 <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  {p.body}
-                </p>
+                <p className="mt-4 text-muted-foreground leading-relaxed">{p.body}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* THREE BRANDS */}
+        {/* RECENT PROMOTIONS — placeholder strip */}
         <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
-              <span className="eyebrow">Where you'd sit</span>
-              <h2 className="display-2 mt-5">
-                Three brands. Pick the one that fits.
-              </h2>
+              <span className="eyebrow">Recent promotions</span>
+              <h2 className="display-2 mt-5">People are moving up.</h2>
               <p className="mt-6 text-muted-foreground">
-                Every consultant joins one of the three brands. You'll be
-                trained by the MD of that practice, own accounts in that
-                sector, and represent that brand externally — with the full
-                weight of the group behind you.
+                ⚠️ Placeholder — recent promotions will be pulled from the team's socials. Names, new titles and photos to follow.
               </p>
             </div>
-            <div className="mt-12 grid gap-5 lg:grid-cols-3">
-              {BRAND_LIST.map((b) => (
-                <Link
-                  key={b.slug}
-                  to="/brands/$brand"
-                  params={{ brand: b.slug }}
-                  data-brand={b.slug}
-                  className="group rounded-2xl card-surface p-8"
-                >
-                  <div className="font-display text-2xl tracking-tight">
-                    {b.wordmark}
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="rounded-2xl card-surface p-6">
+                  <div className="h-14 w-14 rounded-full" style={{ background: "color-mix(in oklab, var(--accent) 25%, var(--muted))" }} />
+                  <div className="mt-4 font-display text-lg">Name TBC</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--accent)" }}>
+                    Promoted — role TBC
                   </div>
-                  <div
-                    className="text-[10px] uppercase tracking-[0.28em] mt-1"
-                    style={{ color: "var(--brand)" }}
-                  >
-                    {b.qualifier}
-                  </div>
-                  <p className="mt-5 text-base text-muted-foreground">
-                    {b.positioning}
-                  </p>
-                  <div
-                    className="mt-6 text-sm font-medium"
-                    style={{ color: "var(--brand)" }}
-                  >
-                    Visit {b.name} →
-                  </div>
-                </Link>
+                  <p className="mt-3 text-sm text-muted-foreground">Promotion story from the client's socials.</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* HOW WE HIRE */}
+        {/* CAREER PATH */}
         <section className="container-wide py-24">
           <div className="max-w-2xl">
-            <span className="eyebrow">How we hire</span>
-            <h2 className="display-2 mt-5">Three stages. Two weeks. One offer.</h2>
+            <span className="eyebrow">Career path</span>
+            <h2 className="display-2 mt-5">Where a desk here takes you.</h2>
           </div>
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {STAGES.map((s) => (
-              <div key={s.n} className="hairline-top pt-8">
-                <div className="font-display text-3xl text-muted-foreground">
-                  {s.n}
-                </div>
-                <h3 className="mt-4 font-display text-2xl">{s.title}</h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">
-                  {s.body}
-                </p>
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {CAREER_PATH.map((s, i) => (
+              <div key={s.stage} className="hairline-top pt-8">
+                <div className="font-display text-3xl text-muted-foreground">0{i + 1}</div>
+                <div className="mt-2 text-[10px] uppercase tracking-[0.22em]" style={{ color: "var(--accent)" }}>{s.time}</div>
+                <h3 className="mt-3 font-display text-xl">{s.stage}</h3>
+                <p className="mt-4 text-muted-foreground leading-relaxed text-sm">{s.body}</p>
               </div>
             ))}
           </div>
+          <p className="mt-10 text-sm text-muted-foreground">
+            Learning &amp; development runs underneath all of it — structured training from day one, deal school for consultants, and leadership development for managers. <span className="opacity-70">⚠️ L&amp;D detail to be expanded with client material.</span>
+          </p>
         </section>
 
-        {/* INSTAGRAM */}
-        <section className="container-wide py-24 hairline-top">
-          <div className="grid gap-10 lg:grid-cols-[1fr_2fr] items-start">
-            <div>
-              <span className="eyebrow">Life at Verto</span>
-              <h2 className="display-3 mt-5">The moments between the meetings.</h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed">
-                Awards, desk days, team trips and the occasional inflatable — see what working here actually looks like.
-              </p>
-              <a
-                href="https://www.instagram.com/verto_people/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-base btn-pill btn-ink mt-8 inline-flex"
-              >
-                <Instagram className="h-4 w-4" />
-                Follow @verto_people
-              </a>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-border bg-surface">
-              <iframe
-                src="https://www.instagram.com/verto_people/embed"
-                title="Verto People on Instagram"
-                className="w-full h-[540px] md:h-[640px]"
-                loading="lazy"
-                frameBorder={0}
-                scrolling="no"
-                allowTransparency
-              />
+        {/* INCENTIVES */}
+        <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+          <div className="container-wide">
+            <div className="grid gap-12 lg:grid-cols-2 items-center">
+              <div>
+                <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives</div>
+                <h2 className="display-2 mt-5">Hit target. Board the plane.</h2>
+                <p className="mt-6 opacity-80 leading-relaxed">
+                  Two international incentive trips a year, winners' lunches, sales days and personal training sessions. Barcelona 2025, Prague in January — Ibiza is next.
+                </p>
+                <p className="mt-4 text-sm opacity-60">
+                  ⚠️ Placeholder imagery — holiday incentive clips, winners' lunch photos and sales-day material to come from the client.
+                </p>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <img src={ibizaTeam} alt="Verto incentive trip" className="h-full w-full object-cover" loading="lazy" />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* OPENINGS */}
-        <section
-          id="openings"
-          className="hairline-top py-24"
-          style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
-        >
+        {/* LIFE AT VERTO / SOCIALS */}
+        <section className="container-wide py-24">
+          <SocialsFeed
+            eyebrow="Life at Verto"
+            heading="The moments between the meetings."
+            body="Awards, incentive trips, sales days and the occasional inflatable — what working here actually looks like, on our socials."
+          />
+        </section>
+
+        {/* LOCATIONS */}
+        <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
-              <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">
-                Open desks
-              </div>
-              <h2 className="display-2 mt-5">Roles we're hiring now.</h2>
-              <p className="mt-6 opacity-80">
-                We also always want to hear from experienced consultants in our
-                three sectors — even if the exact desk isn't listed. Send us a
-                note.
-              </p>
+              <span className="eyebrow">Our locations</span>
+              <h2 className="display-2 mt-5">Three places to build from.</h2>
             </div>
-            <div className="mt-12 hairline-top">
-              {OPENINGS.map((o) => (
-                <Link
-                  key={o.role}
-                  to="/contact"
-                  className="group flex flex-wrap items-center justify-between gap-4 py-6 hairline-bottom"
-                >
-                  <div className="min-w-0 flex-1">
-                    <div
-                      className="text-[10px] uppercase tracking-[0.22em] font-semibold"
-                      style={{ color: "var(--accent)" }}
-                    >
-                      {o.brand}
-                    </div>
-                    <div className="mt-2 font-display text-xl md:text-2xl">
-                      {o.role}
-                    </div>
+            <div className="mt-12 grid gap-5 lg:grid-cols-3">
+              {locations.map((l) => {
+                const count = INTERNAL_JOBS.filter((j) => j.location === l.name).length;
+                return (
+                  <div key={l.name} className="rounded-2xl card-surface p-8 flex flex-col">
+                    <div className="text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--accent)" }}>{l.note}</div>
+                    <div className="mt-3 font-display text-2xl tracking-tight">{l.name}</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{l.leader}</div>
+                    <p className="mt-5 text-base text-muted-foreground flex-1">{l.why}</p>
+                    <a href="#openings" className="mt-6 text-sm font-medium" style={{ color: "var(--accent)" }}>
+                      {count} open role{count === 1 ? "" : "s"} here →
+                    </a>
                   </div>
-                  <div className="flex items-center gap-6 text-sm opacity-80">
-                    <span>{o.location}</span>
-                    <span className="hidden sm:inline">{o.type}</span>
-                    <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </div>
-                </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -324,13 +240,10 @@ function CareersPage() {
             </div>
             <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
               <p>
-                If you're already a consultant in energy, industrial engineering
-                or the built environment and you're thinking about what's
-                next — we want to talk. Half our hires come from conversations
-                that started months before a desk was live.
+                If you're already a consultant — or you're not in recruitment yet but think you'd be good at it — we want to talk. Half our hires come from conversations that started months before a desk was live.
               </p>
               <Link to="/contact" className="btn-base btn-pill btn-ink">
-                Start a conversation
+                Join us <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>

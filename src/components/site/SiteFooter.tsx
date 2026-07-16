@@ -13,14 +13,14 @@ export function SiteFooter() {
               Verto Group · Edison Lux · Vertek · Modulr — precision talent for the industries that build, power and run the world.
             </p>
             <p className="mt-6 text-xs uppercase tracking-[0.22em] opacity-60">
-              London · Manchester · Amsterdam · Frankfurt · New York · Houston · Chicago
+              Solent · Austin · Miami (soon)
             </p>
           </div>
 
           <FooterCol title="Group">
             <li><Link to="/about" className="opacity-80 hover:opacity-100 transition">About Verto</Link></li>
             <li><Link to="/brands" className="opacity-80 hover:opacity-100 transition">Our brands</Link></li>
-            <li><Link to="/insights" className="opacity-80 hover:opacity-100 transition">Insights</Link></li>
+            <li><Link to="/insights" className="opacity-80 hover:opacity-100 transition">What's going on</Link></li>
             <li><Link to="/careers" className="opacity-80 hover:opacity-100 transition">Careers</Link></li>
 
             <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Contact</Link></li>
@@ -39,7 +39,7 @@ export function SiteFooter() {
           <FooterCol title="Connect">
             <li><a href="mailto:hello@vertogroup.com" className="opacity-80 hover:opacity-100 transition">hello@vertogroup.com</a></li>
             <li><a href="#" className="opacity-80 hover:opacity-100 transition">LinkedIn</a></li>
-            <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Speak to our team</Link></li>
+            <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Join us</Link></li>
           </FooterCol>
         </div>
 

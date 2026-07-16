@@ -5,7 +5,7 @@ import { VertoLogo } from "./VertoLogo";
 import { BRAND_LIST } from "@/lib/brands";
 
 const SECONDARY = [
-  { to: "/insights", label: "Insights" },
+  { to: "/insights", label: "What's going on" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },
@@ -45,7 +45,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden lg:block">
-          <Link to="/contact" className="btn-base btn-pill btn-ink">Start a search</Link>
+          <Link to="/contact" className="btn-base btn-pill btn-ink">Join us</Link>
         </div>
         <button
           className="lg:hidden p-2 -m-2"

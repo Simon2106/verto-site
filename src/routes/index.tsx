@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import summitVideo from "@/assets/client/summit-video.mp4";
+import summitPoster from "@/assets/client/summit-poster.jpg";
 import ibizaTeam from "@/assets/client/ibiza8.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 
@@ -117,15 +118,7 @@ function Hero() {
               WebkitMaskPosition: "center",
             }}
           >
-            <video
-              src={summitVideo}
-              className="h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-label="Highlights from the Verto summer summit"
-            />
+            <AutoplayVideo />
             <div
               className="absolute inset-0"
               style={{ background: "color-mix(in oklab, var(--ink) 20%, transparent)" }}
@@ -197,6 +190,38 @@ function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─────────── AUTOPLAY VIDEO ───────────
+   React doesn't render the `muted` attribute into SSR HTML, so browsers
+   refuse to autoplay the server-rendered element. Force it via a ref. */
+function AutoplayVideo() {
+  const ref = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    const tryPlay = () => el.play().catch(() => {});
+    tryPlay();
+    // Some browsers only allow it once data is ready
+    el.addEventListener("canplay", tryPlay, { once: true });
+    return () => el.removeEventListener("canplay", tryPlay);
+  }, []);
+  return (
+    <video
+      ref={ref}
+      src={summitVideo}
+      poster={summitPoster}
+      className="h-full w-full object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-label="Highlights from the Verto summer summit"
+    />
   );
 }
 

@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ScrollReveal } from "@/components/site/ScrollReveal";
 import {
   Outlet,
   Link,
@@ -98,6 +99,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <ScrollReveal />
       <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );

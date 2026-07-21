@@ -33,6 +33,7 @@ export function ScrollReveal() {
     const tag = (el: Element, staggerIndex?: number) => {
       if (!(el instanceof HTMLElement) || el.classList.contains("reveal-init")) return;
       el.classList.add("reveal-init");
+      el.dataset.revealTagged = String(Date.now());
       // Stagger only the sections visible on first paint — the "page build" feel
       if (staggerIndex !== undefined && staggerIndex >= 0) {
         el.style.setProperty("--reveal-delay", `${Math.min(staggerIndex * 110, 440)}ms`);
@@ -50,6 +51,20 @@ export function ScrollReveal() {
     };
     initialScan();
 
+    // Safety net: never leave content hidden if the observer misbehaves
+    // (throttled background tabs, old browsers). Anything tagged but not
+    // revealed within 1.6s gets shown.
+    const failsafe = window.setInterval(() => {
+      document.querySelectorAll(".reveal-init:not(.reveal-in)").forEach((el) => {
+        const t = (el as HTMLElement).dataset.revealTagged;
+        if (!t || Date.now() - Number(t) < 1600) return;
+        // Only force-reveal elements actually in the viewport — off-screen
+        // sections keep their scroll-triggered entrance.
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("reveal-in");
+      });
+    }, 800);
+
     // Cover SPA navigations & lazily-mounted content
     const mo = new MutationObserver((muts) => {
       for (const m of muts) {
@@ -65,6 +80,7 @@ export function ScrollReveal() {
     return () => {
       io.disconnect();
       mo.disconnect();
+      window.clearInterval(failsafe);
     };
   }, []);
 

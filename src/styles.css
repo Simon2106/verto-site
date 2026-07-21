@@ -727,3 +727,26 @@
     to   { transform: none; opacity: 1; }
   }
 }
+
+
+/* ───────── LHi-style headline reveal (TitleReveal component) ─────────
+   Each line of a headline rises out of an overflow mask, staggered. */
+.title-reveal .line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* keep descenders visible inside the mask */
+  margin-bottom: -0.08em;
+}
+.title-reveal .line-inner {
+  display: block;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .title-reveal .line-inner {
+    transform: translateY(115%);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .title-reveal--in .line-inner {
+    transform: none;
+  }
+}

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import ibizaHero from "@/assets/client/ibiza9.jpg";
 import skylineUK from "@/assets/skyline-uk.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
@@ -106,7 +107,7 @@ function AboutPage() {
       <main className="flex-1">
         <section className="container-wide pt-20 lg:pt-28">
           <span className="eyebrow">About the Verto Group</span>
-          <h1 className="display-1 mt-6 max-w-4xl">Made in 2020. Built the hard way.</h1>
+          <TitleReveal as="h1" className="display-1 mt-6 max-w-4xl" lines={["Made in 2020.", "Built the hard way."]} />
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
             We opened our doors in February 2020 — and you know what happened next. Powered by determination and a lack of other options, Verto took its first steps as many others shut down. Today that lockdown business is all grown up: three specialist brands, a life sciences desk, and teams across the UK and US.
           </p>

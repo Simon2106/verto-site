@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { InsightThumb } from "@/components/site/InsightThumb";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import { BRAND_LIST, type BrandSlug } from "@/lib/brands";
 import { WHATS_GOING_ON } from "@/lib/insights";
 
@@ -129,9 +130,7 @@ function Hero() {
         <div className="container-wide relative">
           <div className="max-w-2xl">
             <div className="text-[11px] uppercase tracking-[0.3em] opacity-70">The Verto Group · Precision talent, specialist brands</div>
-            <h1 className="display-2 mt-8 tracking-tight">
-              Precision talent.<br />Specialist brands.<br />One group.
-            </h1>
+            <TitleReveal as="h1" className="display-2 mt-8 tracking-tight" lines={["Precision talent.", "Specialist brands.", "One group."]} />
             <p className="mt-8 max-w-xl text-base md:text-lg opacity-80">
               Verto builds high-performance teams for the industries that keep everything else running — energy, engineering and the built environment. Three focused brands. One process-driven standard.
             </p>
@@ -255,7 +254,7 @@ function Practices() {
       <div className="container-wide">
         <div className="max-w-2xl">
           <span className="eyebrow">The brands</span>
-          <h2 className="display-2 mt-5">Three brands. One process-driven standard.</h2>
+          <TitleReveal className="display-2 mt-5" lines={["Three brands.", "One process-driven standard."]} />
           <p className="mt-6 text-muted-foreground max-w-xl">
             Founded in 2020, Verto connects exceptional technical and commercial people with the businesses that need them. Today, three focused brands — each with its own market, its own network and its own consultants — united by how we work.
           </p>
@@ -405,7 +404,7 @@ function Values() {
       <div ref={ref} className="container-wide relative">
         <div className="max-w-2xl">
           <span className="eyebrow">Verto&apos;s values</span>
-          <h2 className="display-2 mt-5">Five values. Every desk, every day.</h2>
+          <TitleReveal className="display-2 mt-5" lines={["Five values.", "Every desk, every day."]} />
           <p
             className="mt-6"
             style={{ color: "color-mix(in oklab, var(--ink-foreground) 68%, transparent)" }}
@@ -524,7 +523,7 @@ function SectorRoll() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <span className="eyebrow">Sector coverage</span>
-            <h2 className="display-2 mt-5">Whatever you're building, we know who builds it.</h2>
+            <TitleReveal className="display-2 mt-5" lines={["Whatever you're building,", "we know who builds it."]} />
             <p className="mt-6 text-muted-foreground">
               Every consultant at Verto is a former operator, engineer or in-market recruiter — not a generalist. The sectors below aren&apos;t categories on a website; they&apos;re desks that ship hires every month.
             </p>
@@ -676,7 +675,7 @@ function EmployeeVoices() {
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
           <div className="max-w-3xl">
             <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">What employees say about us</div>
-            <h2 className="display-1 mt-6">Don&apos;t take our word for it.</h2>
+            <TitleReveal className="display-1 mt-6" lines={["Don't take our", "word for it."]} />
             <p className="mt-6 opacity-70 max-w-xl">
               Real quotes from the team are on their way — these are placeholders while we collect them.
             </p>
@@ -779,7 +778,7 @@ function WhatsGoingOn() {
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div className="max-w-xl">
             <span className="eyebrow">What&apos;s going on</span>
-            <h2 className="display-2 mt-5">Life inside the group.</h2>
+            <TitleReveal className="display-2 mt-5" lines={["Life inside the group."]} />
             <p className="mt-6 text-muted-foreground">
               Incentive trips, awards, sales days and everything in between — straight from the team, not a marketing department.
             </p>

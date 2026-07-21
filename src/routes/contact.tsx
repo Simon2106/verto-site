@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ContactForm } from "@/components/site/ContactForm";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
@@ -25,7 +26,7 @@ function ContactPage() {
         <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <span className="eyebrow">Join us</span>
-            <h1 className="display-1 mt-6">Start the conversation.</h1>
+            <TitleReveal as="h1" className="display-1 mt-6" lines={["Start the", "conversation."]} />
             <p className="mt-6 text-lg text-muted-foreground max-w-md">
               This page is about joining Verto — whether you're an experienced consultant or just think you'd be good at this. Tell us about yourself and we'll come back within one business day. (Hiring or job-seeking? Head to the brand that owns your market.)
             </p>

@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import ibizaTeam from "@/assets/client/ibiza8.jpg";
 import { INTERNAL_JOBS } from "@/lib/jobs";
 
@@ -93,9 +94,7 @@ function CareersPage() {
             ⚠️ DRAFT COPY — replaces "Build a market. Not a month." per client feedback */}
         <section className="container-wide pt-20 lg:pt-24">
           <span className="eyebrow">Why join us</span>
-          <h1 className="display-1 mt-6 max-w-4xl">
-            Back yourself.<br />We'll match it.
-          </h1>
+          <TitleReveal as="h1" className="display-1 mt-6 max-w-4xl" lines={["Back yourself.", "We'll match it."]} />
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
             40% commission. A share scheme that includes everyone. Two incentive holidays a year and a genuine route to the US. If you're going to work this hard anyway, do it somewhere that pays you properly — in money, ownership and experiences.
           </p>

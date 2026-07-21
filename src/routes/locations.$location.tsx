@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import { ContactForm } from "@/components/site/ContactForm";
 import { LOCATIONS, getLocation, isLocationSlug } from "@/lib/locations";
 
@@ -35,9 +36,7 @@ function LocationPage() {
         {/* HELLO, {CITY}. + location switcher */}
         <section className="container-wide pt-20 lg:pt-28">
           <span className="eyebrow">Our locations</span>
-          <h1 className="display-1 mt-6">
-            Hello,<br />{loc.name}.
-          </h1>
+          <TitleReveal as="h1" className="display-1 mt-6" lines={["Hello,", `${loc.name}.`]} />
           <div className="mt-8 flex flex-wrap gap-2">
             {LOCATIONS.map((l) => (
               <Link

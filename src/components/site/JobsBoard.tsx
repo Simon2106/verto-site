@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { useMemo, useState } from "react";
+import { TitleReveal } from "@/components/site/TitleReveal";
 import {
   INTERNAL_JOBS,
   JOB_BRAND_COLOR,
@@ -48,7 +49,7 @@ export function JobsBoard({
     <div>
       <div className="max-w-2xl">
         <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Join Verto — internal roles</div>
-        <h2 className="display-2 mt-5">{heading}</h2>
+        <TitleReveal className="display-2 mt-5" lines={[heading]} />
         <p className="mt-6 opacity-80">
           {intro ??
             "These are seats on our own desks — not client vacancies. We also always want to hear from experienced consultants, even if the exact desk isn't listed."}

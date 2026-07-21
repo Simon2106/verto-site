@@ -37,6 +37,14 @@ export const JOB_BRAND_COLOR: Record<JobBrand, string> = {
   modulr: "color-mix(in oklab, #0464FA 55%, white)",
 };
 
+/** Recruitment sector per brand — shown as hover tooltips on brand chips/tags */
+export const JOB_BRAND_SECTOR: Record<JobBrand, string> = {
+  verto: "Life Sciences (group desk)",
+  "edison-lux": "Power & Energy recruitment",
+  vertek: "Engineering, Sales & Manufacturing recruitment",
+  modulr: "Built Environment recruitment",
+};
+
 export const JOB_LOCATIONS: JobLocation[] = ["Solent, UK", "Austin, TX", "Miami, FL"];
 export const JOB_LEVELS: JobLevel[] = ["Entry-level", "Senior", "Manager"];
 

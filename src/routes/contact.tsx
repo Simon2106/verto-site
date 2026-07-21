@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ContactForm } from "@/components/site/ContactForm";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { LOCATIONS } from "@/lib/locations";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,6 +37,41 @@ function ContactPage() {
           </div>
           <div className="rounded-3xl card-surface p-8 md:p-10">
             <ContactForm brand="verto" />
+          </div>
+        </div>
+        {/* LOCATION HUB — LHi-style office pages */}
+        <div className="mt-24 hairline-top pt-16">
+          <span className="eyebrow">Or say hello in person</span>
+          <h2 className="display-3 mt-5">Three places to find us.</h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {LOCATIONS.map((l) => (
+              <Link
+                key={l.slug}
+                to="/locations/$location"
+                params={{ location: l.slug }}
+                className="group relative overflow-hidden rounded-2xl min-h-[220px] flex flex-col justify-end p-7"
+                style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
+              >
+                <img
+                  src={l.heroImage}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-500 group-hover:scale-105 group-hover:opacity-70"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 20%, color-mix(in oklab, var(--ink) 85%, transparent) 100%)" }} />
+                <div className="relative">
+                  {l.status && (
+                    <div className="text-[9px] uppercase tracking-[0.24em] mb-2" style={{ color: "var(--accent)" }}>{l.status}</div>
+                  )}
+                  <div className="font-display text-2xl">Hello, {l.name}.</div>
+                  <div className="mt-1 text-xs opacity-70">{l.address[0]}</div>
+                  <div className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--accent)" }}>
+                    Visit the office page <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </main>

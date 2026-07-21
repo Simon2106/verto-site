@@ -63,18 +63,21 @@ const CAREER_PATH = [
 function CareersPage() {
   const locations = [
     {
+      slug: "solent",
       name: "Solent, UK",
       leader: "Site leader — TBC",
       why: "Where Verto started in 2020. Our largest office: Vertek, ModulR and the life sciences desk, five minutes from the south coast.",
       note: "Founding office",
     },
     {
+      slug: "austin",
       name: "Austin, TX",
       leader: "Site leader — TBC",
       why: "US HQ on Balcones Drive. Edison Lux and the Vertek US build-out — the fastest-growing part of the group.",
       note: "US headquarters",
     },
     {
+      slug: "miami",
       name: "Miami, FL",
       leader: "Site leader — TBC",
       why: "Opening soon. ModulR's US practice and founding desks — ground-floor opportunity, Brickell energy.",
@@ -221,9 +224,19 @@ function CareersPage() {
                     <div className="mt-3 font-display text-2xl tracking-tight">{l.name}</div>
                     <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{l.leader}</div>
                     <p className="mt-5 text-base text-muted-foreground flex-1">{l.why}</p>
-                    <a href="#openings" className="mt-6 text-sm font-medium" style={{ color: "var(--accent)" }}>
-                      {count} open role{count === 1 ? "" : "s"} here →
-                    </a>
+                    <div className="mt-6 flex items-center justify-between">
+                      <a href="#openings" className="text-sm font-medium" style={{ color: "var(--accent)" }}>
+                        {count} open role{count === 1 ? "" : "s"} →
+                      </a>
+                      <Link
+                        to="/locations/$location"
+                        params={{ location: l.slug as "solent" | "austin" | "miami" }}
+                        className="text-sm font-medium opacity-80 hover:opacity-100"
+                        style={{ color: "var(--accent)" }}
+                      >
+                        Office page →
+                      </Link>
+                    </div>
                   </div>
                 );
               })}

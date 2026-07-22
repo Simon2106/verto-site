@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -26,13 +27,20 @@ export const Route = createFileRoute("/locations/$location")({
 
 function LocationPage() {
   const { location } = Route.useParams();
+  // Jump back to the top whenever the office changes, so the new page's
+  // entrance plays from the hero down.
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [location]);
   if (!isLocationSlug(location)) return null;
   const loc = getLocation(location);
 
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
-      <main className="flex-1">
+      {/* key={loc.slug} remounts the page per office — all scroll reveals,
+          the headline mask animation and the section stagger replay on click */}
+      <main className="flex-1 location-page-enter" key={loc.slug}>
         {/* HELLO, {CITY}. + location switcher */}
         <section className="container-wide pt-20 lg:pt-28">
           <span className="eyebrow">Our locations</span>
@@ -43,6 +51,7 @@ function LocationPage() {
                 key={l.slug}
                 to="/locations/$location"
                 params={{ location: l.slug }}
+                viewTransition
                 className="rounded-full px-4 py-1.5 text-xs font-medium transition border"
                 style={
                   l.slug === loc.slug

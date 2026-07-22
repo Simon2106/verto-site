@@ -50,6 +50,7 @@ function ContactPage() {
                 key={l.slug}
                 to="/locations/$location"
                 params={{ location: l.slug }}
+                viewTransition
                 className="group relative overflow-hidden rounded-2xl min-h-[220px] flex flex-col justify-end p-7"
                 style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
               >

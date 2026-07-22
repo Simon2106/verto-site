@@ -230,6 +230,7 @@ function CareersPage() {
                       <Link
                         to="/locations/$location"
                         params={{ location: l.slug as "solent" | "austin" | "miami" }}
+                        viewTransition
                         className="text-sm font-medium opacity-80 hover:opacity-100"
                         style={{ color: "var(--accent)" }}
                       >

@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatsGoingOnRouteImport } from './routes/whats-going-on'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as InsightsRedirectRouteImport } from './routes/insights-redirect'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -25,6 +27,11 @@ import { Route as BrandsBrandForCompaniesRouteImport } from './routes/brands.$br
 import { Route as BrandsBrandForCandidatesRouteImport } from './routes/brands.$brand.for-candidates'
 import { Route as BrandsBrandAboutRouteImport } from './routes/brands.$brand.about'
 
+const WhatsGoingOnRoute = WhatsGoingOnRouteImport.update({
+  id: '/whats-going-on',
+  path: '/whats-going-on',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
@@ -33,6 +40,11 @@ const TeamRoute = TeamRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRedirectRoute = InsightsRedirectRouteImport.update({
+  id: '/insights-redirect',
+  path: '/insights-redirect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsRoute = InsightsRouteImport.update({
@@ -108,8 +120,10 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/insights-redirect': typeof InsightsRedirectRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/whats-going-on': typeof WhatsGoingOnRoute
   '/brands/$brand': typeof BrandsBrandRouteWithChildren
   '/locations/$location': typeof LocationsLocationRoute
   '/brands/': typeof BrandsIndexRoute
@@ -125,8 +139,10 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/insights-redirect': typeof InsightsRedirectRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/whats-going-on': typeof WhatsGoingOnRoute
   '/locations/$location': typeof LocationsLocationRoute
   '/brands': typeof BrandsIndexRoute
   '/brands/$brand/about': typeof BrandsBrandAboutRoute
@@ -142,8 +158,10 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/insights-redirect': typeof InsightsRedirectRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/team': typeof TeamRoute
+  '/whats-going-on': typeof WhatsGoingOnRoute
   '/brands/$brand': typeof BrandsBrandRouteWithChildren
   '/locations/$location': typeof LocationsLocationRoute
   '/brands/': typeof BrandsIndexRoute
@@ -161,8 +179,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/insights'
+    | '/insights-redirect'
     | '/sitemap.xml'
     | '/team'
+    | '/whats-going-on'
     | '/brands/$brand'
     | '/locations/$location'
     | '/brands/'
@@ -178,8 +198,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/insights'
+    | '/insights-redirect'
     | '/sitemap.xml'
     | '/team'
+    | '/whats-going-on'
     | '/locations/$location'
     | '/brands'
     | '/brands/$brand/about'
@@ -194,8 +216,10 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/insights'
+    | '/insights-redirect'
     | '/sitemap.xml'
     | '/team'
+    | '/whats-going-on'
     | '/brands/$brand'
     | '/locations/$location'
     | '/brands/'
@@ -212,8 +236,10 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   InsightsRoute: typeof InsightsRoute
+  InsightsRedirectRoute: typeof InsightsRedirectRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TeamRoute: typeof TeamRoute
+  WhatsGoingOnRoute: typeof WhatsGoingOnRoute
   BrandsBrandRoute: typeof BrandsBrandRouteWithChildren
   LocationsLocationRoute: typeof LocationsLocationRoute
   BrandsIndexRoute: typeof BrandsIndexRoute
@@ -221,6 +247,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/whats-going-on': {
+      id: '/whats-going-on'
+      path: '/whats-going-on'
+      fullPath: '/whats-going-on'
+      preLoaderRoute: typeof WhatsGoingOnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team': {
       id: '/team'
       path: '/team'
@@ -233,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights-redirect': {
+      id: '/insights-redirect'
+      path: '/insights-redirect'
+      fullPath: '/insights-redirect'
+      preLoaderRoute: typeof InsightsRedirectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights': {
@@ -355,8 +395,10 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   InsightsRoute: InsightsRoute,
+  InsightsRedirectRoute: InsightsRedirectRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TeamRoute: TeamRoute,
+  WhatsGoingOnRoute: WhatsGoingOnRoute,
   BrandsBrandRoute: BrandsBrandRouteWithChildren,
   LocationsLocationRoute: LocationsLocationRoute,
   BrandsIndexRoute: BrandsIndexRoute,

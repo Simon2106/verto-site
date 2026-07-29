@@ -5,7 +5,7 @@ import { VertoLogo } from "./VertoLogo";
 import { BRAND_LIST } from "@/lib/brands";
 
 const SECONDARY = [
-  { to: "/insights", label: "What's going on" },
+  { to: "/whats-going-on", label: "What's going on" },
   { to: "/about", label: "About" },
   { to: "/careers", label: "Careers" },
   { to: "/contact", label: "Contact" },

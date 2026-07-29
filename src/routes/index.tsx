@@ -286,7 +286,10 @@ function Practices() {
                 <div
                   className="absolute inset-0 overflow-hidden flex flex-col items-center justify-center p-10"
                   style={{
-                    background: "var(--ink)",
+                    /* glow baked into the face background — a separate glow
+                       layer composites as a solid block during the 3D flip */
+                    background:
+                      "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%), var(--ink)",
                     color: "var(--ink-foreground)",
                     backfaceVisibility: "hidden",
                     WebkitBackfaceVisibility: "hidden",
@@ -294,16 +297,6 @@ function Practices() {
                 >
                   {/* brand stripe top */}
                   <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
-
-                  {/* subtle brand glow behind the logo */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 16%, transparent) 0%, transparent 70%)",
-                    }}
-                  />
 
                   <img
                     src={BRAND_LOGOS[b.slug]}
@@ -783,7 +776,7 @@ function WhatsGoingOn() {
               Incentive trips, awards, sales days and everything in between — straight from the team, not a marketing department.
             </p>
           </div>
-          <Link to="/insights" className="text-sm font-medium inline-flex items-center gap-2" style={{ color: "var(--accent)" }}>
+          <Link to="/whats-going-on" className="text-sm font-medium inline-flex items-center gap-2" style={{ color: "var(--accent)" }}>
             See everything that's going on <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>

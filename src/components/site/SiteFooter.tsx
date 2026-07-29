@@ -20,7 +20,7 @@ export function SiteFooter() {
           <FooterCol title="Group">
             <li><Link to="/about" className="opacity-80 hover:opacity-100 transition">About Verto</Link></li>
             <li><Link to="/brands" className="opacity-80 hover:opacity-100 transition">Our brands</Link></li>
-            <li><Link to="/insights" className="opacity-80 hover:opacity-100 transition">What's going on</Link></li>
+            <li><Link to="/whats-going-on" className="opacity-80 hover:opacity-100 transition">What's going on</Link></li>
             <li><Link to="/careers" className="opacity-80 hover:opacity-100 transition">Careers</Link></li>
 
             <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Contact</Link></li>

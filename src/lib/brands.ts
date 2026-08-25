@@ -92,11 +92,11 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
     ],
     specialisms: [
       { title: "Critical & Mission-Critical Power", description: "Control rooms, O&M and engineering leadership for facilities where uptime is non-negotiable." },
-      { title: "Combined Cycle & Gas Generation", description: "CCGT, reciprocating engines and gas compression — through outages, upgrades and steady-state." },
-      { title: "Renewables & Energy Transition", description: "Solar, wind, battery storage, hydrogen and AD — construction, commissioning and operations." },
-      { title: "Biomass, EFW & Waste-to-Energy", description: "CHP, WTE and biomass teams that know the fuel, the plant and the compliance environment." },
-      { title: "Nuclear", description: "The most demanding hiring environment in energy — qualification, temperament and track record verified." },
-      { title: "EPC — Construction & Commissioning", description: "Project directors, commissioning engineers and site leadership. COD dates don't move." },
+      { title: "Combined Cycle & Gas Generation", description: "Combined cycle, simple cycle, recips and gas compression — outages, upgrades and permanent operations." },
+      { title: "Renewables & Energy Transition", description: "Solar, wind, battery storage, hydrogen and RNG — construction, commissioning and operations." },
+      { title: "Biomass, EFW & Waste-to-Energy", description: "Biomass, EfW, coal and CHP — teams that know the fuel, the plant and the regulations." },
+      { title: "Nuclear", description: "New build, SMR, fusion, decommissioning and defence — engineering, operations and maintenance." },
+      { title: "EPC — Construction & Commissioning", description: "FEED, detailed design, construction, commissioning and project delivery." },
     ],
     audiences: {
       company: {

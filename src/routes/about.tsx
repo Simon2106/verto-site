@@ -1,9 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { Camera } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SectorCoverage } from "@/components/site/SectorCoverage";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { TitleReveal } from "@/components/site/TitleReveal";
 import ibizaHero from "@/assets/client/ibiza9.jpg";
+import ibizaTeam from "@/assets/client/ibiza8.jpg";
+import summitPoster from "@/assets/client/summit-poster.jpg";
+import aboutImage from "@/assets/about-image.jpg";
 import skylineUK from "@/assets/skyline-uk.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
 import skylineEU from "@/assets/skyline-eu.jpg";
@@ -12,6 +18,33 @@ import robbieSturgess from "@/assets/robbie-sturgess.webp";
 import alexHatfield from "@/assets/alex-hatfield.webp";
 import { BRAND_LIST } from "@/lib/brands";
 import { TEAM } from "@/lib/team";
+
+/* ── Photo collage under the "Made in 2020" intro (approved design) —
+      tile spans map to a 4-col grid; subtle stagger via --reveal-delay. ── */
+const COLLAGE: { src: string; alt: string; caption?: string; span: string }[] = [
+  { src: ibizaHero, alt: "The Verto team in Ibiza", caption: "Ibiza — the 2026 summer incentive", span: "col-span-2 row-span-2" },
+  { src: summitPoster, alt: "The Verto summer summit", caption: "The summer summit", span: "col-span-2" },
+  { src: ibizaTeam, alt: "The team on an incentive trip", span: "col-span-1" },
+  { src: aboutImage, alt: "The team at work", span: "col-span-1" },
+  { src: skylineUK, alt: "Solent, UK — where it started", caption: "Solent, UK", span: "col-span-2" },
+  { src: skylineUS, alt: "Austin, TX — the US build-out", caption: "Austin, TX", span: "col-span-2" },
+];
+
+/* ── Community & DE&I — placeholder cards awaiting client photography. ── */
+const COMMUNITY: { title: string; body: string }[] = [
+  {
+    title: "Gala nights",
+    body: "Black-tie charity galas — including the night that raised £15,504 for the Amelia-Mae Foundation.",
+  },
+  {
+    title: "Charity & fundraising",
+    body: "Every office backs a cause the team chooses — fundraisers, sponsored events and hands-on volunteering through the year.",
+  },
+  {
+    title: "DE&I commitments",
+    body: "Hiring on ability, progressing on results. Our DE&I commitments — and the numbers behind them — publish here soon.",
+  },
+];
 
 const LEADERSHIP: { name: string; role: string; image: string; bio: string }[] = [
   {
@@ -113,13 +146,36 @@ function AboutPage() {
           </p>
         </section>
 
+        {/* PHOTO COLLAGE — replaces the single Ibiza hero image */}
         <section className="container-wide mt-16">
-          <div className="relative aspect-[16/8] overflow-hidden rounded-3xl">
-            <img src={ibizaHero} alt="The Verto team in Ibiza"
-              className="h-full w-full object-cover" loading="lazy" width={1400} height={1000} />
-            <div className="absolute bottom-4 right-5 text-[10px] uppercase tracking-[0.24em] text-white/80">
-              Ibiza — the 2026 summer incentive
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[140px] md:auto-rows-[180px] lg:auto-rows-[210px] gap-3 md:gap-4">
+            {COLLAGE.map((tile, i) => (
+              <div
+                key={tile.src + tile.alt}
+                data-reveal
+                className={`group relative overflow-hidden rounded-2xl ${tile.span}`}
+                style={{ ["--reveal-delay" as string]: `${i * 90}ms`, background: "var(--muted)" }}
+              >
+                <img
+                  src={tile.src}
+                  alt={tile.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                {tile.caption && (
+                  <>
+                    <div
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
+                      style={{ background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 100%)" }}
+                      aria-hidden="true"
+                    />
+                    <div className="absolute bottom-3 right-4 text-[10px] uppercase tracking-[0.24em] text-white/85">
+                      {tile.caption}
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -150,29 +206,7 @@ function AboutPage() {
               <p className="mt-6 opacity-80">From a lockdown start-up to The Sunday Times Best Places to Work — scroll the journey.</p>
             </div>
           </div>
-          <div className="mt-14 overflow-x-auto pb-6 timeline-scroll">
-            <div className="flex gap-0 px-6 md:px-10 w-max items-stretch">
-              {TIMELINE.map((t, i) => (
-                <div key={`${t.date}-${t.title}`} className="relative w-[240px] shrink-0 pr-8">
-                  {/* connector line */}
-                  <div className="absolute left-0 right-0 top-[7px] h-px" style={{ background: "color-mix(in oklab, var(--ink-foreground) 22%, transparent)" }} />
-                  <div
-                    className="relative h-[15px] w-[15px] rounded-full border-2"
-                    style={{
-                      background: t.highlight ? "var(--accent)" : "var(--ink)",
-                      borderColor: t.highlight ? "var(--accent)" : "color-mix(in oklab, var(--ink-foreground) 40%, transparent)",
-                    }}
-                  />
-                  <div className="mt-5 text-[10px] uppercase tracking-[0.24em]" style={{ color: t.highlight ? "var(--accent)" : "color-mix(in oklab, var(--ink-foreground) 55%, transparent)" }}>
-                    {t.date}
-                  </div>
-                  <div className={`mt-2 pr-4 leading-snug ${t.highlight ? "font-display text-lg" : "text-sm opacity-85"}`} style={{ minHeight: i % 2 ? undefined : undefined }}>
-                    {t.title}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TimelineCarousel />
         </section>
 
         <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
@@ -201,6 +235,9 @@ function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* SECTOR COVERAGE — duplicated from the homepage (client feedback, item 9) */}
+        <SectorCoverage />
 
         <section className="container-wide py-24">
           <div className="max-w-2xl">
@@ -336,6 +373,39 @@ function AboutPage() {
           </div>
         </section>
 
+        {/* COMMUNITY & DE&I — placeholder cards, photos coming from client */}
+        <section className="container-wide py-24 hairline-top">
+          <div className="max-w-2xl">
+            <span className="eyebrow">Community &amp; DE&amp;I</span>
+            <h2 className="display-2 mt-5">More than the numbers.</h2>
+            <p className="mt-6 text-muted-foreground">
+              Gala nights, fundraising and a genuine commitment to building a diverse group — the parts of Verto that never make a sales deck.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {COMMUNITY.map((card) => (
+              <article key={card.title} className="flex flex-col rounded-2xl card-surface overflow-hidden">
+                <div
+                  className="flex aspect-[16/10] flex-col items-center justify-center gap-3 text-center"
+                  style={{
+                    background: "var(--muted)",
+                    borderBottom: "1px dashed color-mix(in oklab, var(--foreground) 20%, transparent)",
+                  }}
+                >
+                  <Camera className="h-6 w-6" strokeWidth={1.5} style={{ color: "var(--muted-foreground)" }} aria-hidden="true" />
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                    Photos coming from client
+                  </span>
+                </div>
+                <div className="p-7">
+                  <h3 className="font-display text-2xl leading-tight">{card.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{card.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* BEHIND THE SCENES / SOCIALS */}
         <section className="container-wide py-24 hairline-top">
           <SocialsFeed
@@ -346,6 +416,137 @@ function AboutPage() {
         </section>
       </main>
       <SiteFooter />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Timeline auto-carousel (matches verto-effects.js §8 in the WP build):
+ * auto-advances to the next milestone every 3.5s, pauses on hover /
+ * touch / focus, resumes after 6s idle, syncs to manual swipes (native
+ * overflow scroll stays the mechanism) and fills a gold progress line
+ * between visited milestones. Reduced motion → plain manual scroll.
+ * ───────────────────────────────────────────────────────────── */
+const TIMELINE_ADVANCE_MS = 3500;
+const TIMELINE_RESUME_MS = 6000;
+
+function TimelineCarousel() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // manual scroll only
+
+    const items = Array.from(scroller.querySelectorAll<HTMLElement>("[data-milestone]"));
+    if (!items.length) return;
+
+    let idx = 0;
+    let paused = false;
+    let programmatic = false;
+    let progTimer = 0;
+    let idleTimer = 0;
+
+    const mark = (i: number) => {
+      setActive(i);
+      setProgress(items[i].offsetLeft + 8); // 8px ≈ dot centre
+    };
+    const go = (i: number) => {
+      idx = i;
+      programmatic = true;
+      window.clearTimeout(progTimer);
+      progTimer = window.setTimeout(() => { programmatic = false; }, 900);
+      scroller.scrollTo({ left: Math.max(0, items[i].offsetLeft - 24), behavior: "smooth" });
+      mark(i);
+    };
+
+    mark(0);
+    const timer = window.setInterval(() => {
+      if (!paused) go((idx + 1) % items.length);
+    }, TIMELINE_ADVANCE_MS);
+
+    const pause = () => { paused = true; window.clearTimeout(idleTimer); };
+    const scheduleResume = () => {
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => { paused = false; }, TIMELINE_RESUME_MS);
+    };
+    const onScroll = () => {
+      if (programmatic) return;
+      pause();
+      scheduleResume();
+      // Sync active milestone + progress to the swipe position
+      const x = scroller.scrollLeft + 24;
+      let nearest = 0;
+      for (let i = 0; i < items.length; i++) {
+        if (Math.abs(items[i].offsetLeft - x) < Math.abs(items[nearest].offsetLeft - x)) nearest = i;
+      }
+      idx = nearest;
+      mark(nearest);
+    };
+
+    scroller.addEventListener("pointerenter", pause);
+    scroller.addEventListener("pointerleave", scheduleResume);
+    scroller.addEventListener("touchstart", pause, { passive: true });
+    scroller.addEventListener("touchend", scheduleResume);
+    scroller.addEventListener("focusin", pause);
+    scroller.addEventListener("focusout", scheduleResume);
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.clearInterval(timer);
+      window.clearTimeout(idleTimer);
+      window.clearTimeout(progTimer);
+      scroller.removeEventListener("pointerenter", pause);
+      scroller.removeEventListener("pointerleave", scheduleResume);
+      scroller.removeEventListener("touchstart", pause);
+      scroller.removeEventListener("touchend", scheduleResume);
+      scroller.removeEventListener("focusin", pause);
+      scroller.removeEventListener("focusout", scheduleResume);
+      scroller.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  return (
+    <div ref={scrollerRef} className="mt-14 overflow-x-auto pb-6 timeline-scroll" tabIndex={0} aria-label="Verto timeline — 2020 to today">
+      <div className="relative flex gap-0 px-6 md:px-10 w-max items-stretch">
+        {/* Gold progress line — fills between visited milestones */}
+        <div
+          className="absolute top-[7px] h-[2px]"
+          style={{
+            left: 0,
+            width: progress,
+            background: "var(--accent)",
+            transition: "width 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+          aria-hidden="true"
+        />
+        {TIMELINE.map((t, i) => (
+          <div
+            key={`${t.date}-${t.title}`}
+            data-milestone
+            className="relative w-[240px] shrink-0 pr-8 origin-bottom-left transition-transform duration-500"
+            style={{ transform: i === active ? "scale(1.05)" : t.highlight ? "scale(1.02)" : undefined }}
+          >
+            {/* connector line */}
+            <div className="absolute left-0 right-0 top-[7px] h-px" style={{ background: "color-mix(in oklab, var(--ink-foreground) 22%, transparent)" }} />
+            <div
+              className="relative h-[15px] w-[15px] rounded-full border-2 transition-colors duration-500"
+              style={{
+                background: t.highlight || i <= active ? "var(--accent)" : "var(--ink)",
+                borderColor: t.highlight || i <= active ? "var(--accent)" : "color-mix(in oklab, var(--ink-foreground) 40%, transparent)",
+              }}
+            />
+            <div className="mt-5 text-[10px] uppercase tracking-[0.24em]" style={{ color: t.highlight ? "var(--accent)" : "color-mix(in oklab, var(--ink-foreground) 55%, transparent)" }}>
+              {t.date}
+            </div>
+            <div className={`mt-2 pr-4 leading-snug ${t.highlight ? "font-display text-lg" : "text-sm opacity-85"}`}>
+              {t.title}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

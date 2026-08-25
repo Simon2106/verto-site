@@ -7,7 +7,7 @@
 /*
  * Verto Group design system
  * - Premium executive recruitment ecosystem
- * - Parent (Verto) uses warm ivory + deep navy + champagne gold
+ * - Parent (Verto) uses warm ivory + blue-grey (#283347) + brand gold (#d19f2f)
  * - Sub-brand accents live behind [data-brand="..."] selectors
  *   so any component can opt into a brand's accent color via
  *   the `--accent` / `--brand` tokens.
@@ -55,7 +55,7 @@
 :root {
   --radius: 0.5rem;
 
-  /* Verto parent — ivory + deep navy + champagne */
+  /* Verto parent — ivory + blue-grey + gold */
   --background: oklch(0.985 0.005 85);
   --foreground: oklch(0.18 0.025 260);
 
@@ -76,16 +76,16 @@
   --muted: oklch(0.95 0.008 85);
   --muted-foreground: oklch(0.45 0.015 260);
 
-  /* champagne / antique gold accent for parent */
-  --accent: oklch(0.72 0.105 75);
-  --accent-foreground: oklch(0.18 0.025 260);
+  /* brand gold accent for parent (client brand: #d19f2f) */
+  --accent: #d19f2f;
+  --accent-foreground: #283347; /* dark text on gold — white fails contrast */
 
   /* `brand` is the dominant identity color (defaults to accent at parent) */
-  --brand: oklch(0.72 0.105 75);
-  --brand-foreground: oklch(0.18 0.025 260);
+  --brand: #d19f2f;
+  --brand-foreground: #283347;
 
-  /* dark ink surface (used for hero bands, footer) */
-  --ink: oklch(0.13 0.05 262);
+  /* dark blue-grey surface (client brand: #283347) — hero bands, footer */
+  --ink: #283347;
   --ink-foreground: oklch(0.97 0.01 85);
 
   --destructive: oklch(0.58 0.22 27);
@@ -93,7 +93,7 @@
 
   --border: oklch(0.9 0.012 85);
   --input: oklch(0.92 0.01 85);
-  --ring: oklch(0.72 0.105 75);
+  --ring: #d19f2f;
 }
 
 /* ───────── Edison Lux — premium energy, green→blue gradient ─────────
@@ -408,8 +408,12 @@
 
 /* ─── ModulR signature treatment: deep-navy background with a
        radial vignette and glowing diagonal light streaks. Applied
-       to the first hero section of every ModulR sub-page. ─── */
-[data-brand="modulr"] {
+       to the first hero section of every ModulR sub-page.
+       :not(a) — anchors opt in to ModulR tokens (brand tiles/cards)
+       without inheriting the page background; painting it on the
+       home brand-tile link showed as an opaque blue square behind
+       the card during the 3D flip. ─── */
+[data-brand="modulr"]:not(a) {
   background:
     radial-gradient(ellipse 80% 60% at 85% 110%,
       color-mix(in oklab, #0464FA 38%, transparent) 0%,
@@ -778,4 +782,15 @@
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: none; }
   }
+}
+
+/* Edison Lux — stat values on the dark overlay card use the brand gradient
+   (matches the CTA button; per guidelines the gradient is never reversed and
+   green remains decorative-only on white, so this applies on-dark only). */
+[data-brand="edison-lux"] .stat-card-value {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
 }

@@ -6,20 +6,25 @@ import summitVideo from "@/assets/client/summit-video.mp4";
 import summitPoster from "@/assets/client/summit-poster.jpg";
 import ibizaTeam from "@/assets/client/ibiza8.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
+import shortlistBadge from "@/assets/weve-been-shortlisted.png";
 
-import edisonLogo from "@/assets/edison-lux-logo.png";
+import edisonColourLogo from "@/assets/edison-lux-logo-colour.png";
 import modulrLogo from "@/assets/modulr-logo.svg";
 import vertekLogo from "@/assets/vertek-logo-light.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { InsightThumb } from "@/components/site/InsightThumb";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { BRAND_SECTORS } from "@/components/site/SectorCoverage";
+import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { TitleReveal } from "@/components/site/TitleReveal";
 import { BRAND_LIST, type BrandSlug } from "@/lib/brands";
 import { WHATS_GOING_ON } from "@/lib/insights";
 
 const BRAND_LOGOS: Record<BrandSlug, string> = {
-  "edison-lux": edisonLogo,
+  // Client feedback round 3, item 2: the tile carries the COLOURED Edison
+  // primary logo (gradient mark + dark text), so it sits on a light face.
+  "edison-lux": edisonColourLogo,
   modulr: modulrLogo,
   vertek: vertekLogo,
 };
@@ -47,13 +52,16 @@ function Index() {
       <main className="flex-1">
         <Hero />
 
+        {/* Client feedback round 3, item 3: jobs directly below the brand
+            tiles, then What's Going On, employee voices + awards, and Values
+            last before the Instagram feed. Standalone sector coverage is gone
+            from Home — it now lives on the brand tiles' hover faces. */}
         <Practices />
-        <Values />
-        <SectorRoll />
-        <ClientLogos />
-        <EmployeeVoices />
-        <WhatsGoingOn />
         <JoinUs />
+        <WhatsGoingOn />
+        <EmployeeVoices />
+        <Values />
+        <Socials />
       </main>
       <SiteFooter />
     </div>
@@ -104,10 +112,14 @@ function Hero() {
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
 
       <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
-        {/* Verto "V" mark — summit video clipped inside the mark */}
+        {/* Verto "V" mark — summit video clipped inside the mark.
+            Client feedback round 3, item 1: the mask panel is letterboxed to
+            the video's native 16:9 (vertically centred) instead of stretching
+            to the full hero height, so the 16:9 footage no longer has to
+            scale up to cover a near-square panel — no more zoomed-in faces. */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[58.9%] hidden md:block">
           <div
-            className="absolute inset-0"
+            className="absolute inset-x-0 top-1/2 -translate-y-1/2 aspect-[16/9] max-h-full"
             style={{
               maskImage: V_MASK,
               WebkitMaskImage: V_MASK,
@@ -214,6 +226,7 @@ function AutoplayVideo() {
       src={summitVideo}
       poster={summitPoster}
       className="h-full w-full object-cover"
+      style={{ objectPosition: "center 30%" }}
       autoPlay
       muted
       loop
@@ -276,33 +289,40 @@ function Practices() {
               data-brand={b.slug}
               aria-label={`Enter ${b.name}`}
               className="group relative block"
-              style={{ perspective: "1400px", minHeight: 420 }}
+              style={{ perspective: "1400px", minHeight: 480 }}
             >
               <div
                 className="relative w-full h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]"
-                style={{ transformStyle: "preserve-3d", minHeight: 420 }}
+                style={{ transformStyle: "preserve-3d", minHeight: 480 }}
               >
                 {/* ── FRONT — the brand's own logo, front and centre ── */}
                 <div
                   className="absolute inset-0 overflow-hidden flex flex-col items-center justify-center p-10"
                   style={{
                     /* glow baked into the face background — a separate glow
-                       layer composites as a solid block during the 3D flip */
+                       layer composites as a solid block during the 3D flip.
+                       Client feedback round 3, item 2: Edison Lux carries the
+                       COLOURED primary logo (gradient mark), which clashes on
+                       the gradient ground — so its face is white/very-light
+                       with dark text, and its blue top stripe is removed. */
                     background:
-                      "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%), var(--ink)",
-                    color: "var(--ink-foreground)",
+                      b.slug === "edison-lux"
+                        ? "linear-gradient(180deg, #FFFFFF 0%, #F2F6F4 100%)"
+                        : "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%), var(--ink)",
+                    color: b.slug === "edison-lux" ? "#0B1A2B" : "var(--ink-foreground)",
                     backfaceVisibility: "hidden",
                     WebkitBackfaceVisibility: "hidden",
                   }}
                 >
-                  {/* brand stripe top */}
-                  <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
+                  {/* brand stripe top (removed on the Edison tile — round 3, item 2) */}
+                  {b.slug !== "edison-lux" && (
+                    <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
+                  )}
 
                   <img
                     src={BRAND_LOGOS[b.slug]}
                     alt={`${b.name} logo`}
                     className={`relative ${b.slug === "vertek" ? "h-12" : "h-20"} w-auto max-w-[80%] object-contain`}
-                    style={b.slug === "edison-lux" ? { filter: "brightness(0) invert(1)" } : undefined}
                     loading="lazy"
                   />
                   <div className="relative mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
@@ -333,8 +353,18 @@ function Practices() {
                     {b.focus}
                   </div>
                   <div className="mt-4 font-display text-2xl tracking-tight">{b.name}</div>
-                  <p className="mt-5 text-base opacity-85 leading-relaxed">{b.positioning}</p>
-                  <div className="mt-auto pt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--brand)" }}>
+                  <p className="mt-4 text-sm opacity-85 leading-relaxed">{b.positioning}</p>
+                  {/* Sector coverage on the hover face (client feedback, item 9) */}
+                  <div className="mt-5 text-[10px] uppercase tracking-[0.24em] opacity-60">Sector coverage</div>
+                  <ul className="mt-2.5 space-y-2">
+                    {BRAND_SECTORS[b.slug].map((s) => (
+                      <li key={s} className="flex items-center gap-2.5 text-[13px] font-medium opacity-90">
+                        <span className="h-3 w-[3px] rounded-sm shrink-0" style={{ background: "var(--brand)" }} />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto pt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--brand)" }}>
                     Enter {b.name} <ArrowRight className="h-4 w-4" />
                   </div>
                 </div>
@@ -466,172 +496,6 @@ function Values() {
   );
 }
 
-/* ─────────── SECTOR ROLL ─────────── */
-function SectorRoll() {
-  const groups: {
-    key: string;
-    wordmark: string;
-    descriptor: string;
-    color: string;
-    brand?: BrandSlug;
-    items: string[];
-  }[] = [
-    {
-      key: "edison-lux",
-      wordmark: "EDISON LUX",
-      descriptor: "Power & Energy",
-      /* Guideline accents — on this light ground Edison uses Electric Blue
-         (Energy Green fails contrast on white) */
-      color: "#2B8EE5",
-      brand: "edison-lux",
-      items: ["Critical Power & CCGT", "Renewables & Storage", "EPC & Project Delivery", "O&M (Operations & Maintenance)"],
-    },
-    {
-      key: "vertek",
-      wordmark: "VERTEK",
-      descriptor: "Engineering, Sales & Manufacturing",
-      color: "#F82B60",
-      brand: "vertek",
-      items: ["Fluid Power & Hydraulics", "HVAC & Refrigeration", "Advanced Manufacturing", "Instrumentation & Controls"],
-    },
-    {
-      key: "modulr",
-      wordmark: "MODULR",
-      descriptor: "Built Environment",
-      color: "#0464FA",
-      brand: "modulr",
-      items: ["Hyperscale Data Centres", "US Architecture", "MEP Engineering", "Interior Design & Fit-out"],
-    },
-    {
-      key: "verto",
-      wordmark: "VERTO GROUP",
-      descriptor: "Life Sciences — held at group level",
-      color: "var(--accent)",
-      items: ["Drug Development", "Clinical Operations", "Biometrics & Data", "Commercial & Medical Affairs"],
-    },
-  ];
-  return (
-    <section className="py-24 hairline-top" style={{ background: "var(--muted)" }}>
-      <div className="container-wide">
-        <div className="grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
-            <span className="eyebrow">Sector coverage</span>
-            <TitleReveal className="display-2 mt-5" lines={["Whatever you're building,", "we know who builds it."]} />
-            <p className="mt-6 text-muted-foreground">
-              Every consultant at Verto is a former operator, engineer or in-market recruiter — not a generalist. The sectors below aren&apos;t categories on a website; they&apos;re desks that ship hires every month.
-            </p>
-            <p className="mt-4 text-muted-foreground">
-              Each links through to the brand that owns it. Our life sciences desk sits with the group while it grows.
-            </p>
-          </div>
-          <div className="lg:col-span-8 space-y-10">
-            {groups.map((g) => (
-              <div
-                key={g.key}
-                style={{
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  ["--sector-brand" as any]: g.color,
-                }}
-              >
-                <div className="flex items-baseline justify-between gap-4 pb-4" style={{ borderBottom: `1px solid var(--sector-brand)` }}>
-                  <div className="flex items-baseline gap-3">
-                    <span className="h-2 w-2 rounded-full self-center" style={{ background: "var(--sector-brand)" }} />
-                    <span className="font-display text-lg tracking-tight">{g.wordmark}</span>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{g.descriptor}</span>
-                  </div>
-                  {g.brand ? (
-                    <Link
-                      to="/brands/$brand"
-                      params={{ brand: g.brand }}
-                      className="text-[10px] uppercase tracking-[0.22em] font-medium inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 transition"
-                      style={{ color: "var(--sector-brand)" }}
-                    >
-                      Enter {g.wordmark.charAt(0) + g.wordmark.slice(1).toLowerCase()} <ArrowUpRight className="h-3 w-3" />
-                    </Link>
-                  ) : (
-                    <Link
-                      to="/contact"
-                      className="text-[10px] uppercase tracking-[0.22em] font-medium inline-flex items-center gap-1.5 opacity-80 hover:opacity-100 transition"
-                      style={{ color: "var(--sector-brand)" }}
-                    >
-                      Talk to the group <ArrowUpRight className="h-3 w-3" />
-                    </Link>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  {g.items.map((name, i) => {
-                    const inner = (
-                      <>
-                        <span className="flex items-center gap-3 text-base font-medium">
-                          <span
-                            className="h-3 w-[3px] rounded-sm transition group-hover:h-5"
-                            style={{ background: "var(--sector-brand)" }}
-                          />
-                          {name}
-                        </span>
-                        <ArrowUpRight
-                          className="h-4 w-4 opacity-40 transition group-hover:opacity-100"
-                          style={{ color: "var(--sector-brand)" }}
-                        />
-                      </>
-                    );
-                    const cls = "group flex items-center justify-between gap-6 py-4 pr-2 md:pr-4 transition";
-                    const style = { borderTop: i < 2 ? undefined : "1px solid var(--border)" };
-                    return g.brand ? (
-                      <Link key={name} to="/brands/$brand" params={{ brand: g.brand }} className={cls} style={style}>
-                        {inner}
-                      </Link>
-                    ) : (
-                      <Link key={name} to="/contact" className={cls} style={style}>
-                        {inner}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────── CLIENT LOGOS ───────────
-   ⚠️ PLACEHOLDER — awaiting client logo files (SVG/PNG) and permission to
-   use them. Swap the placeholder tiles for real logos when they arrive. */
-function ClientLogos() {
-  const placeholders = Array.from({ length: 10 }, (_, i) => i);
-  return (
-    <section className="py-16 lg:py-20 overflow-hidden hairline-bottom">
-      <div className="container-wide mb-10">
-        <div className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground text-center">
-          Trusted by operators, developers, manufacturers &amp; design practices across three continents
-        </div>
-      </div>
-      <div className="logo-marquee relative">
-        <div className="logo-marquee-track">
-          {[...placeholders, ...placeholders].map((p, i) => (
-            <div key={i} className="logo-marquee-item">
-              <span
-                className="inline-flex h-12 w-36 items-center justify-center border border-dashed text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
-                style={{ borderColor: "var(--border)" }}
-              >
-                Client logo
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="container-wide mt-8">
-        <p className="text-center text-[10px] uppercase tracking-[0.2em] text-muted-foreground opacity-70">
-          Placeholder — client logos to follow
-        </p>
-      </div>
-    </section>
-  );
-}
-
 /* ─────────── WHAT EMPLOYEES SAY ───────────
    ⚠️ PLACEHOLDER QUOTES — the client is gathering real employee quotes.
    Structure and design are final; the words below are stand-ins. */
@@ -720,19 +584,27 @@ function EmployeeVoices() {
           className="flex flex-col md:flex-row md:items-center gap-8 p-8 md:p-10 border border-white/10"
           style={{ background: "color-mix(in oklab, var(--ink-foreground) 4%, transparent)" }}
         >
-          <img
-            src={bptwBadge}
-            alt="The Sunday Times Best Places to Work 2026 — Small Organisation"
-            className="h-24 w-auto shrink-0"
-            loading="lazy"
-          />
+          <div className="flex items-center gap-6 shrink-0">
+            <img
+              src={bptwBadge}
+              alt="The Sunday Times Best Places to Work 2026 — Small Organisation"
+              className="h-24 w-auto shrink-0"
+              loading="lazy"
+            />
+            <img
+              src={shortlistBadge}
+              alt="Recruiter Awards 2026 — We've been shortlisted"
+              className="h-24 w-auto shrink-0"
+              loading="lazy"
+            />
+          </div>
           <div>
             <div className="text-[10px] uppercase tracking-[0.28em] font-semibold" style={{ color: "var(--accent)" }}>Company awards</div>
             <h3 className="mt-3 font-display text-2xl md:text-3xl leading-tight">
-              The Sunday Times Best Places to Work 2026.
+              The Sunday Times Best Places to Work 2026. Shortlisted, Recruiter Awards 2026.
             </h3>
             <p className="mt-3 text-sm opacity-75 max-w-2xl">
-              Alongside Best New Recruitment Agency of the Year at the British Recruitment Awards (2023), two category wins at the Business Awards UK (2023), a Recruiter Awards shortlist for Best New Agency (2023) and a finalist place at the News Business Excellence Awards (2024).
+              Alongside Best New Recruitment Agency of the Year at the British Recruitment Awards (2023), two category wins at the Business Awards UK (2023), Recruiter Awards shortlists in 2023 and 2026, and a finalist place at the News Business Excellence Awards (2024).
             </p>
           </div>
         </div>
@@ -800,6 +672,17 @@ function WhatsGoingOn() {
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────── SOCIALS — Instagram feed on the homepage (item 13) ─────────── */
+function Socials() {
+  return (
+    <section className="py-24 hairline-top" style={{ background: "var(--background)" }}>
+      <div className="container-wide">
+        <SocialsFeed />
       </div>
     </section>
   );

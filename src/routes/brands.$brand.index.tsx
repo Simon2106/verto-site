@@ -191,7 +191,7 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
               {b.stats.map((s, i) => (
                 <div key={s.label} className={i > 0 ? "mt-6 pt-6 border-t border-white/15" : ""}>
                   <span className="h-[2px] w-8 block" style={{ background: "var(--brand)" }} />
-                  <div className="text-3xl md:text-4xl font-extrabold mt-3" style={{ color: "var(--brand)" }}>{s.value}</div>
+                  <div className="stat-card-value text-3xl md:text-4xl font-extrabold mt-3" style={{ color: "var(--brand)" }}>{s.value}</div>
                   <div className="mt-2 text-[8px] uppercase tracking-[0.22em] opacity-80">{s.label}</div>
                 </div>
               ))}

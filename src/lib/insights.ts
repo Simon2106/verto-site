@@ -3,6 +3,10 @@ import type { BrandSlug } from "./brands";
 export type ContentType = "Market Report" | "Guide" | "Article" | "Case Study" | "Salary Guide" | "Template";
 export type Audience = "Candidates" | "Companies" | "All";
 
+/* What's-going-on magazine categories — mirror the WP post categories
+   (Trips / Wins / Community / News) seeded by the installer. */
+export type WgoCategory = "Trips" | "Wins" | "Community" | "News";
+
 export interface Insight {
   slug: string;
   title: string;
@@ -14,6 +18,13 @@ export interface Insight {
   readMinutes: number;
   date: string;          // ISO date
   featured?: boolean;
+  /** Magazine category chip on /whats-going-on. Missing → "News". */
+  category?: WgoCategory;
+}
+
+/** Resolve an insight's magazine category (market notes default to News). */
+export function wgoCategory(i: Insight): WgoCategory {
+  return i.category ?? "News";
 }
 
 export const INSIGHTS: Insight[] = [
@@ -190,6 +201,7 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 3,
     date: "2026-05-01",
     featured: true,
+    category: "Wins",
   },
   {
     slug: "prague-2026-incentive-trip",
@@ -201,6 +213,7 @@ export const WHATS_GOING_ON: Insight[] = [
     sector: "Life at Verto",
     readMinutes: 4,
     date: "2026-01-20",
+    category: "Trips",
   },
   {
     slug: "ibiza-2026-reveal",
@@ -212,5 +225,6 @@ export const WHATS_GOING_ON: Insight[] = [
     sector: "Life at Verto",
     readMinutes: 2,
     date: "2026-02-10",
+    category: "Trips",
   },
 ];

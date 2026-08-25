@@ -1,13 +1,14 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { INSIGHTS, WHATS_GOING_ON, CONTENT_TYPES, type Audience, type ContentType } from "@/lib/insights";
-import { BRAND_LIST, BRANDS } from "@/lib/brands";
-import { ArrowUpRight } from "lucide-react";
+import { SocialsFeed } from "@/components/site/SocialsFeed";
+import { INSIGHTS, WHATS_GOING_ON, wgoCategory, type Insight } from "@/lib/insights";
+import { BRANDS } from "@/lib/brands";
+import { ArrowUpRight, Play } from "lucide-react";
 import { InsightThumb } from "@/components/site/InsightThumb";
-
-type BrandFilter = "all" | "verto" | "edison-lux" | "vertek" | "modulr";
+import ibiza8 from "@/assets/client/ibiza8.jpg";
+import ibiza9 from "@/assets/client/ibiza9.jpg";
+import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 
 export const Route = createFileRoute("/whats-going-on")({
   head: () => ({
@@ -18,23 +19,25 @@ export const Route = createFileRoute("/whats-going-on")({
       { property: "og:description", content: "Specialist knowledge from inside the markets we work in." },
     ],
   }),
-  component: InsightsPage,
+  component: WhatsGoingOnPage,
 });
 
-function InsightsPage() {
-  const [brand, setBrand] = useState<BrandFilter>("all");
-  const [type, setType] = useState<ContentType | "all">("all");
-  const [audience, setAudience] = useState<Audience | "all">("all");
+/* Real client photography for the culture posts (mirrors the WP featured
+   images seeded by the installer); market notes fall back to InsightThumb. */
+const IMAGE_BY_SLUG: Record<string, string> = {
+  "sunday-times-best-places-to-work-2026": bptwBadge,
+  "prague-2026-incentive-trip": ibiza8,
+  "ibiza-2026-reveal": ibiza9,
+};
 
-  const ALL = [...WHATS_GOING_ON, ...INSIGHTS.filter(i => i.contentType !== "Case Study")];
-  const filtered = useMemo(() => ALL.filter(i =>
-    (brand === "all" || i.brand === brand) &&
-    (type === "all" || i.contentType === type) &&
-    (audience === "all" || i.audience === audience || i.audience === "All")
-  ), [ALL, brand, type, audience]);
-
-  const featured = filtered.find(i => i.featured) ?? filtered[0];
-  const rest = filtered.filter(i => i !== featured);
+/* ── Magazine hub: featured newest story → card grid → Stories video
+      placeholders → Instagram. (Approved design, replaces the old
+      brand/type/audience filter listing.) ── */
+function WhatsGoingOnPage() {
+  const all = [...WHATS_GOING_ON, ...INSIGHTS.filter((i) => i.contentType !== "Case Study")]
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const featured = all[0];
+  const rest = all.slice(1);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -48,67 +51,72 @@ function InsightsPage() {
           </p>
         </section>
 
-        <section className="container-wide mt-16 space-y-6">
-          <FilterRow label="Brand">
-            <Chip active={brand === "all"} onClick={() => setBrand("all")}>All brands</Chip>
-            <Chip active={brand === "verto"} onClick={() => setBrand("verto")}>Verto Group</Chip>
-            {BRAND_LIST.map(b => (
-              <Chip key={b.slug} active={brand === b.slug} onClick={() => setBrand(b.slug)}>{b.name}</Chip>
-            ))}
-          </FilterRow>
-          <FilterRow label="Type">
-            <Chip active={type === "all"} onClick={() => setType("all")}>All</Chip>
-            {CONTENT_TYPES.map(t => (
-              <Chip key={t} active={type === t} onClick={() => setType(t)}>{t}</Chip>
-            ))}
-          </FilterRow>
-          <FilterRow label="Audience">
-            <Chip active={audience === "all"} onClick={() => setAudience("all")}>Everyone</Chip>
-            <Chip active={audience === "Candidates"} onClick={() => setAudience("Candidates")}>Candidates</Chip>
-            <Chip active={audience === "Companies"} onClick={() => setAudience("Companies")}>Companies</Chip>
-          </FilterRow>
-        </section>
-
+        {/* FEATURED — newest story, image left ~60% */}
         {featured && (
           <section className="container-wide mt-16">
-            <FeaturedCard insight={featured} />
+            <FeaturedStory insight={featured} />
           </section>
         )}
 
-        <section className="container-wide mt-12 pb-24 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* CARD GRID — everything else, with category chips */}
+        <section className="container-wide mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((i) => (
-            <InsightCard key={i.slug} insight={i} />
+            <StoryCard key={i.slug} insight={i} />
           ))}
-          {filtered.length === 0 && (
-            <div className="col-span-full rounded-2xl card-surface p-10 text-center text-muted-foreground">
-              Nothing matches those filters yet.
+        </section>
+
+        {/* STORIES — video slots (placeholder, client videos to come) */}
+        <section className="container-wide mt-24">
+          <div className="rounded-3xl p-10 lg:p-14" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="max-w-xl">
+                <span className="eyebrow">Stories</span>
+                <h2 className="display-3 mt-5">People&apos;s stories.</h2>
+                <p className="mt-6 opacity-80 leading-relaxed">
+                  The team, on camera — first placements, first incentive trips, the move to the US. Video interviews are being filmed now.
+                </p>
+              </div>
+              <span className="text-[10px] uppercase tracking-[0.24em] opacity-50">
+                ⚠ Placeholder — client videos to come
+              </span>
             </div>
-          )}
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {["A first placement", "Hitting the incentive trip", "Building a US desk"].map((label, i) => (
+                <div
+                  key={label}
+                  className="relative aspect-video rounded-2xl flex flex-col items-center justify-center gap-4 text-center p-6"
+                  style={{
+                    border: "1px dashed color-mix(in oklab, var(--ink-foreground) 30%, transparent)",
+                    background: "color-mix(in oklab, var(--ink-foreground) 4%, transparent)",
+                  }}
+                >
+                  <span
+                    className="flex h-14 w-14 items-center justify-center rounded-full"
+                    style={{ background: "color-mix(in oklab, var(--accent) 22%, transparent)", color: "var(--accent)" }}
+                    aria-hidden="true"
+                  >
+                    <Play className="h-6 w-6 translate-x-[2px]" strokeWidth={1.5} fill="currentColor" />
+                  </span>
+                  <div>
+                    <div className="font-display text-lg leading-snug">{label}</div>
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.22em] opacity-60">
+                      People&apos;s stories — video coming soon
+                    </div>
+                  </div>
+                  <span className="absolute top-4 right-4 text-[9px] uppercase tracking-[0.2em] opacity-40">0{i + 1}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* INSTAGRAM — existing socials embed */}
+        <section className="container-wide mt-24 py-24 hairline-top">
+          <SocialsFeed />
         </section>
       </main>
       <SiteFooter />
     </div>
-  );
-}
-
-function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-wrap items-center gap-3">
-      <span className="text-xs uppercase tracking-[0.22em] text-muted-foreground w-20 shrink-0">{label}</span>
-      <div className="flex flex-wrap gap-2">{children}</div>
-    </div>
-  );
-}
-
-function Chip({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
-  return (
-    <button onClick={onClick}
-      className="rounded-full px-4 py-1.5 text-xs font-medium transition"
-      style={active
-        ? { background: "var(--foreground)", color: "var(--background)" }
-        : { background: "transparent", border: "1px solid var(--border)", color: "var(--foreground)" }}>
-      {children}
-    </button>
   );
 }
 
@@ -117,48 +125,91 @@ function brandLabel(slug: string) {
   return BRANDS[slug as keyof typeof BRANDS]?.name ?? slug;
 }
 
-function FeaturedCard({ insight }: { insight: (typeof INSIGHTS)[number] }) {
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+function CategoryChip({ insight, onDark = false }: { insight: Insight; onDark?: boolean }) {
   return (
-    <article className="grid gap-0 overflow-hidden rounded-3xl lg:grid-cols-2"
-      style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
-      <div className="p-10 lg:p-14 flex flex-col">
-        <div className="text-[10px] uppercase tracking-[0.22em] opacity-70">Featured · {insight.contentType}</div>
-        <h2 className="font-display text-3xl md:text-5xl leading-tight mt-5">{insight.title}</h2>
-        <p className="mt-6 text-base opacity-80 max-w-md">{insight.excerpt}</p>
-        <div className="mt-auto pt-10 flex items-center gap-5 text-xs uppercase tracking-[0.22em] opacity-70">
-          <span style={{ color: "var(--accent)" }}>{brandLabel(insight.brand)}</span>
-          <span>·</span>
-          <span>{insight.readMinutes} min</span>
-        </div>
+    <span
+      className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em]"
+      style={
+        onDark
+          ? { background: "color-mix(in oklab, var(--accent) 22%, transparent)", color: "var(--accent)" }
+          : { background: "color-mix(in oklab, var(--accent) 14%, transparent)", color: "var(--accent)" }
+      }
+    >
+      {wgoCategory(insight)}
+    </span>
+  );
+}
+
+function StoryMedia({ insight, className = "" }: { insight: Insight; className?: string }) {
+  const photo = IMAGE_BY_SLUG[insight.slug];
+  if (photo) {
+    return (
+      <div className={`relative overflow-hidden ${className}`} style={{ background: "#0a0a0a" }}>
+        <img src={photo} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-90" aria-hidden="true" />
       </div>
-      <div className="hidden lg:block relative">
-        <InsightThumb
-          brand={insight.brand}
-          contentType={insight.contentType}
-          sector={insight.sector}
-          ratio="auto"
-          large
-          className="h-full w-full"
-        />
+    );
+  }
+  return (
+    <InsightThumb
+      brand={insight.brand}
+      contentType={insight.contentType}
+      sector={insight.sector}
+      ratio="auto"
+      large
+      className={className}
+    />
+  );
+}
+
+function FeaturedStory({ insight }: { insight: Insight }) {
+  return (
+    <article className="grid overflow-hidden rounded-3xl lg:grid-cols-[3fr_2fr]"
+      style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+      {/* Image left ~60% */}
+      <StoryMedia insight={insight} className="relative min-h-[260px] lg:min-h-[460px] h-full w-full" />
+      {/* Copy right */}
+      <div className="p-8 lg:p-12 flex flex-col">
+        <div className="flex items-center gap-4">
+          <CategoryChip insight={insight} onDark />
+          <span className="text-[10px] uppercase tracking-[0.22em] opacity-60">Featured story</span>
+        </div>
+        <h2 className="display-2 mt-6">{insight.title}</h2>
+        <p className="mt-6 text-base leading-relaxed opacity-80 max-w-md">{insight.excerpt}</p>
+        <div className="mt-auto pt-10 flex items-center gap-4 text-xs uppercase tracking-[0.22em] opacity-70">
+          <span style={{ color: "var(--accent)" }}>{brandLabel(insight.brand)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{formatDate(insight.date)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{insight.readMinutes} min read</span>
+        </div>
       </div>
     </article>
   );
 }
 
-function InsightCard({ insight }: { insight: (typeof INSIGHTS)[number] }) {
+function StoryCard({ insight }: { insight: Insight }) {
   return (
     <article className="group flex flex-col rounded-2xl card-surface overflow-hidden">
-      <InsightThumb brand={insight.brand} contentType={insight.contentType} sector={insight.sector} />
+      <div className="relative">
+        <StoryMedia insight={insight} className="aspect-[16/10] w-full" />
+        <span className="absolute bottom-3 left-3">
+          <CategoryChip insight={insight} onDark />
+        </span>
+      </div>
       <div className="p-7 flex flex-col flex-1">
         <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
           <span style={{ color: "var(--accent)" }}>{brandLabel(insight.brand)}</span>
-          <span>·</span>
+          <span aria-hidden="true">·</span>
           <span>{insight.contentType}</span>
         </div>
         <h3 className="mt-4 font-display text-2xl leading-tight">{insight.title}</h3>
         <p className="mt-3 text-base text-muted-foreground line-clamp-3">{insight.excerpt}</p>
         <div className="mt-auto pt-6 flex items-center justify-between text-xs text-muted-foreground">
-          <span>{insight.sector} · {insight.readMinutes} min</span>
+          <span>{formatDate(insight.date)} · {insight.readMinutes} min</span>
           <ArrowUpRight className="h-4 w-4 transition" />
         </div>
       </div>

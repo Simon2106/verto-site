@@ -1,11 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap, Plane, Trophy, TrendingUp } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, GraduationCap, Plane, Play, Trophy, TrendingUp } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
 import { TitleReveal } from "@/components/site/TitleReveal";
-import ibizaTeam from "@/assets/client/ibiza8.jpg";
+import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
+import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
+import sadePoster from "@/assets/client/sade-promotion-poster.jpg";
+import shareSchemePoster from "@/assets/client/share-scheme-poster.jpg";
+import shareSchemeVideo from "@/assets/client/share-scheme.mp4";
 import { INTERNAL_JOBS } from "@/lib/jobs";
 
 export const Route = createFileRoute("/careers")({
@@ -50,6 +55,25 @@ const WHY_VERTO = [
     icon: GraduationCap,
     title: "International relocation",
     body: "UK to Austin. Austin to Miami. When you've built a market, we'll back you to take it abroad — desk, visa and first 90 days planned before you fly.",
+  },
+];
+
+/* Recent promotions — real stories from the client's Aug-2026 media drop
+   (poster frames from the promotion films; both films play on /whats-going-on). */
+const PROMOTIONS = [
+  {
+    name: "Milly Compton",
+    kicker: "Promoted — Edison Lux",
+    body: "Confetti cannons in the Edison Lux corner — Milly walked into an office that knew something she didn't.",
+    image: millyPoster,
+    alt: "Milly Compton walking into the office through confetti",
+  },
+  {
+    name: "Sade Kendall",
+    kicker: "Promoted — ModulR",
+    body: "The ModulR desk had the confetti ready. Promotion announced in front of the whole office, camera rolling.",
+    image: sadePoster,
+    alt: "Sade Kendall reading her promotion letter through the confetti",
   },
 ];
 
@@ -131,25 +155,28 @@ function CareersPage() {
           </div>
         </section>
 
-        {/* RECENT PROMOTIONS — placeholder strip */}
+        {/* RECENT PROMOTIONS — real stories from the Aug-2026 media drop */}
         <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <span className="eyebrow">Recent promotions</span>
               <h2 className="display-2 mt-5">People are moving up.</h2>
               <p className="mt-6 text-muted-foreground">
-                ⚠️ Placeholder — recent promotions will be pulled from the team's socials. Names, new titles and photos to follow.
+                Promotions here get the full treatment — confetti cannons, the whole office on its feet, and a camera rolling. The latest two, plus the films, are on{" "}
+                <Link to="/whats-going-on" className="font-medium" style={{ color: "var(--accent)" }}>What&apos;s going on</Link>.
               </p>
             </div>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="rounded-2xl card-surface p-6">
-                  <div className="h-14 w-14 rounded-full" style={{ background: "color-mix(in oklab, var(--accent) 25%, var(--muted))" }} />
-                  <div className="mt-4 font-display text-lg">Name TBC</div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--accent)" }}>
-                    Promoted — role TBC
+            <div className="mt-12 grid gap-5 sm:grid-cols-2">
+              {PROMOTIONS.map((p) => (
+                <div key={p.name} className="rounded-2xl card-surface overflow-hidden flex">
+                  <img src={p.image} alt={p.alt} loading="lazy" className="w-28 sm:w-32 object-cover" />
+                  <div className="p-6">
+                    <div className="font-display text-lg">{p.name}</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-[0.2em]" style={{ color: "var(--accent)" }}>
+                      {p.kicker}
+                    </div>
+                    <p className="mt-3 text-sm text-muted-foreground">{p.body}</p>
                   </div>
-                  <p className="mt-3 text-sm text-muted-foreground">Promotion story from the client's socials.</p>
                 </div>
               ))}
             </div>
@@ -177,23 +204,22 @@ function CareersPage() {
           </p>
         </section>
 
-        {/* INCENTIVES */}
+        {/* INCENTIVES & SHARE SCHEME — real Barcelona photography + the
+            client's share-scheme interview film (click-to-play) */}
         <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <div className="container-wide">
             <div className="grid gap-12 lg:grid-cols-2 items-center">
               <div>
-                <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives</div>
+                <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives &amp; ownership</div>
                 <h2 className="display-2 mt-5">Hit target. Board the plane.</h2>
                 <p className="mt-6 opacity-80 leading-relaxed">
-                  Two international incentive trips a year, winners' lunches, sales days and personal training sessions. Barcelona 2025, Prague in January — Ibiza is next.
+                  Two international incentive trips a year, winners&apos; lunches, sales days and personal training sessions. Barcelona 2025, Prague in January, Ibiza this summer — and a share scheme that includes every person in the business. Press play to hear what owning a piece of Verto actually means to the team.
                 </p>
-                <p className="mt-4 text-sm opacity-60">
-                  ⚠️ Placeholder imagery — holiday incentive clips, winners' lunch photos and sales-day material to come from the client.
-                </p>
+                <div className="mt-8 relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <img src={barcelonaTeam} alt="The team outside the W Barcelona, September 2025" className="h-full w-full object-cover" loading="lazy" />
+                </div>
               </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                <img src={ibizaTeam} alt="Verto incentive trip" className="h-full w-full object-cover" loading="lazy" />
-              </div>
+              <ShareSchemeFilm />
             </div>
           </div>
         </section>
@@ -264,5 +290,52 @@ function CareersPage() {
       </main>
       <SiteFooter />
     </div>
+  );
+}
+
+/* Portrait share-scheme interview film — poster + play button; the video
+   element (and its bytes) only mounts once the visitor presses play. */
+function ShareSchemeFilm() {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <figure className="m-0 justify-self-center w-full" style={{ maxWidth: 380 }}>
+      <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "9 / 16", background: "#000" }}>
+        {playing ? (
+          <video
+            src={shareSchemeVideo}
+            poster={shareSchemePoster}
+            controls
+            autoPlay
+            playsInline
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            className="group block h-full w-full cursor-pointer"
+            aria-label="Play — what the share scheme means to the team"
+          >
+            <img
+              src={shareSchemePoster}
+              alt="Still from the Verto share-scheme interviews"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span
+                className="flex h-16 w-16 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
+                style={{ background: "color-mix(in oklab, var(--accent) 24%, transparent)", color: "var(--accent)", backdropFilter: "blur(4px)" }}
+              >
+                <Play className="h-7 w-7 translate-x-[2px]" strokeWidth={1.5} fill="currentColor" />
+              </span>
+            </span>
+          </button>
+        )}
+      </div>
+      <figcaption className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] opacity-60">
+        &ldquo;One word for the share scheme?&rdquo; &mdash; the team, on camera
+      </figcaption>
+    </figure>
   );
 }

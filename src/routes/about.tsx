@@ -6,9 +6,11 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SectorCoverage } from "@/components/site/SectorCoverage";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { TitleReveal } from "@/components/site/TitleReveal";
-import ibizaHero from "@/assets/client/ibiza9.jpg";
-import ibizaTeam from "@/assets/client/ibiza8.jpg";
-import summitPoster from "@/assets/client/summit-poster.jpg";
+import ibizaSea from "@/assets/client/ibiza-11.jpg";
+import summitLetters from "@/assets/client/summit-02-800.jpg";
+import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
+import galaStage from "@/assets/client/gala-01-800.jpg";
+import galaGroup from "@/assets/client/gala-02-800.jpg";
 import aboutImage from "@/assets/about-image.jpg";
 import skylineUK from "@/assets/skyline-uk.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
@@ -20,25 +22,33 @@ import { BRAND_LIST } from "@/lib/brands";
 import { teamForTier, initials, type TeamMember } from "@/lib/team";
 
 /* ── Photo collage under the "Made in 2020" intro (approved design) —
-      tile spans map to a 4-col grid; subtle stagger via --reveal-delay. ── */
+      tile spans map to a 4-col grid; subtle stagger via --reveal-delay.
+      Aug-2026 media drop: real Ibiza sea shot leads, plus the summit letters
+      and a Barcelona group shot from the client's event photography. ── */
 const COLLAGE: { src: string; alt: string; caption?: string; span: string }[] = [
-  { src: ibizaHero, alt: "The Verto team in Ibiza", caption: "Ibiza — the 2026 summer incentive", span: "col-span-2 row-span-2" },
-  { src: summitPoster, alt: "The Verto summer summit", caption: "The summer summit", span: "col-span-2" },
-  { src: ibizaTeam, alt: "The team on an incentive trip", span: "col-span-1" },
+  { src: ibizaSea, alt: "The Verto team in the sea in Ibiza", caption: "Ibiza — the 2026 summer incentive", span: "col-span-2 row-span-2" },
+  { src: summitLetters, alt: "The Verto summer summit", caption: "The summer summit", span: "col-span-2" },
+  { src: barcelonaTeam, alt: "The team outside the W Barcelona", span: "col-span-1" },
   { src: aboutImage, alt: "The team at work", span: "col-span-1" },
   { src: skylineUK, alt: "Solent, UK — where it started", caption: "Solent, UK", span: "col-span-2" },
   { src: skylineUS, alt: "Austin, TX — the US build-out", caption: "Austin, TX", span: "col-span-2" },
 ];
 
-/* ── Community & DE&I — placeholder cards awaiting client photography. ── */
-const COMMUNITY: { title: string; body: string }[] = [
+/* ── Community & DE&I — the gala cards carry the client's real charity-gala
+      photography; the DE&I card stays a placeholder until the client's
+      commitments/numbers arrive. ── */
+const COMMUNITY: { title: string; body: string; image?: string; alt?: string }[] = [
   {
     title: "Gala nights",
     body: "Black-tie charity galas — including the night that raised £15,504 for the Amelia-Mae Foundation.",
+    image: galaStage,
+    alt: "The team on stage at the charity gala",
   },
   {
     title: "Charity & fundraising",
     body: "Every office backs a cause the team chooses — fundraisers, sponsored events and hands-on volunteering through the year.",
+    image: galaGroup,
+    alt: "Black-tie group at the charity gala",
   },
   {
     title: "DE&I commitments",
@@ -390,7 +400,7 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* COMMUNITY & DE&I — placeholder cards, photos coming from client */}
+        {/* COMMUNITY & DE&I — real gala photography; DE&I card still pending client numbers */}
         <section className="container-wide py-24 hairline-top">
           <div className="max-w-2xl">
             <span className="eyebrow">Community &amp; DE&amp;I</span>
@@ -402,18 +412,24 @@ function AboutPage() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {COMMUNITY.map((card) => (
               <article key={card.title} className="flex flex-col rounded-2xl card-surface overflow-hidden">
-                <div
-                  className="flex aspect-[16/10] flex-col items-center justify-center gap-3 text-center"
-                  style={{
-                    background: "var(--muted)",
-                    borderBottom: "1px dashed color-mix(in oklab, var(--foreground) 20%, transparent)",
-                  }}
-                >
-                  <Camera className="h-6 w-6" strokeWidth={1.5} style={{ color: "var(--muted-foreground)" }} aria-hidden="true" />
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                    Photos coming from client
-                  </span>
-                </div>
+                {card.image ? (
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <img src={card.image} alt={card.alt ?? card.title} loading="lazy" className="h-full w-full object-cover" />
+                  </div>
+                ) : (
+                  <div
+                    className="flex aspect-[16/10] flex-col items-center justify-center gap-3 text-center"
+                    style={{
+                      background: "var(--muted)",
+                      borderBottom: "1px dashed color-mix(in oklab, var(--foreground) 20%, transparent)",
+                    }}
+                  >
+                    <Camera className="h-6 w-6" strokeWidth={1.5} style={{ color: "var(--muted-foreground)" }} aria-hidden="true" />
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                      Photos coming from client
+                    </span>
+                  </div>
+                )}
                 <div className="p-7">
                   <h3 className="font-display text-2xl leading-tight">{card.title}</h3>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground">{card.body}</p>

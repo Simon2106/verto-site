@@ -187,9 +187,57 @@ export const CONTENT_TYPES: ContentType[] = [
 /* ─────────── WHAT'S GOING ON ───────────
  * Culture & company-news posts for the Verto (group) site — replaces the old
  * "insights" concept at group level per client feedback.
- * ⚠️ PLACEHOLDER CONTENT — the client is sending the real "what's going on"
- * material; these entries are drawn from their public timeline. */
+ * Aug 2026: real stories + photography from the client's media drop
+ * (Barcelona incentive, summer summit, Milly / Sade promotion films). */
 export const WHATS_GOING_ON: Insight[] = [
+  {
+    slug: "sade-kendall-promoted",
+    title: "Sade Kendall promoted",
+    excerpt: "The ModulR desk had the confetti ready — Sade Kendall's promotion, announced in front of the whole office. Watch the moment it landed.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 1,
+    date: "2026-08-04",
+    category: "Wins",
+  },
+  {
+    slug: "milly-compton-promoted",
+    title: "Milly Compton promoted",
+    excerpt: "Confetti cannons in the Edison Lux corner — Milly Compton walked into an office that knew something she didn't. Promotion, announced the Verto way.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 1,
+    date: "2026-07-30",
+    category: "Wins",
+  },
+  {
+    slug: "inside-the-summer-summit",
+    title: "Inside the summer summit",
+    excerpt: "The whole group at Southsea Castle for the Verto Summer Summit — the numbers, the plans, then the flag over the ramparts and the letters lit up for the evening.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 3,
+    date: "2026-07-28",
+    category: "Community",
+  },
+  {
+    slug: "barcelona-where-the-incentive-trips-started",
+    title: "Barcelona — where the incentive trips started",
+    excerpt: "September 2025, the first international incentive: the whole qualifying team at the W Barcelona. Two trips a year has been the rhythm ever since.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 2,
+    date: "2025-09-15",
+    category: "Trips",
+  },
   {
     slug: "sunday-times-best-places-to-work-2026",
     title: "Verto named in The Sunday Times Best Places to Work 2026",

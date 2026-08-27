@@ -4,11 +4,21 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { INSIGHTS, WHATS_GOING_ON, wgoCategory, type Insight } from "@/lib/insights";
 import { BRANDS } from "@/lib/brands";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { InsightThumb } from "@/components/site/InsightThumb";
-import ibiza8 from "@/assets/client/ibiza8.jpg";
-import ibiza9 from "@/assets/client/ibiza9.jpg";
+import ibiza11 from "@/assets/client/ibiza-11.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
+import pragueTeam from "@/assets/client/verto-01-800.jpg";
+import barcelonaTeam from "@/assets/client/barcelona-01.jpg";
+import summitTeam from "@/assets/client/summit-03.jpg";
+import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
+import sadePoster from "@/assets/client/sade-promotion-poster.jpg";
+import celebrationPoster from "@/assets/client/promotion-celebration-poster.jpg";
+import celebrationVideo from "@/assets/client/promotion-celebration.mp4";
+import sadeCelebrationPoster from "@/assets/client/sade-celebration-poster.jpg";
+import sadeCelebrationVideo from "@/assets/client/sade-celebration.mp4";
+import shareSchemePoster from "@/assets/client/share-scheme-poster.jpg";
+import shareSchemeVideo from "@/assets/client/share-scheme.mp4";
 
 export const Route = createFileRoute("/whats-going-on")({
   head: () => ({
@@ -26,9 +36,36 @@ export const Route = createFileRoute("/whats-going-on")({
    images seeded by the installer); market notes fall back to InsightThumb. */
 const IMAGE_BY_SLUG: Record<string, string> = {
   "sunday-times-best-places-to-work-2026": bptwBadge,
-  "prague-2026-incentive-trip": ibiza8,
-  "ibiza-2026-reveal": ibiza9,
+  "prague-2026-incentive-trip": pragueTeam,
+  "ibiza-2026-reveal": ibiza11,
+  "barcelona-where-the-incentive-trips-started": barcelonaTeam,
+  "inside-the-summer-summit": summitTeam,
+  "milly-compton-promoted": millyPoster,
+  "sade-kendall-promoted": sadePoster,
 };
+
+/* The client's people-story films (Aug-2026 media drop) — portrait 9:16,
+   click-to-play: poster + native controls, nothing loads until pressed. */
+const STORY_FILMS = [
+  {
+    title: "A promotion, announced",
+    note: "Confetti, applause — the office turns out",
+    video: celebrationVideo,
+    poster: celebrationPoster,
+  },
+  {
+    title: "The moment it lands",
+    note: "Sade's promotion, on camera",
+    video: sadeCelebrationVideo,
+    poster: sadeCelebrationPoster,
+  },
+  {
+    title: "Owning a piece of it",
+    note: "What the share scheme means to the team",
+    video: shareSchemeVideo,
+    poster: shareSchemePoster,
+  },
+];
 
 /* ── Magazine hub: featured newest story → card grid → Stories video
       placeholders → Instagram. (Approved design, replaces the old
@@ -65,7 +102,7 @@ function WhatsGoingOnPage() {
           ))}
         </section>
 
-        {/* STORIES — video slots (placeholder, client videos to come) */}
+        {/* STORIES — the client's people-story films (Aug-2026 media drop) */}
         <section className="container-wide mt-24">
           <div className="rounded-3xl p-10 lg:p-14" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -73,38 +110,28 @@ function WhatsGoingOnPage() {
                 <span className="eyebrow">Stories</span>
                 <h2 className="display-3 mt-5">People&apos;s stories.</h2>
                 <p className="mt-6 opacity-80 leading-relaxed">
-                  The team, on camera — first placements, first incentive trips, the move to the US. Video interviews are being filmed now.
+                  The team, on camera — promotions landing in a storm of confetti, and what owning a piece of Verto actually means. Press play.
                 </p>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.24em] opacity-50">
-                ⚠ Placeholder — client videos to come
-              </span>
             </div>
             <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {["A first placement", "Hitting the incentive trip", "Building a US desk"].map((label, i) => (
-                <div
-                  key={label}
-                  className="relative aspect-video rounded-2xl flex flex-col items-center justify-center gap-4 text-center p-6"
-                  style={{
-                    border: "1px dashed color-mix(in oklab, var(--ink-foreground) 30%, transparent)",
-                    background: "color-mix(in oklab, var(--ink-foreground) 4%, transparent)",
-                  }}
-                >
-                  <span
-                    className="flex h-14 w-14 items-center justify-center rounded-full"
-                    style={{ background: "color-mix(in oklab, var(--accent) 22%, transparent)", color: "var(--accent)" }}
-                    aria-hidden="true"
-                  >
-                    <Play className="h-6 w-6 translate-x-[2px]" strokeWidth={1.5} fill="currentColor" />
-                  </span>
-                  <div>
-                    <div className="font-display text-lg leading-snug">{label}</div>
-                    <div className="mt-2 text-[10px] uppercase tracking-[0.22em] opacity-60">
-                      People&apos;s stories — video coming soon
-                    </div>
-                  </div>
-                  <span className="absolute top-4 right-4 text-[9px] uppercase tracking-[0.2em] opacity-40">0{i + 1}</span>
-                </div>
+              {STORY_FILMS.map((film, i) => (
+                <figure key={film.title} className="relative m-0 flex flex-col gap-4">
+                  <video
+                    controls
+                    preload="none"
+                    playsInline
+                    poster={film.poster}
+                    src={film.video}
+                    className="w-full rounded-2xl object-cover"
+                    style={{ aspectRatio: "9 / 16", maxHeight: 480, background: "#000" }}
+                  />
+                  <figcaption>
+                    <div className="font-display text-lg leading-snug">{film.title}</div>
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.22em] opacity-60">{film.note}</div>
+                  </figcaption>
+                  <span className="absolute bottom-3 right-1 text-[9px] uppercase tracking-[0.2em] opacity-40">0{i + 1}</span>
+                </figure>
               ))}
             </div>
           </div>

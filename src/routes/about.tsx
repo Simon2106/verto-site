@@ -17,7 +17,7 @@ import martinDoig from "@/assets/martin-doig.jpg";
 import robbieSturgess from "@/assets/robbie-sturgess.webp";
 import alexHatfield from "@/assets/alex-hatfield.webp";
 import { BRAND_LIST } from "@/lib/brands";
-import { TEAM } from "@/lib/team";
+import { teamForTier, initials, type TeamMember } from "@/lib/team";
 
 /* ── Photo collage under the "Made in 2020" intro (approved design) —
       tile spans map to a 4-col grid; subtle stagger via --reveal-delay. ── */
@@ -46,7 +46,15 @@ const COMMUNITY: { title: string; body: string }[] = [
   },
 ];
 
+/* Client's official structure (Aug 2026): Alex Hatfield (President),
+   Martin Doig (Founder), Robbie Sturgess (President). */
 const LEADERSHIP: { name: string; role: string; image: string; bio: string }[] = [
+  {
+    name: "Alex Hatfield",
+    role: "President",
+    image: alexHatfield,
+    bio: "Runs the recruitment engine — training, process and the phone-first standard every desk works to.",
+  },
   {
     name: "Martin Doig",
     role: "Founder",
@@ -59,13 +67,35 @@ const LEADERSHIP: { name: string; role: string; image: string; bio: string }[] =
     image: robbieSturgess,
     bio: "Leads the group across three locations and four desks, from first UK placement to the US build-out.",
   },
-  {
-    name: "Alex Hatfield",
-    role: "Recruitment Leader",
-    image: alexHatfield,
-    bio: "Runs the recruitment engine — training, process and the phone-first standard every desk works to.",
-  },
 ];
+
+/* Compact people grid — Management and The team sections (ops fold in). */
+function TeamMiniGrid({ people }: { people: TeamMember[] }) {
+  return (
+    <div className="mt-12 grid gap-x-6 gap-y-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      {people.map((m) => (
+        <div key={m.name} className="group text-center">
+          <div className="relative aspect-square overflow-hidden rounded-2xl" style={{ background: "var(--muted)" }}>
+            {m.image ? (
+              <img
+                src={m.image}
+                alt={m.name}
+                loading="lazy"
+                className="h-full w-full object-cover grayscale-[30%] transition duration-300 group-hover:grayscale-0"
+              />
+            ) : (
+              <div className="h-full w-full flex items-center justify-center font-display text-2xl text-muted-foreground">
+                {initials(m.name)}
+              </div>
+            )}
+          </div>
+          <div className="mt-3 font-display text-sm tracking-tight">{m.name}</div>
+          <div className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-muted-foreground">{m.role}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /* Timeline — from the client's own history (vertopeople.com/who-we-are) */
 const TIMELINE: { date: string; title: string; highlight?: boolean }[] = [
@@ -339,36 +369,23 @@ function AboutPage() {
             ))}
           </div>
 
-          {/* Everyone */}
+          {/* Management → The team (client's official structure; ops fold into the team) */}
           <div className="mt-24">
             <div className="max-w-2xl">
-              <span className="eyebrow">The whole team</span>
+              <span className="eyebrow">Management</span>
+              <h2 className="display-3 mt-5">The people running the desks.</h2>
+            </div>
+            <TeamMiniGrid people={teamForTier("management")} />
+          </div>
+
+          <div className="mt-24">
+            <div className="max-w-2xl">
+              <span className="eyebrow">The team</span>
               <h2 className="display-3 mt-5">Everyone. Not just the leadership page.</h2>
             </div>
-            <div className="mt-12 grid gap-x-6 gap-y-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-              {TEAM.map((m) => (
-                <div key={m.name} className="group text-center">
-                  <div className="relative aspect-square overflow-hidden rounded-2xl" style={{ background: "var(--muted)" }}>
-                    {m.image ? (
-                      <img
-                        src={m.image}
-                        alt={m.name}
-                        loading="lazy"
-                        className="h-full w-full object-cover grayscale-[30%] transition duration-300 group-hover:grayscale-0"
-                      />
-                    ) : (
-                      <div className="h-full w-full flex items-center justify-center font-display text-2xl text-muted-foreground">
-                        {m.name.split(/\s+/).map((p) => p[0]).slice(0, 2).join("")}
-                      </div>
-                    )}
-                  </div>
-                  <div className="mt-3 font-display text-sm tracking-tight">{m.name}</div>
-                  <div className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-muted-foreground">{m.role}</div>
-                </div>
-              ))}
-            </div>
+            <TeamMiniGrid people={teamForTier("team")} />
             <p className="mt-8 text-sm text-muted-foreground">
-              Plus the group research bench and operations team behind every desk. <Link to="/team" className="font-medium" style={{ color: "var(--accent)" }}>Meet the full team →</Link>
+              Consultants across every brand, plus the group operations desk behind every search. <Link to="/team" className="font-medium" style={{ color: "var(--accent)" }}>Meet the full team →</Link>
             </p>
           </div>
         </section>

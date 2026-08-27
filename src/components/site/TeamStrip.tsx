@@ -19,7 +19,6 @@ export function TeamStrip({ brand, brandName }: { brand: BrandSlug; brandName: s
           </div>
           <Link
             to="/team"
-            hash={brand}
             className="text-sm font-medium inline-flex items-center gap-2"
             style={{ color: "var(--brand)" }}
           >

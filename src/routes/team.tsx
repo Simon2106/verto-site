@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { TeamCard } from "@/components/site/TeamStrip";
-import { BRAND_LIST } from "@/lib/brands";
-import { teamForBrand } from "@/lib/team";
+import { teamForTier } from "@/lib/team";
 
 export const Route = createFileRoute("/team")({
   head: () => ({
@@ -17,6 +16,32 @@ export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
 
+/* Client's official structure: Leadership → Management → The team
+   (ops fold into the team section on the group pages). */
+const TIER_SECTIONS = [
+  {
+    id: "leadership",
+    eyebrow: "Leadership",
+    heading: "Run by the people who built it.",
+    body: "Verto Group is founder-owned and independently financed. Every leader across the group has come up through the desk.",
+    people: teamForTier("leadership"),
+  },
+  {
+    id: "management",
+    eyebrow: "Management",
+    heading: "The people running the desks.",
+    body: "The managers and team leaders who own each brand's market, standard and pipeline day to day.",
+    people: teamForTier("management"),
+  },
+  {
+    id: "team",
+    eyebrow: "The team",
+    heading: "Every desk, every brand.",
+    body: "Consultants across Vertek, ModulR, Edison Lux and the group's life sciences desk — plus the operations team behind every search.",
+    people: teamForTier("team"),
+  },
+];
+
 function TeamPage() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -29,46 +54,34 @@ function TeamPage() {
             Every consultant across the group sits inside one practice — operators, engineers and in-market specialists, not generalists. This is who you'll be working with.
           </p>
           <nav className="mt-10 flex flex-wrap gap-2">
-            {BRAND_LIST.map((b) => (
+            {TIER_SECTIONS.map((s) => (
               <a
-                key={b.slug}
-                href={`#${b.slug}`}
+                key={s.id}
+                href={`#${s.id}`}
                 className="btn-base btn-pill btn-ghost-outline text-xs"
               >
-                {b.name}
+                {s.eyebrow}
               </a>
             ))}
           </nav>
         </section>
 
-        {BRAND_LIST.map((b) => {
-          const people = teamForBrand(b.slug);
-          if (people.length === 0) return null;
+        {TIER_SECTIONS.map((s) => {
+          if (s.people.length === 0) return null;
           return (
             <section
-              key={b.slug}
-              id={b.slug}
-              data-brand={b.slug}
+              key={s.id}
+              id={s.id}
               className="py-24 hairline-top scroll-mt-24"
             >
               <div className="container-wide">
-                <div className="flex flex-wrap items-end justify-between gap-6">
-                  <div className="max-w-xl">
-                    <span className="eyebrow">{b.qualifier}</span>
-                    <h2 className="display-2 mt-5">{b.name}</h2>
-                    <p className="mt-6 text-muted-foreground">{b.focus}</p>
-                  </div>
-                  <Link
-                    to="/brands/$brand"
-                    params={{ brand: b.slug }}
-                    className="text-sm font-medium"
-                    style={{ color: "var(--brand)" }}
-                  >
-                    Visit {b.name} →
-                  </Link>
+                <div className="max-w-xl">
+                  <span className="eyebrow">{s.eyebrow}</span>
+                  <h2 className="display-2 mt-5">{s.heading}</h2>
+                  <p className="mt-6 text-muted-foreground">{s.body}</p>
                 </div>
                 <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  {people.map((p) => (
+                  {s.people.map((p) => (
                     <TeamCard key={p.name} person={p} />
                   ))}
                 </div>

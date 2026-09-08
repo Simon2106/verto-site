@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { InsightThumb } from "@/components/site/InsightThumb";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { OfferGrid } from "@/components/site/OfferGrid";
 import { BRAND_SECTORS } from "@/components/site/SectorCoverage";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { TitleReveal } from "@/components/site/TitleReveal";
@@ -54,13 +55,14 @@ function Index() {
 
         {/* Client feedback round 3, item 3: jobs directly below the brand
             tiles, then What's Going On, employee voices + awards, and Values
-            last before the Instagram feed. Standalone sector coverage is gone
-            from Home — it now lives on the brand tiles' hover faces. */}
+            before the Instagram feed. Round 4, item 11: "What we offer"
+            (14 perks, notched dark cards) sits between Values and Socials. */}
         <Practices />
         <JoinUs />
         <WhatsGoingOn />
         <EmployeeVoices />
         <Values />
+        <WhatWeOffer />
         <Socials />
       </main>
       <SiteFooter />
@@ -289,11 +291,13 @@ function Practices() {
               data-brand={b.slug}
               aria-label={`Enter ${b.name}`}
               className="group relative block"
-              style={{ perspective: "1400px", minHeight: 480 }}
+              /* Round 4, item 12: 480 → 540 — Vertek's hover face now lists
+                 six sectors and needs the extra room. */
+              style={{ perspective: "1400px", minHeight: 540 }}
             >
               <div
                 className="relative w-full h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]"
-                style={{ transformStyle: "preserve-3d", minHeight: 480 }}
+                style={{ transformStyle: "preserve-3d", minHeight: 540 }}
               >
                 {/* ── FRONT — the brand's own logo, front and centre ── */}
                 <div
@@ -325,7 +329,8 @@ function Practices() {
                     className={`relative ${b.slug === "vertek" ? "h-12" : "h-20"} w-auto max-w-[80%] object-contain`}
                     loading="lazy"
                   />
-                  <div className="relative mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
+                  {/* Round 4, item 3: eyebrow larger + clearer */}
+                  <div className="relative mt-8 text-xs font-semibold uppercase tracking-[0.26em] opacity-85">
                     {b.focus}
                   </div>
                   <div
@@ -349,10 +354,28 @@ function Practices() {
                 >
                   <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "var(--brand)" }} />
 
-                  <div className="text-[10px] uppercase tracking-[0.3em] mt-2" style={{ color: "var(--brand)" }}>
+                  {/* Round 4, item 3: kicker larger + clearer */}
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.26em] mt-2" style={{ color: "var(--brand)" }}>
                     {b.focus}
                   </div>
-                  <div className="mt-4 font-display text-2xl tracking-tight">{b.name}</div>
+                  {/* Round 4, item 4: Edison Lux wordmark in the primary-lockup
+                      green→blue gradient */}
+                  <div
+                    className="mt-4 font-display text-2xl tracking-tight w-fit"
+                    style={
+                      b.slug === "edison-lux"
+                        ? {
+                            backgroundImage: "linear-gradient(90deg, #3CC739 0%, #2B8EE5 100%)",
+                            WebkitBackgroundClip: "text",
+                            backgroundClip: "text",
+                            color: "transparent",
+                            WebkitTextFillColor: "transparent",
+                          }
+                        : undefined
+                    }
+                  >
+                    {b.name}
+                  </div>
                   <p className="mt-4 text-sm opacity-85 leading-relaxed">{b.positioning}</p>
                   {/* Sector coverage on the hover face (client feedback, item 9) */}
                   <div className="mt-5 text-[10px] uppercase tracking-[0.24em] opacity-60">Sector coverage</div>
@@ -401,26 +424,19 @@ function Values() {
     return () => io.disconnect();
   }, []);
   return (
+    /* Round 4, items 1+8: Values goes LIGHT (ivory, ink text, gold numerals)
+       so Awards + Values no longer read as two navy bands in a row. */
     <section
       className="relative py-28 overflow-hidden"
-      style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
+      style={{ background: "var(--background)", color: "var(--foreground)" }}
     >
-      {/* ambient gold vignette */}
+      {/* whisper of gold vignette so the ivory doesn't go flat */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 85% 100%, color-mix(in oklab, var(--brand) 22%, transparent) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 5% -10%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 55%)",
-        }}
-      />
-      {/* slow drifting diagonal shimmer */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-x-20 -top-24 h-[140%] opacity-[0.07] values-drift"
-        style={{
-          background:
-            "repeating-linear-gradient(115deg, transparent 0 120px, color-mix(in oklab, var(--brand) 80%, transparent) 120px 121px, transparent 121px 260px)",
+            "radial-gradient(ellipse 55% 45% at 90% 110%, color-mix(in oklab, var(--brand) 10%, transparent) 0%, transparent 60%)",
         }}
       />
 
@@ -428,16 +444,13 @@ function Values() {
         <div className="max-w-2xl">
           <span className="eyebrow">Verto&apos;s values</span>
           <TitleReveal className="display-2 mt-5" lines={["Five values.", "Every desk, every day."]} />
-          <p
-            className="mt-6"
-            style={{ color: "color-mix(in oklab, var(--ink-foreground) 68%, transparent)" }}
-          >
+          <p className="mt-6 text-muted-foreground">
             Every desk runs its own market and its own network. What&apos;s shared is what we stand for — the five values every person across the group works by.
           </p>
         </div>
 
         <div className="mt-16 grid gap-px md:grid-cols-2 lg:grid-cols-5"
-          style={{ background: "color-mix(in oklab, var(--ink-foreground) 12%, transparent)" }}
+          style={{ background: "var(--border)" }}
         >
           {values.map((v, i) => (
             <div
@@ -472,19 +485,13 @@ function Values() {
       </div>
 
       <style>{`
-        @keyframes values-drift {
-          0%   { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-260px, 0, 0); }
-        }
-        .values-drift { animation: values-drift 22s linear infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .values-drift { animation: none; }
-        }
-        .value-card { background: var(--ink); color: var(--ink-foreground); }
+        /* Round 4, items 1+8: light cards — ivory ground, ink text, gold
+           numerals. Hover keeps the gold-fill signature (ink text on gold). */
+        .value-card { background: var(--surface, var(--background)); color: var(--foreground); }
         .value-card__accent { background: var(--brand); }
-        .value-card__num { color: color-mix(in oklab, var(--ink-foreground) 45%, transparent); }
-        .value-card__title { color: var(--ink-foreground); }
-        .value-card__body { color: color-mix(in oklab, var(--ink-foreground) 68%, transparent); }
+        .value-card__num { color: var(--accent); }
+        .value-card__title { color: var(--foreground); }
+        .value-card__body { color: var(--muted-foreground); }
         .value-card:hover { background: var(--brand); }
         .value-card:hover .value-card__accent { background: var(--ink); }
         .value-card:hover .value-card__num,
@@ -582,7 +589,12 @@ function EmployeeVoices() {
       <div className="container-wide mt-14 lg:mt-16">
         <div
           className="flex flex-col md:flex-row md:items-center gap-8 p-8 md:p-10 border border-white/10"
-          style={{ background: "color-mix(in oklab, var(--ink-foreground) 4%, transparent)" }}
+          /* Round 4, item 8: subtle gold top hairline sets the awards band
+             apart now the Values section beneath it is light. */
+          style={{
+            background: "color-mix(in oklab, var(--ink-foreground) 4%, transparent)",
+            borderTop: "2px solid color-mix(in oklab, var(--accent) 65%, transparent)",
+          }}
         >
           <div className="flex items-center gap-6 shrink-0">
             <img
@@ -671,6 +683,28 @@ function WhatsGoingOn() {
               </div>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────── WHAT WE OFFER — round 4, item 11 ───────────
+   The client-logo strip is dead for good; the 14 perks take its place as a
+   notched-corner dark card grid (also on the careers page). */
+function WhatWeOffer() {
+  return (
+    <section className="py-24 lg:py-32 hairline-top" style={{ background: "var(--muted)" }}>
+      <div className="container-wide">
+        <div className="max-w-2xl">
+          <span className="eyebrow">What we offer</span>
+          <TitleReveal className="display-2 mt-5" lines={["The package,", "in full."]} />
+          <p className="mt-6 text-muted-foreground max-w-xl">
+            Fourteen reasons a desk here beats the one you&apos;re at — in money, ownership, travel and the things other agencies call perks and we call standard.
+          </p>
+        </div>
+        <div className="mt-14">
+          <OfferGrid />
         </div>
       </div>
     </section>

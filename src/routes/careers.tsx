@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, GraduationCap, Plane, Play, Trophy, TrendingUp } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
+import { OfferGrid } from "@/components/site/OfferGrid";
 import { TitleReveal } from "@/components/site/TitleReveal";
 import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
 import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
@@ -32,31 +33,6 @@ export const Route = createFileRoute("/careers")({
   }),
   component: CareersPage,
 });
-
-/* Why Verto — per client feedback: share scheme, 40% comms,
-   relocation opportunities, 2 holidays per year. */
-const WHY_VERTO = [
-  {
-    icon: TrendingUp,
-    title: "40% commission",
-    body: "One of the best splits in the market, transparent from day one. No thresholds designed to be missed, no clawbacks buried in a handbook.",
-  },
-  {
-    icon: Trophy,
-    title: "Share scheme",
-    body: "Everyone owns a piece. Not a senior-only perk — every person in the business is in the share scheme, so the group's growth is your growth.",
-  },
-  {
-    icon: Plane,
-    title: "2 holiday incentives a year",
-    body: "Barcelona 2025. Prague, January 2026. Ibiza this summer. Hit target and you're on the plane with the whole company — twice a year.",
-  },
-  {
-    icon: GraduationCap,
-    title: "International relocation",
-    body: "UK to Austin. Austin to Miami. When you've built a market, we'll back you to take it abroad — desk, visa and first 90 days planned before you fly.",
-  },
-];
 
 /* Recent promotions — real stories from the client's Aug-2026 media drop
    (poster frames from the promotion films; both films play on /whats-going-on). */
@@ -131,27 +107,23 @@ function CareersPage() {
           id="openings"
         >
           <div className="container-wide">
-            <JobsBoard heading="Roles we're hiring right now." />
+            {/* Round 4, item 5: heading carries no word "roles" (component default) */}
+            <JobsBoard />
           </div>
         </section>
 
-        {/* WHY VERTO */}
-        <section className="container-wide py-24 grid gap-14 lg:grid-cols-[1fr_2fr]">
-          <div>
-            <span className="eyebrow">Why Verto</span>
-            <h2 className="display-3 mt-5">Four reasons people join. One reason they stay.</h2>
+        {/* WHAT WE OFFER — round 4, item 11: the four-card "Why Verto" becomes
+            the full 14-perk notched card grid (shared with the home page). */}
+        <section className="container-wide py-24">
+          <div className="max-w-2xl">
+            <span className="eyebrow">What we offer</span>
+            <h2 className="display-3 mt-5">The package, in full.</h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
               The package gets you in the door. The team is why the average consultant is still here years later.
             </p>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2">
-            {WHY_VERTO.map((p) => (
-              <div key={p.title} className="hairline-top pt-8">
-                <p.icon className="h-8 w-8" strokeWidth={1.5} style={{ color: "var(--accent)" }} />
-                <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
-                <p className="mt-4 text-muted-foreground leading-relaxed">{p.body}</p>
-              </div>
-            ))}
+          <div className="mt-14">
+            <OfferGrid />
           </div>
         </section>
 

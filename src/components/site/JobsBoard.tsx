@@ -20,7 +20,8 @@ import {
  * Colour-coded by brand. Designed for dark (ink) sections.
  */
 export function JobsBoard({
-  heading = "Roles we're hiring now.",
+  // Round 4, item 5: catchier heading — and no word "roles" in the section.
+  heading = "Your next desk is here.",
   intro,
   initialLocation,
 }: {
@@ -48,11 +49,11 @@ export function JobsBoard({
   return (
     <div>
       <div className="max-w-2xl">
-        <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Join Verto — internal roles</div>
+        <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Join Verto</div>
         <TitleReveal className="display-2 mt-5" lines={[heading]} />
         <p className="mt-6 opacity-80">
           {intro ??
-            "These are seats on our own desks — not client vacancies. We also always want to hear from experienced consultants, even if the exact desk isn't listed."}
+            "These are seats on our own desks — not client vacancies. And if your desk isn't listed yet, we still want to hear from experienced consultants."}
         </p>
       </div>
 
@@ -68,7 +69,7 @@ export function JobsBoard({
               }}
             >
               <div className="flex items-baseline justify-between">
-                <div className="text-[10px] uppercase tracking-[0.24em] opacity-60">Filter roles</div>
+                <div className="text-[10px] uppercase tracking-[0.24em] opacity-60">Filter</div>
                 {activeCount > 0 && (
                   <button
                     type="button"
@@ -112,7 +113,7 @@ export function JobsBoard({
             </div>
 
             <p className="text-xs opacity-60 leading-relaxed px-1">
-              {jobs.length} role{jobs.length === 1 ? "" : "s"} shown · Can&apos;t see your desk?{" "}
+              {jobs.length} opening{jobs.length === 1 ? "" : "s"} shown · Can&apos;t see your desk?{" "}
               <Link to="/contact" className="font-medium" style={{ color: "var(--accent)" }}>
                 Write to us anyway →
               </Link>
@@ -146,7 +147,7 @@ export function JobsBoard({
           ))}
           {jobs.length === 0 && (
             <p className="py-10 text-sm opacity-70">
-              No open roles match those filters right now — but send us a note anyway; half our hires start that way.
+              Nothing matches those filters right now — but send us a note anyway; half our hires start that way.
             </p>
           )}
         </div>

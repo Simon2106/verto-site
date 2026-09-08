@@ -128,3 +128,17 @@ export function teamForTier(tier: TeamTier): TeamMember[] {
 export function initials(name: string): string {
   return name.split(/\s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase();
 }
+
+/** Round 4, item 16: brand-coloured ring/tint per member — the first brand in
+ *  `brands` wins. Light-ground palette (these cards sit on ivory/muted);
+ *  ModulR uses the lighter #7FA8FC here — switch to #0464FA on ink. */
+export const MEMBER_BRAND_COLOR: Record<TeamBrand, string> = {
+  verto: "#d19f2f",
+  "edison-lux": "#2B8EE5",
+  vertek: "#F82B60",
+  modulr: "#7FA8FC",
+};
+
+export function memberBrandColor(m: TeamMember): string {
+  return MEMBER_BRAND_COLOR[m.brands[0] ?? "verto"];
+}

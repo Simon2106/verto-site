@@ -57,7 +57,7 @@ const FEATURES: Record<BrandSlug, Feature[]> = {
     { icon: TrendingUp, title: "100% Engaged\nSuccess", body: "Speed and accuracy together — because when a COD is at risk, you shouldn't have to choose." },
   ],
   modulr: [
-    { icon: Globe2, title: "UK, EU & US", body: "Hyperscale, colocation and celebrated US architecture — three regions, one network." },
+    { icon: Globe2, title: "US & EU", body: "Data centres, colocation and celebrated architecture practices — two regions, one network." },
     { icon: Compass, title: "Curated Introductions", body: "Considered shortlists with real context. Never CVs into the void." },
     { icon: Lock, title: "NDA-Grade Discretion", body: "Sensitive, pre-announcement and competitor-adjacent search handled as standard." },
     { icon: Handshake, title: "Long-Game Relationships", body: "We track careers and project pipelines to add value before the urgent need arises." },
@@ -65,9 +65,9 @@ const FEATURES: Record<BrandSlug, Feature[]> = {
 };
 
 const HERO_SUB: Record<BrandSlug, string> = {
-  vertek: "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving — across the UK and US. Every consultant owns one product area.",
+  vertek: "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving — across the US and Europe. Every consultant owns one product area.",
   "edison-lux": "Edison Lux delivers talent solutions for the US energy sector — from control room operators to the C-suite leaders responsible for billion-dollar assets. One market. Done properly.",
-  modulr: "Modulr connects standout architecture and data centre professionals with the built environment's most ambitious work — hyperscale campuses, award-winning practices and the projects you won't find advertised.",
+  modulr: "Modulr connects the very best talent in Data Centres and Architecture with the companies building the future. Covering both the US and EU.",
 };
 
 const SPECIALISM_ICONS: Record<BrandSlug, LucideIcon[]> = {

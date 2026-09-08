@@ -60,7 +60,8 @@ export const LOCATIONS: OfficeLocation[] = [
     heroImage: skylineUK,
     photos: [ibiza8, summitPoster, ibiza9],
     culture: [
-      { category: "Our chosen charity", title: "The Amelia-Mae Foundation", body: "Our charity gala and fundraising have raised over £15,504 for the Amelia-Mae Foundation — and counting." },
+      // Round 4, item 17: recent gala = Maeve's Mission; Amelia-Mae was 2023.
+      { category: "Charity partners", title: "Maeve's Mission & the Amelia-Mae Foundation", body: "Our gala nights back the causes the team chooses — most recently Maeve's Mission, after the 2023 gala raised £15,504 for the Amelia-Mae Foundation." },
       { category: "We're eating at", title: "Placeholder — client to confirm", body: "The lunch spot the Solent team actually queues for. Content to come." },
       { category: "We're listening to", title: "Placeholder — client to confirm", body: "The sales-floor soundtrack. Content to come." },
       { category: "As an office we love", title: "Placeholder — client to confirm", body: "Sales days, winners' lunches and the summer summit. Content to come." },

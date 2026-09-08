@@ -7,7 +7,7 @@
 /*
  * Verto Group design system
  * - Premium executive recruitment ecosystem
- * - Parent (Verto) uses warm ivory + blue-grey (#283347) + brand gold (#d19f2f)
+ * - Parent (Verto) uses warm ivory + deep navy (#1F2A44) + brand gold (#d19f2f)
  * - Sub-brand accents live behind [data-brand="..."] selectors
  *   so any component can opt into a brand's accent color via
  *   the `--accent` / `--brand` tokens.
@@ -78,14 +78,16 @@
 
   /* brand gold accent for parent (client brand: #d19f2f) */
   --accent: #d19f2f;
-  --accent-foreground: #283347; /* dark text on gold — white fails contrast */
+  --accent-foreground: #1F2A44; /* dark text on gold — white fails contrast */
 
   /* `brand` is the dominant identity color (defaults to accent at parent) */
   --brand: #d19f2f;
-  --brand-foreground: #283347;
+  --brand-foreground: #1F2A44;
 
-  /* dark blue-grey surface (client brand: #283347) — hero bands, footer */
-  --ink: #283347;
+  /* Deep navy surface — hero bands, footer. Client feedback round 4, item 1:
+     richer/cleaner than the old blue-grey #283347. TUNEABLE: adjust here (and
+     the two *-foreground values above) to warm or deepen it. */
+  --ink: #1F2A44;
   --ink-foreground: oklch(0.97 0.01 85);
 
   --destructive: oklch(0.58 0.22 27);
@@ -794,3 +796,48 @@
   color: transparent !important;
   -webkit-text-fill-color: transparent;
 }
+
+/* ═════════════ Round 4 client feedback ═════════════ */
+
+/* Item 15 — timeline: native scrollbar hidden; the chevron buttons and
+   swipe/drag (TimelineCarousel in about.tsx) do the navigating. */
+.timeline-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.timeline-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.timeline-btn {
+  border: 1px solid color-mix(in oklab, var(--ink-foreground) 30%, transparent);
+  color: var(--ink-foreground);
+  background: transparent;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.timeline-btn:hover, .timeline-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+/* Item 11 — "What we offer" notched-corner dark cards (OfferGrid.tsx).
+   Top-right corner clipped; gold seam sits under the cut. */
+.offer-card {
+  position: relative;
+  background: #14192B;
+  color: #F5F3EC;
+  clip-path: polygon(0 0, calc(100% - 1.25rem) 0, 100% 1.25rem, 100% 100%, 0 100%);
+}
+.offer-card:hover { background: #1B2340; }
+.offer-card::after {
+  content: ""; position: absolute; top: 0; right: 0;
+  border-style: solid; border-width: 0 1.25rem 1.25rem 0;
+  border-color: transparent transparent color-mix(in oklab, var(--accent) 45%, transparent) transparent;
+  transition: border-color 0.3s ease;
+}
+.offer-card:hover::after { border-bottom-color: var(--accent); }
+
+/* Item 10 — footer links: slightly larger with a gold hover underline. */
+.footer-link {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s, text-decoration-color 0.2s;
+}
+.footer-link:hover { text-decoration-color: var(--accent); }

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Camera } from "lucide-react";
+import { Camera, ChevronLeft, ChevronRight } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SectorCoverage } from "@/components/site/SectorCoverage";
@@ -19,7 +19,7 @@ import martinDoig from "@/assets/martin-doig.jpg";
 import robbieSturgess from "@/assets/robbie-sturgess.webp";
 import alexHatfield from "@/assets/alex-hatfield.webp";
 import { BRAND_LIST } from "@/lib/brands";
-import { teamForTier, initials, type TeamMember } from "@/lib/team";
+import { teamForTier, initials, memberBrandColor, type TeamMember } from "@/lib/team";
 
 /* ── Photo collage under the "Made in 2020" intro (approved design) —
       tile spans map to a 4-col grid; subtle stagger via --reveal-delay.
@@ -40,7 +40,9 @@ const COLLAGE: { src: string; alt: string; caption?: string; span: string }[] = 
 const COMMUNITY: { title: string; body: string; image?: string; alt?: string }[] = [
   {
     title: "Gala nights",
-    body: "Black-tie charity galas — including the night that raised £15,504 for the Amelia-Mae Foundation.",
+    // Round 4, item 17: two galas now — most recent for Maeve's Mission,
+    // after the 2023 Amelia-Mae Foundation gala.
+    body: "Black-tie charity galas — most recently for Maeve's Mission, following the 2023 gala that raised £15,504 for the Amelia-Mae Foundation.",
     image: galaStage,
     alt: "The team on stage at the charity gala",
   },
@@ -79,13 +81,22 @@ const LEADERSHIP: { name: string; role: string; image: string; bio: string }[] =
   },
 ];
 
-/* Compact people grid — Management and The team sections (ops fold in). */
+/* Compact people grid — Management and The team sections (ops fold in).
+   Round 4, item 16: each portrait carries a 2px ring + soft tint in the
+   member's own brand colour (first brand in their list). */
 function TeamMiniGrid({ people }: { people: TeamMember[] }) {
   return (
     <div className="mt-12 grid gap-x-6 gap-y-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {people.map((m) => (
         <div key={m.name} className="group text-center">
-          <div className="relative aspect-square overflow-hidden rounded-2xl" style={{ background: "var(--muted)" }}>
+          <div
+            className="relative aspect-square overflow-hidden rounded-2xl"
+            data-brand={m.brands[0] ?? "verto"}
+            style={{
+              background: `color-mix(in oklab, ${memberBrandColor(m)} 10%, var(--muted))`,
+              boxShadow: `0 0 0 2px color-mix(in oklab, ${memberBrandColor(m)} 65%, transparent), 0 14px 28px -18px color-mix(in oklab, ${memberBrandColor(m)} 40%, transparent)`,
+            }}
+          >
             {m.image ? (
               <img
                 src={m.image}
@@ -467,6 +478,14 @@ function TimelineCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
+  /* Round 4, item 15: chevron nav — the effect wires stepRef to the
+     carousel's go(); before wiring (or with reduced motion) the buttons
+     fall back to paging the native scroll. */
+  const stepRef = useRef<((dir: 1 | -1) => void) | null>(null);
+  const stepManual = (dir: 1 | -1) => {
+    if (stepRef.current) stepRef.current(dir);
+    else scrollerRef.current?.scrollBy({ left: dir * 264, behavior: "auto" });
+  };
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -505,6 +524,12 @@ function TimelineCarousel() {
       window.clearTimeout(idleTimer);
       idleTimer = window.setTimeout(() => { paused = false; }, TIMELINE_RESUME_MS);
     };
+    // Chevrons step the carousel index and hold off the autoplay a while.
+    stepRef.current = (dir) => {
+      pause();
+      scheduleResume();
+      go((idx + dir + items.length) % items.length);
+    };
     const onScroll = () => {
       if (programmatic) return;
       pause();
@@ -528,6 +553,7 @@ function TimelineCarousel() {
     scroller.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      stepRef.current = null;
       window.clearInterval(timer);
       window.clearTimeout(idleTimer);
       window.clearTimeout(progTimer);
@@ -542,7 +568,27 @@ function TimelineCarousel() {
   }, []);
 
   return (
-    <div ref={scrollerRef} className="mt-14 overflow-x-auto pb-6 timeline-scroll" tabIndex={0} aria-label="Verto timeline — 2020 to today">
+    <>
+      {/* Round 4, item 15: chevron nav replaces the (now hidden) scrollbar */}
+      <div className="container-wide mt-12 flex justify-end gap-2.5">
+        <button
+          type="button"
+          aria-label="Previous milestones"
+          onClick={() => stepManual(-1)}
+          className="timeline-btn flex h-10 w-10 items-center justify-center rounded-full"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          aria-label="Next milestones"
+          onClick={() => stepManual(1)}
+          className="timeline-btn flex h-10 w-10 items-center justify-center rounded-full"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+      <div ref={scrollerRef} className="mt-4 overflow-x-auto pb-6 timeline-scroll" tabIndex={0} aria-label="Verto timeline — 2020 to today">
       <div className="relative flex gap-0 px-6 md:px-10 w-max items-stretch">
         {/* Gold progress line — fills between visited milestones */}
         <div
@@ -580,6 +626,7 @@ function TimelineCarousel() {
           </div>
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }

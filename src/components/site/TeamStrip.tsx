@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { BrandSlug } from "@/lib/brands";
-import { teamForBrand, initials, type TeamMember } from "@/lib/team";
+import { teamForBrand, initials, memberBrandColor, type TeamMember } from "@/lib/team";
 
 export function TeamStrip({ brand, brandName }: { brand: BrandSlug; brandName: string }) {
   const people = teamForBrand(brand).slice(0, 4);
@@ -37,12 +37,16 @@ export function TeamStrip({ brand, brandName }: { brand: BrandSlug; brandName: s
 
 export function TeamCard({ person, compact = false }: { person: TeamMember; compact?: boolean }) {
   void compact;
+  /* Round 4, item 16: 2px ring + soft tint in the MEMBER's own brand colour
+     (first brand in their list) — a visual answer to "brand profile pics". */
+  const ring = memberBrandColor(person);
   return (
     <div
       className="group relative aspect-square w-full overflow-hidden rounded-2xl"
+      data-brand={person.brands[0] ?? "verto"}
       style={{
-        background:
-          "color-mix(in oklab, var(--brand) 6%, var(--muted))",
+        background: `color-mix(in oklab, ${ring} 10%, var(--muted))`,
+        boxShadow: `0 0 0 2px color-mix(in oklab, ${ring} 65%, transparent), 0 14px 28px -18px color-mix(in oklab, ${ring} 40%, transparent)`,
       }}
     >
       {person.image ? (
@@ -56,9 +60,8 @@ export function TeamCard({ person, compact = false }: { person: TeamMember; comp
         <div
           className="absolute inset-0 flex items-center justify-center font-display text-6xl"
           style={{
-            background:
-              "linear-gradient(160deg, color-mix(in oklab, var(--brand) 22%, var(--muted)) 0%, color-mix(in oklab, var(--brand) 6%, var(--muted)) 100%)",
-            color: "var(--brand)",
+            background: `linear-gradient(160deg, color-mix(in oklab, ${ring} 22%, var(--muted)) 0%, color-mix(in oklab, ${ring} 6%, var(--muted)) 100%)`,
+            color: ring,
           }}
         >
           {initials(person.name)}

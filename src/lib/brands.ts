@@ -158,8 +158,9 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
     qualifier: "Technical Sales, Service & Engineering",
     tagline: "Engineering",
     taglineAccent: "what's next",
+    // Round 4, item 12: US + Europe.
     positioning:
-      "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving — across the UK and US. Every consultant owns one product area. That's why it works.",
+      "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving — across the US and Europe. Every consultant owns one product area. That's why it works.",
     focus: "Technical Sales, Service & Engineering",
     heroImage: vertekHero,
     heroAlt: "Cable-stayed bridge at night with crimson motion light trails",
@@ -168,13 +169,14 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
       { value: "100%", label: "Success rate on Verto Engage" },
       { value: "94%", label: "Of clients hire with us again" },
     ],
+    // Round 4, item 12: the client's six named sectors.
     specialisms: [
-      { title: "Fluid Power & Flow Control", description: "Hydraulics, pneumatics, compressed air, pumps, valves, actuators, instrumentation, filtration and seals." },
-      { title: "Rotating Equipment & Turbomachinery", description: "Steam turbines, gas compression, electric motors, gearboxes and power transmission." },
-      { title: "HVAC", description: "Air handlers, ventilation, refrigeration, heat pumps, boilers, plumbing and aftermarket — UK and US." },
-      { title: "CNC & Precision Engineering (US)", description: "Cutting tools, workholding, toolholding, metrology, CMM and metalworking." },
-      { title: "Industrial Automation (US)", description: "Sensors, PLCs, HMI, connectors, automated machinery and conveyors." },
-      { title: "Advanced Manufacturing (US)", description: "Defence, aerospace, space, semiconductor and robotics — ITAR and clearance handled." },
+      { title: "Fluid Power", description: "Pumps, seals, valves and hydraulics — plus pneumatics, actuation, filtration and flow control." },
+      { title: "HVAC", description: "Air handlers, ventilation, refrigeration, heat pumps, boilers, plumbing and aftermarket." },
+      { title: "Defense & Advanced Manufacturing", description: "Defence, aerospace, space, semiconductor and robotics — ITAR and clearance handled." },
+      { title: "Industrial Automation", description: "Sensors, PLCs, HMI, connectors, automated machinery and conveyors." },
+      { title: "CNC & Metalworking", description: "Cutting tools, workholding, toolholding, metrology, CMM and metalworking." },
+      { title: "Compressors", description: "Air and gas compression — rotary screw, centrifugal and reciprocating — sales, service and engineering." },
     ],
     audiences: {
       company: {
@@ -192,7 +194,7 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
         headline: "Options, not applications.",
         body: "Put a role on a job board and it gets hundreds of resumes. Work with us and it works the other way round — we put you and your experience front and centre, and we sell the opportunity before you sit in an interview.",
         bullets: [
-          "UK, EU and US roles across the product landscape",
+          "US and European roles across the product landscape",
           "Total comp, equity, progression and work-life on the table",
           "Time-served engineers and product specialists — spoken to as equals",
           "Honest feedback. No oversell. No fluff.",
@@ -307,13 +309,14 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
       { title: "Interview preparation", body: "Full briefing on the company, the panel, the product line and the likely lines of questioning. We've usually placed there before." },
       { title: "Offer & beyond", body: "Honest comp guidance, equity context for US advanced manufacturing, counter-offer support and check-ins long after you've started." },
     ],
+    // Round 4, item 12: mirrors the client's six sectors + two cross-cutting desks.
     sectorsServed: [
-      "Fluid power & flow control",
-      "HVAC & refrigeration",
-      "Rotating equipment & turbomachinery",
-      "CNC & precision engineering (US)",
-      "Industrial automation (US)",
-      "Advanced manufacturing (US)",
+      "Fluid power — pumps, seals, valves & hydraulics",
+      "HVAC",
+      "Defense & advanced manufacturing",
+      "Industrial automation",
+      "CNC & metalworking",
+      "Compressors",
       "MRO & aftermarket",
       "Commercial leadership (VP / GM / Director)",
     ],
@@ -328,8 +331,9 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
     qualifier: "Architecture & Data Centres",
     tagline: "Connecting talent.",
     taglineAccent: "Powering progress.",
+    // Round 4, item 13: client-approved positioning.
     positioning:
-      "Modulr connects standout architecture and data centre professionals with the built environment's most ambitious work — hyperscale campuses, award-winning practices, and the projects you won't find advertised.",
+      "Modulr connects the very best talent in Data Centres and Architecture with the companies building the future. Covering both the US and EU.",
     focus: "Architecture & Data Centres",
     heroImage: modulrHero,
     heroAlt: "Glowing globe at night with arcs of light connecting cities",
@@ -340,14 +344,15 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
       },
     },
     stats: [
-      { value: "3 regions", label: "UK, EU and US coverage" },
+      { value: "US & EU", label: "Two regions, one network" },
       { value: "Full lifecycle", label: "Concept design to commissioning" },
       { value: "NDA-grade", label: "Discretion on every search" },
     ],
+    // Round 4, item 13: Hyperscale/US prefixes dropped from the labels.
     specialisms: [
-      { title: "Hyperscale Data Centres", description: "Construction directors, regional heads and project leadership across operators, developers and contractors." },
+      { title: "Data Centres", description: "Construction directors, regional heads and project leadership across operators, developers and contractors." },
       { title: "Colocation & Edge", description: "Delivery and operations talent for colo and edge programmes at every stage." },
-      { title: "US Architecture", description: "Registered architects, project architects, directors, principals and partners." },
+      { title: "Architecture", description: "Registered architects, project architects, directors, principals and partners." },
       { title: "MEP Engineering", description: "Mechanical, electrical and plumbing leadership across the US project landscape." },
       { title: "Project Lifecycle", description: "CD → SD → DD → CD → CA. Concept design through construction administration." },
       { title: "Inclusion & EDI", description: "Championing women in architecture and EDI across technical built-environment roles." },
@@ -368,7 +373,7 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
         headline: "The best projects are rarely advertised.",
         body: "The best talent is rarely searching. Modulr exists in that gap — making precise, considered introductions rather than firing CVs into the void, and protecting reputations on every engagement.",
         bullets: [
-          "Hyperscale, colo, US architecture and MEP opportunities",
+          "Data centre, colocation, architecture and MEP opportunities",
           "Exclusive, often NDA-protected briefs",
           "Career trajectory advice across the full project lifecycle",
           "Discreet, considered, never transactional",
@@ -393,13 +398,13 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
     whatWeDo: {
       headline: "Embedded in the projects that define a generation.",
       paragraphs: [
-        "Hyperscale data centres, colocation and edge, US architecture, MEP engineering and the full concept-to-commissioning lifecycle — this is where our network runs deepest. Every consultant works one part of the built environment, not the whole map.",
+        "Data centres, colocation and edge, architecture, MEP engineering and the full concept-to-commissioning lifecycle — this is where our network runs deepest. Every consultant works one part of the built environment, not the whole map.",
         "For project directors, developers and practice principals, we operate as a discreet extension of the leadership team — considered introductions rather than CVs into the void, with NDA-grade discretion as standard.",
       ],
     },
     proofPoints: [
       "Trusted by global operators, developers and celebrated US practices",
-      "Active networks across the UK, EU and US markets",
+      "Active networks across the US and EU markets",
       "NDA-grade discretion on every sensitive and pre-announcement search",
       "Inclusion work championing women in architecture and EDI in technical built-environment roles",
     ],

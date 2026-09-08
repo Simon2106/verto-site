@@ -7,29 +7,31 @@ export function SiteFooter() {
     <footer className="mt-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
       <div className="container-wide py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          {/* Round 4, item 10: strapline removed (read too Edison), logo
+              enlarged, locations line restyled as gold small-caps. */}
           <div>
-            <VertoLogo variant="light" />
-            <p className="mt-6 max-w-sm text-sm opacity-80">
-              Verto Group · Edison Lux · Vertek · Modulr — precision talent for the industries that build, power and run the world.
-            </p>
-            <p className="mt-6 text-xs uppercase tracking-[0.22em] opacity-60">
+            <VertoLogo variant="light" className="!h-11" />
+            <p
+              className="mt-7 text-[13px] font-semibold uppercase tracking-[0.26em]"
+              style={{ color: "var(--accent)" }}
+            >
               Solent · Austin · Miami (soon)
             </p>
           </div>
 
           <FooterCol title="Group">
-            <li><Link to="/about" className="opacity-80 hover:opacity-100 transition">About Verto</Link></li>
-            <li><Link to="/brands" className="opacity-80 hover:opacity-100 transition">Our brands</Link></li>
-            <li><Link to="/whats-going-on" className="opacity-80 hover:opacity-100 transition">What's going on</Link></li>
-            <li><Link to="/careers" className="opacity-80 hover:opacity-100 transition">Careers</Link></li>
+            <li><Link to="/about" className="footer-link opacity-80 hover:opacity-100">About Verto</Link></li>
+            <li><Link to="/brands" className="footer-link opacity-80 hover:opacity-100">Our brands</Link></li>
+            <li><Link to="/whats-going-on" className="footer-link opacity-80 hover:opacity-100">What's going on</Link></li>
+            <li><Link to="/careers" className="footer-link opacity-80 hover:opacity-100">Careers</Link></li>
 
-            <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Contact</Link></li>
+            <li><Link to="/contact" className="footer-link opacity-80 hover:opacity-100">Contact</Link></li>
           </FooterCol>
 
           <FooterCol title="Brands">
             {BRAND_LIST.map((b) => (
               <li key={b.slug}>
-                <Link to="/brands/$brand" params={{ brand: b.slug }} className="opacity-80 hover:opacity-100 transition">
+                <Link to="/brands/$brand" params={{ brand: b.slug }} className="footer-link opacity-80 hover:opacity-100">
                   {b.name}
                 </Link>
               </li>
@@ -37,9 +39,9 @@ export function SiteFooter() {
           </FooterCol>
 
           <FooterCol title="Connect">
-            <li><a href="mailto:hello@vertogroup.com" className="opacity-80 hover:opacity-100 transition">hello@vertogroup.com</a></li>
-            <li><a href="#" className="opacity-80 hover:opacity-100 transition">LinkedIn</a></li>
-            <li><Link to="/contact" className="opacity-80 hover:opacity-100 transition">Join us</Link></li>
+            <li><a href="mailto:hello@vertogroup.com" className="footer-link opacity-80 hover:opacity-100">hello@vertogroup.com</a></li>
+            <li><a href="#" className="footer-link opacity-80 hover:opacity-100">LinkedIn</a></li>
+            <li><Link to="/contact" className="footer-link opacity-80 hover:opacity-100">Join us</Link></li>
           </FooterCol>
         </div>
 
@@ -60,7 +62,8 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   return (
     <div>
       <h4 className="text-xs uppercase tracking-[0.22em] opacity-60">{title}</h4>
-      <ul className="mt-5 space-y-3 text-sm">{children}</ul>
+      {/* Round 4, item 10: links slightly larger, gold hover underline (.footer-link) */}
+      <ul className="mt-5 space-y-3 text-[15px]">{children}</ul>
     </div>
   );
 }

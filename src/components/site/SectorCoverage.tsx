@@ -12,17 +12,21 @@ export const BRAND_SECTORS: Record<BrandSlug, string[]> = {
     "EPC & Project Delivery",
     "O&M (Operations & Maintenance)",
   ],
+  // Round 4, item 12: Vertek's six client-named sectors.
   vertek: [
-    "Fluid Power & Hydraulics",
-    "HVAC & Refrigeration",
-    "Advanced Manufacturing",
-    "Instrumentation & Controls",
+    "Fluid Power (pumps, seals, valves & hydraulics)",
+    "HVAC",
+    "Defense & Advanced Manufacturing",
+    "Industrial Automation",
+    "CNC & Metalworking",
+    "Compressors",
   ],
+  // Round 4, item 13: ModulR trimmed to three (Interior Design & Fit-out
+  // dropped pending client decision; Hyperscale/US prefixes gone).
   modulr: [
-    "Hyperscale Data Centres",
-    "US Architecture",
+    "Architecture",
+    "Data Centres",
     "MEP Engineering",
-    "Interior Design & Fit-out",
   ],
 };
 

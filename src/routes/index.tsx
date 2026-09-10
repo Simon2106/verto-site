@@ -121,7 +121,7 @@ function Hero() {
             scale up to cover a near-square panel — no more zoomed-in faces. */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[58.9%] hidden md:block">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 flex items-end justify-center"
             style={{
               maskImage: V_MASK,
               WebkitMaskImage: V_MASK,
@@ -135,7 +135,7 @@ function Hero() {
           >
             <AutoplayVideo />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 flex items-end justify-center"
               style={{ background: "color-mix(in oklab, var(--ink) 20%, transparent)" }}
             />
           </div>
@@ -227,7 +227,7 @@ function AutoplayVideo() {
       ref={ref}
       src={summitVideo}
       poster={summitPoster}
-      className="block h-full w-auto max-w-full mx-auto object-contain"
+      className="block h-[80%] w-auto max-w-full object-contain"
       autoPlay
       muted
       loop

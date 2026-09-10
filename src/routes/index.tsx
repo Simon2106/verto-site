@@ -121,7 +121,7 @@ function Hero() {
             scale up to cover a near-square panel — no more zoomed-in faces. */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[58.9%] hidden md:block">
           <div
-            className="absolute inset-x-0 top-1/2 -translate-y-1/2 aspect-[16/9] max-h-full"
+            className="absolute inset-0"
             style={{
               maskImage: V_MASK,
               WebkitMaskImage: V_MASK,

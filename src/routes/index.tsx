@@ -227,8 +227,7 @@ function AutoplayVideo() {
       ref={ref}
       src={summitVideo}
       poster={summitPoster}
-      className="h-full w-full object-cover"
-      style={{ objectPosition: "center 30%" }}
+      className="block h-full w-auto max-w-full mx-auto object-contain"
       autoPlay
       muted
       loop

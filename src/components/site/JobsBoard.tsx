@@ -15,12 +15,12 @@ import {
 } from "@/lib/jobs";
 
 /**
- * Internal jobs board — LHi-style layout: jobs list left (2/3),
+ * Internal jobs board – LHi-style layout: jobs list left (2/3),
  * filter rail right (1/3) which sticks to the top on scroll.
  * Colour-coded by brand. Designed for dark (ink) sections.
  */
 export function JobsBoard({
-  // Round 4, item 5: catchier heading — and no word "roles" in the section.
+  // Round 4, item 5: catchier heading – and no word "roles" in the section.
   heading = "Your next desk is here.",
   intro,
   initialLocation,
@@ -53,12 +53,12 @@ export function JobsBoard({
         <TitleReveal className="display-2 mt-5" lines={[heading]} />
         <p className="mt-6 opacity-80">
           {intro ??
-            "These are seats on our own desks — not client vacancies. And if your desk isn't listed yet, we still want to hear from experienced consultants."}
+            "These are seats on our own desks – not client vacancies. And if your desk isn't listed yet, we still want to hear from experienced consultants."}
         </p>
       </div>
 
       <div className="mt-12 grid gap-10 lg:gap-14 lg:grid-cols-3 items-start">
-        {/* ── FILTER RAIL — right 1/3, sticky on scroll ── */}
+        {/* ── FILTER RAIL – right 1/3, sticky on scroll ── */}
         <aside className="order-first lg:order-last lg:col-span-1">
           <div className="lg:sticky lg:top-28 space-y-8">
             <div
@@ -121,7 +121,7 @@ export function JobsBoard({
           </div>
         </aside>
 
-        {/* ── JOBS LIST — left 2/3 ── */}
+        {/* ── JOBS LIST – left 2/3 ── */}
         <div className="lg:col-span-2 hairline-top">
           {jobs.map((j) => (
             <Link
@@ -147,7 +147,7 @@ export function JobsBoard({
           ))}
           {jobs.length === 0 && (
             <p className="py-10 text-sm opacity-70">
-              Nothing matches those filters right now — but send us a note anyway; half our hires start that way.
+              Nothing matches those filters right now – but send us a note anyway; half our hires start that way.
             </p>
           )}
         </div>

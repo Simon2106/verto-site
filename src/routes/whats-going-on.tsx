@@ -19,13 +19,14 @@ import sadeCelebrationPoster from "@/assets/client/sade-celebration-poster.jpg";
 import sadeCelebrationVideo from "@/assets/client/sade-celebration.mp4";
 import shareSchemePoster from "@/assets/client/share-scheme-poster.jpg";
 import shareSchemeVideo from "@/assets/client/share-scheme.mp4";
+import shareCerts from "@/assets/client/share-certificates-800.jpg";
 
 export const Route = createFileRoute("/whats-going-on")({
   head: () => ({
     meta: [
-      { title: "What's going on — Verto Group" },
-      { name: "description", content: "Incentive trips, awards, promotions and market notes — what's going on across the Verto Group." },
-      { property: "og:title", content: "What's going on — Verto Group" },
+      { title: "What's going on – Verto Group" },
+      { name: "description", content: "Incentive trips, awards, promotions and market notes – what's going on across the Verto Group." },
+      { property: "og:title", content: "What's going on – Verto Group" },
       { property: "og:description", content: "Specialist knowledge from inside the markets we work in." },
     ],
   }),
@@ -35,6 +36,7 @@ export const Route = createFileRoute("/whats-going-on")({
 /* Real client photography for the culture posts (mirrors the WP featured
    images seeded by the installer); market notes fall back to InsightThumb. */
 const IMAGE_BY_SLUG: Record<string, string> = {
+  "share-scheme-awards-night": shareCerts,
   "sunday-times-best-places-to-work-2026": bptwBadge,
   "prague-2026-incentive-trip": pragueTeam,
   "ibiza-2026-reveal": ibiza11,
@@ -44,12 +46,12 @@ const IMAGE_BY_SLUG: Record<string, string> = {
   "sade-kendall-promoted": sadePoster,
 };
 
-/* The client's people-story films (Aug-2026 media drop) — portrait 9:16,
+/* The client's people-story films (Aug-2026 media drop) – portrait 9:16,
    click-to-play: poster + native controls, nothing loads until pressed. */
 const STORY_FILMS = [
   {
     title: "A promotion, announced",
-    note: "Confetti, applause — the office turns out",
+    note: "Confetti, applause – the office turns out",
     video: celebrationVideo,
     poster: celebrationPoster,
   },
@@ -84,25 +86,25 @@ function WhatsGoingOnPage() {
           <span className="eyebrow">What&apos;s going on</span>
           <h1 className="display-1 mt-6 max-w-4xl">What&apos;s going on at Verto.</h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Incentive trips, awards, promotions and the occasional market note — straight from the team. Case studies now live with each brand.
+            Incentive trips, awards, promotions and the occasional market note – straight from the team. Case studies now live with each brand.
           </p>
         </section>
 
-        {/* FEATURED — newest story, image left ~60% */}
+        {/* FEATURED – newest story, image left ~60% */}
         {featured && (
           <section className="container-wide mt-16">
             <FeaturedStory insight={featured} />
           </section>
         )}
 
-        {/* CARD GRID — everything else, with category chips */}
+        {/* CARD GRID – everything else, with category chips */}
         <section className="container-wide mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((i) => (
             <StoryCard key={i.slug} insight={i} />
           ))}
         </section>
 
-        {/* STORIES — the client's people-story films (Aug-2026 media drop) */}
+        {/* STORIES – the client's people-story films (Aug-2026 media drop) */}
         <section className="container-wide mt-24">
           <div className="rounded-3xl p-10 lg:p-14" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -110,7 +112,7 @@ function WhatsGoingOnPage() {
                 <span className="eyebrow">Stories</span>
                 <h2 className="display-3 mt-5">People&apos;s stories.</h2>
                 <p className="mt-6 opacity-80 leading-relaxed">
-                  The team, on camera — promotions landing in a storm of confetti, and what owning a piece of Verto actually means. Press play.
+                  The team, on camera – promotions landing in a storm of confetti, and what owning a piece of Verto actually means. Press play.
                 </p>
               </div>
             </div>
@@ -137,7 +139,7 @@ function WhatsGoingOnPage() {
           </div>
         </section>
 
-        {/* INSTAGRAM — existing socials embed */}
+        {/* INSTAGRAM – existing socials embed */}
         <section className="container-wide mt-24 py-24 hairline-top">
           <SocialsFeed />
         </section>

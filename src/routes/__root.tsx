@@ -56,8 +56,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Verto Group — Precision talent for energy, engineering and the built environment" },
-      { name: "description", content: "Verto Group brings together Edison Lux, Vertek and Modulr — three specialist brands for the world's most demanding sectors. Precision talent. One process-driven standard." },
+      { title: "Verto Group – Precision talent for energy, engineering and the built environment" },
+      { name: "description", content: "Verto Group brings together Edison Lux, Vertek and Modulr – three specialist brands for the world's most demanding sectors. Precision talent. One process-driven standard." },
       { name: "author", content: "Verto Group" },
       { property: "og:title", content: "Verto Group" },
       { property: "og:description", content: "Precision talent. Specialist brands. One group." },

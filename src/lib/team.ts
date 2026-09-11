@@ -32,7 +32,7 @@ import vSam from "@/assets/vertek-sam-parnell.jpg";
 
 /* ── The client's definitive team structure (Alex Hatfield, Aug 2026) ──
    Tiers render leadership → management → team (ops fold into the team
-   section on the group pages). A person can sit on several sites —
+   section on the group pages). A person can sit on several sites –
    `brands` lists them all; "verto" = the group site only. People without
    an `image` render the initials placeholder until the client supplies a
    headshot. Mirrors installer.php team_map() in verto-core. */
@@ -63,7 +63,7 @@ export const TEAM: TeamMember[] = [
   { name: "Martin Doig", role: "Founder", brands: ["verto", "modulr"], tier: "leadership", focus: GROUP, image: lMartin },
   { name: "Robbie Sturgess", role: "President", brands: ["verto", "vertek"], tier: "leadership", focus: GROUP, image: lRobbie },
 
-  // ── Management ("Manager" = placeholder — exact titles awaited from client) ──
+  // ── Management ("Manager" = placeholder – exact titles awaited from client) ──
   { name: "Dan Bisset", role: "VP of Engineering", brands: ["edison-lux"], tier: "management", focus: EDISON, image: vDan },
   { name: "George East", role: "Manager", brands: ["vertek"], tier: "management", focus: VERTEK, image: vGeorge },
   { name: "Ben Tiffin", role: "Team Leader", brands: ["vertek"], tier: "management", focus: VERTEK, image: vBen },
@@ -78,7 +78,7 @@ export const TEAM: TeamMember[] = [
   { name: "Megan Grant", role: "Senior Marketing Executive", brands: ["verto"], tier: "ops", focus: OPS },
   { name: "Alfie Gray", role: "Digital Marketing Executive", brands: ["verto"], tier: "ops", focus: OPS },
 
-  // ── Consultants — Vertek ──
+  // ── Consultants – Vertek ──
   { name: "Olivia Pinhorne", role: "Consultant", brands: ["vertek"], tier: "team", focus: VERTEK, image: vOlivia },
   { name: "Rex Reavley", role: "Consultant", brands: ["vertek"], tier: "team", focus: VERTEK, image: vRex },
   { name: "Jake Massingham", role: "Consultant", brands: ["vertek"], tier: "team", focus: VERTEK, image: vJake },
@@ -93,17 +93,17 @@ export const TEAM: TeamMember[] = [
   { name: "Harley O'Connell", role: "Consultant", brands: ["vertek"], tier: "team", focus: VERTEK, image: vHarley },
   { name: "Alice Schofield", role: "Consultant", brands: ["vertek"], tier: "team", focus: VERTEK, image: vAlice },
 
-  // ── Consultants — Verto Life Sciences (sits with the group) ──
+  // ── Consultants – Verto Life Sciences (sits with the group) ──
   { name: "Martyn Jamieson", role: "Consultant", brands: ["verto"], tier: "team", focus: LIFESCI },
 
-  // ── Consultants — ModulR ──
+  // ── Consultants – ModulR ──
   { name: "Lewis Wright", role: "Consultant", brands: ["modulr"], tier: "team", focus: MODULR, image: mLewisW },
   { name: "Monira Akter", role: "Consultant", brands: ["modulr"], tier: "team", focus: MODULR, image: mMonira },
   { name: "Charlotte Northam", role: "Consultant", brands: ["modulr"], tier: "team", focus: MODULR, image: mCharlotte },
   { name: "Forough Rezaei", role: "Consultant", brands: ["modulr"], tier: "team", focus: MODULR },
   { name: "Natasha Sykes", role: "Consultant", brands: ["modulr"], tier: "team", focus: MODULR, image: mNatasha },
 
-  // ── Consultants — Edison Lux ──
+  // ── Consultants – Edison Lux ──
   { name: "Joe Williams", role: "Consultant", brands: ["edison-lux"], tier: "team", focus: EDISON, image: eJoe },
   { name: "Matthew Pearce", role: "Consultant", brands: ["edison-lux"], tier: "team", focus: EDISON, image: eMatthew },
   { name: "Lewis Dominy", role: "Consultant", brands: ["edison-lux"], tier: "team", focus: EDISON, image: eLewisD },
@@ -129,9 +129,9 @@ export function initials(name: string): string {
   return name.split(/\s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase();
 }
 
-/** Round 4, item 16: brand-coloured ring/tint per member — the first brand in
+/** Round 4, item 16: brand-coloured ring/tint per member – the first brand in
  *  `brands` wins. Light-ground palette (these cards sit on ivory/muted);
- *  ModulR uses the lighter #7FA8FC here — switch to #0464FA on ink. */
+ *  ModulR uses the lighter #7FA8FC here – switch to #0464FA on ink. */
 export const MEMBER_BRAND_COLOR: Record<TeamBrand, string> = {
   verto: "#d19f2f",
   "edison-lux": "#2B8EE5",

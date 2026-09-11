@@ -10,9 +10,9 @@ export const Route = createFileRoute("/brands/$brand/for-candidates")({
     const b = isBrandSlug(params.brand) ? BRANDS[params.brand] : null;
     return {
       meta: [
-        { title: b ? `Candidates — ${b.name}` : "Candidates" },
+        { title: b ? `Candidates – ${b.name}` : "Candidates" },
         { name: "description", content: b?.audiences.candidate.body ?? "" },
-        { property: "og:title", content: b ? `Career conversations — ${b.name}` : "Candidates" },
+        { property: "og:title", content: b ? `Career conversations – ${b.name}` : "Candidates" },
         { property: "og:description", content: b?.audiences.candidate.headline ?? "" },
       ],
     };
@@ -28,7 +28,7 @@ function Page() {
 
   return (
     <>
-      {/* HERO — striking dark parallax band */}
+      {/* HERO – striking dark parallax band */}
       <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
         <ParallaxImage
           src={getBrandImage(b, "candidatesHero").src}
@@ -65,7 +65,7 @@ function Page() {
         </div>
       </section>
 
-      {/* INTRO — inverted split (image left, copy right) */}
+      {/* INTRO – inverted split (image left, copy right) */}
       <SplitFeature
         reverse
         eyebrow="Represented properly"
@@ -73,7 +73,7 @@ function Page() {
         body={
           <>
             <p>
-              A job posted on LinkedIn gets hundreds of CVs. Working with {b.name} means you and your experience are put front and centre — sold to the hiring manager before your first interview.
+              A job posted on LinkedIn gets hundreds of CVs. Working with {b.name} means you and your experience are put front and centre – sold to the hiring manager before your first interview.
             </p>
             <p>
               We only call when there's a role genuinely worth your time. Honest feedback, no fluff, no promises we can't deliver.
@@ -86,14 +86,14 @@ function Page() {
         panelBg="#ffffff"
         stats={[
           { value: "72h", label: "First feedback after your intro call" },
-          { value: "100%", label: "Confidential — always" },
+          { value: "100%", label: "Confidential – always" },
           { value: "1:1", label: "Same consultant, brief to offer" },
         ]}
         cta={{ label: `About ${b.name}`, to: "/brands/$brand/about", params: { brand: b.slug } }}
       />
 
 
-      {/* SECTORS — dense chip grid */}
+      {/* SECTORS – dense chip grid */}
       {b.sectorsServed && b.sectorsServed.length > 0 && (
         <section className="container-wide py-24">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr] items-end mb-12">
@@ -119,12 +119,12 @@ function Page() {
         </section>
       )}
 
-      {/* PROCESS — zigzag rail */}
+      {/* PROCESS – zigzag rail */}
       {b.candidateProcess && b.candidateProcess.length > 0 && (
         <section className="container-wide py-24">
           <div className="max-w-2xl">
             <span className="eyebrow">What to expect</span>
-            <h2 className="display-2 mt-5">From first call to first day — and beyond.</h2>
+            <h2 className="display-2 mt-5">From first call to first day – and beyond.</h2>
           </div>
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {b.candidateProcess.map((s, i) => (
@@ -149,7 +149,7 @@ function Page() {
         </section>
       )}
 
-      {/* TESTIMONIALS — dark parallax band */}
+      {/* TESTIMONIALS – dark parallax band */}
       {b.testimonials && b.testimonials.length > 0 && (
         <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
           <ParallaxImage
@@ -180,7 +180,7 @@ function Page() {
                 >
                   <div className="font-display text-6xl leading-none" style={{ color: "var(--brand)" }}>"</div>
                   <blockquote className="mt-2 text-lg leading-relaxed opacity-95">{t.quote}</blockquote>
-                  <figcaption className="mt-6 text-xs uppercase tracking-[0.18em] opacity-70">— {t.attribution}</figcaption>
+                  <figcaption className="mt-6 text-xs uppercase tracking-[0.18em] opacity-70">– {t.attribution}</figcaption>
                 </figure>
               ))}
             </div>

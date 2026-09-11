@@ -7,7 +7,7 @@ import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
 import { OfferGrid } from "@/components/site/OfferGrid";
 import { TitleReveal } from "@/components/site/TitleReveal";
-import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
+import shareCerts from "@/assets/client/share-certificates-800.jpg";
 import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
 import sadePoster from "@/assets/client/sade-promotion-poster.jpg";
 import shareSchemePoster from "@/assets/client/share-scheme-poster.jpg";
@@ -17,13 +17,13 @@ import { INTERNAL_JOBS } from "@/lib/jobs";
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Why join us — Verto Group" },
+      { title: "Why join us – Verto Group" },
       {
         name: "description",
         content:
           "40% commission, a share scheme for everyone, two holiday incentives a year and international relocation. Open roles across Verto Group, Edison Lux, Vertek and ModulR.",
       },
-      { property: "og:title", content: "Why join us — Verto Group" },
+      { property: "og:title", content: "Why join us – Verto Group" },
       {
         property: "og:description",
         content:
@@ -34,31 +34,31 @@ export const Route = createFileRoute("/careers")({
   component: CareersPage,
 });
 
-/* Recent promotions — real stories from the client's Aug-2026 media drop
+/* Recent promotions – real stories from the client's Aug-2026 media drop
    (poster frames from the promotion films; both films play on /whats-going-on). */
 const PROMOTIONS = [
   {
     name: "Milly Compton",
-    kicker: "Promoted — Edison Lux",
-    body: "Confetti cannons in the Edison Lux corner — Milly walked into an office that knew something she didn't.",
+    kicker: "Promoted – Edison Lux",
+    body: "Confetti cannons in the Edison Lux corner – Milly walked into an office that knew something she didn't.",
     image: millyPoster,
     alt: "Milly Compton walking into the office through confetti",
   },
   {
     name: "Sade Kendall",
-    kicker: "Promoted — ModulR",
+    kicker: "Promoted – ModulR",
     body: "The ModulR desk had the confetti ready. Promotion announced in front of the whole office, camera rolling.",
     image: sadePoster,
     alt: "Sade Kendall reading her promotion letter through the confetti",
   },
 ];
 
-/* Career path — placeholder structure, refine with client's real ladder */
+/* Career path – placeholder structure, refine with client's real ladder */
 const CAREER_PATH = [
   { stage: "Trainee Consultant", time: "Months 0–12", body: "Phone-first training inside a live team. Structured L&D, a named mentor and your first placements." },
   { stage: "Consultant", time: "Year 1–2", body: "Your own market and your own clients. Full 40% commission and your first incentive trips." },
   { stage: "Senior Consultant", time: "Year 2–4", body: "A market you're known in. Bigger deals, international briefs, and the option to relocate with your desk." },
-  { stage: "Principal / Team Manager", time: "Year 4+", body: "Lead a team or go deeper as a biller — both paths carry equity and a seat in how the group grows." },
+  { stage: "Principal / Team Manager", time: "Year 4+", body: "Lead a team or go deeper as a biller – both paths carry equity and a seat in how the group grows." },
 ];
 
 function CareersPage() {
@@ -66,22 +66,22 @@ function CareersPage() {
     {
       slug: "solent",
       name: "Solent, UK",
-      leader: "Site leader — TBC",
+      leader: "Site leader – TBC",
       why: "Where Verto started in 2020. Our largest office: Vertek, ModulR and the life sciences desk, five minutes from the south coast.",
       note: "Founding office",
     },
     {
       slug: "austin",
       name: "Austin, TX",
-      leader: "Site leader — TBC",
-      why: "US HQ on Balcones Drive. Edison Lux and the Vertek US build-out — the fastest-growing part of the group.",
+      leader: "Site leader – TBC",
+      why: "US HQ on Balcones Drive. Edison Lux and the Vertek US build-out – the fastest-growing part of the group.",
       note: "US headquarters",
     },
     {
       slug: "miami",
       name: "Miami, FL",
-      leader: "Site leader — TBC",
-      why: "Opening soon. ModulR's US practice and founding desks — ground-floor opportunity, Brickell energy.",
+      leader: "Site leader – TBC",
+      why: "Opening soon. ModulR's US practice and founding desks – ground-floor opportunity, Brickell energy.",
       note: "Coming soon",
     },
   ];
@@ -90,17 +90,17 @@ function CareersPage() {
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
-        {/* HERO — compact, straight to the point.
-            ⚠️ DRAFT COPY — replaces "Build a market. Not a month." per client feedback */}
+        {/* HERO – compact, straight to the point.
+            ⚠️ DRAFT COPY – replaces "Build a market. Not a month." per client feedback */}
         <section className="container-wide pt-20 lg:pt-24">
           <span className="eyebrow">Why join us</span>
           <TitleReveal as="h1" className="display-1 mt-6 max-w-4xl" lines={["Back yourself.", "We'll match it."]} />
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            40% commission. A share scheme that includes everyone. Two incentive holidays a year and a genuine route to the US. If you're going to work this hard anyway, do it somewhere that pays you properly — in money, ownership and experiences.
+            40% commission. A share scheme that includes everyone. Two incentive holidays a year and a genuine route to the US. If you're going to work this hard anyway, do it somewhere that pays you properly – in money, ownership and experiences.
           </p>
         </section>
 
-        {/* ROLES — at the very top per client feedback */}
+        {/* ROLES – at the very top per client feedback */}
         <section
           className="mt-16 py-20 lg:py-24"
           style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
@@ -112,7 +112,7 @@ function CareersPage() {
           </div>
         </section>
 
-        {/* WHAT WE OFFER — round 4, item 11: the four-card "Why Verto" becomes
+        {/* WHAT WE OFFER – round 4, item 11: the four-card "Why Verto" becomes
             the full 14-perk notched card grid (shared with the home page). */}
         <section className="container-wide py-24">
           <div className="max-w-2xl">
@@ -127,14 +127,14 @@ function CareersPage() {
           </div>
         </section>
 
-        {/* RECENT PROMOTIONS — real stories from the Aug-2026 media drop */}
+        {/* RECENT PROMOTIONS – real stories from the Aug-2026 media drop */}
         <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <span className="eyebrow">Recent promotions</span>
               <h2 className="display-2 mt-5">People are moving up.</h2>
               <p className="mt-6 text-muted-foreground">
-                Promotions here get the full treatment — confetti cannons, the whole office on its feet, and a camera rolling. The latest two, plus the films, are on{" "}
+                Promotions here get the full treatment – confetti cannons, the whole office on its feet, and a camera rolling. The latest two, plus the films, are on{" "}
                 <Link to="/whats-going-on" className="font-medium" style={{ color: "var(--accent)" }}>What&apos;s going on</Link>.
               </p>
             </div>
@@ -172,11 +172,11 @@ function CareersPage() {
             ))}
           </div>
           <p className="mt-10 text-sm text-muted-foreground">
-            Learning &amp; development runs underneath all of it — structured training from day one, deal school for consultants, and leadership development for managers. <span className="opacity-70">⚠️ L&amp;D detail to be expanded with client material.</span>
+            Learning &amp; development runs underneath all of it – structured training from day one, deal school for consultants, and leadership development for managers. <span className="opacity-70">⚠️ L&amp;D detail to be expanded with client material.</span>
           </p>
         </section>
 
-        {/* INCENTIVES & SHARE SCHEME — real Barcelona photography + the
+        {/* INCENTIVES & SHARE SCHEME – real Barcelona photography + the
             client's share-scheme interview film (click-to-play) */}
         <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <div className="container-wide">
@@ -185,11 +185,21 @@ function CareersPage() {
                 <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives &amp; ownership</div>
                 <h2 className="display-2 mt-5">Hit target. Board the plane.</h2>
                 <p className="mt-6 opacity-80 leading-relaxed">
-                  Two international incentive trips a year, winners&apos; lunches, sales days and personal training sessions. Barcelona 2025, Prague in January, Ibiza this summer — and a share scheme that includes every person in the business. Press play to hear what owning a piece of Verto actually means to the team.
+                  Two international incentive trips a year, winners&apos; lunches, sales days and personal training sessions. Barcelona 2025, Prague in January, Ibiza this summer – and a share scheme that includes every person in the business. Press play to hear what owning a piece of Verto actually means to the team.
                 </p>
-                <div className="mt-8 relative aspect-[4/3] overflow-hidden rounded-2xl">
-                  <img src={barcelonaTeam} alt="The team outside the W Barcelona, September 2025" className="h-full w-full object-cover" loading="lazy" />
-                </div>
+                {/* Round 5, item 10: the share-scheme awards-night photo sits
+                    beside the share-scheme film (was the Barcelona group shot). */}
+                <figure className="mt-8 m-0">
+                  <img
+                    src={shareCerts}
+                    alt="The Verto team holding their share-scheme award certificates at the awards night"
+                    className="w-full rounded-2xl object-cover"
+                    loading="lazy"
+                  />
+                  <figcaption className="mt-3 text-[10px] uppercase tracking-[0.2em] opacity-60">
+                    Share scheme awards – everyone owns a piece
+                  </figcaption>
+                </figure>
               </div>
               <ShareSchemeFilm />
             </div>
@@ -201,7 +211,7 @@ function CareersPage() {
           <SocialsFeed
             eyebrow="Life at Verto"
             heading="The moments between the meetings."
-            body="Awards, incentive trips, sales days and the occasional inflatable — what working here actually looks like, on our socials."
+            body="Awards, incentive trips, sales days and the occasional inflatable – what working here actually looks like, on our socials."
           />
         </section>
 
@@ -251,7 +261,7 @@ function CareersPage() {
             </div>
             <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
               <p>
-                If you're already a consultant — or you're not in recruitment yet but think you'd be good at it — we want to talk. Half our hires come from conversations that started months before a desk was live.
+                If you're already a consultant – or you're not in recruitment yet but think you'd be good at it – we want to talk. Half our hires come from conversations that started months before a desk was live.
               </p>
               <Link to="/contact" className="btn-base btn-pill btn-ink">
                 Join us <ArrowRight className="h-4 w-4" />
@@ -265,7 +275,7 @@ function CareersPage() {
   );
 }
 
-/* Portrait share-scheme interview film — poster + play button; the video
+/* Portrait share-scheme interview film – poster + play button; the video
    element (and its bytes) only mounts once the visitor presses play. */
 function ShareSchemeFilm() {
   const [playing, setPlaying] = useState(false);
@@ -286,7 +296,7 @@ function ShareSchemeFilm() {
             type="button"
             onClick={() => setPlaying(true)}
             className="group block h-full w-full cursor-pointer"
-            aria-label="Play — what the share scheme means to the team"
+            aria-label="Play – what the share scheme means to the team"
           >
             <img
               src={shareSchemePoster}

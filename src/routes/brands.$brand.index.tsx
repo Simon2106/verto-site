@@ -9,10 +9,18 @@ import {
 } from "lucide-react";
 import { BRANDS, isBrandSlug, getBrandImage, type BrandSlug } from "@/lib/brands";
 import { INSIGHTS } from "@/lib/insights";
-import { LogoMarquee } from "@/components/site/LogoMarquee";
 import { InsightThumb } from "@/components/site/InsightThumb";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { TeamStrip } from "@/components/site/TeamStrip";
+// Round 5, item 3: interim sector images for the Edison specialism cards –
+// 16:9 crops of the existing licensed energy assets (real per-sector shots
+// are on the CLIENT-NEEDS list).
+import specEdison01 from "@/assets/spec-edison-01.jpg";
+import specEdison02 from "@/assets/spec-edison-02.jpg";
+import specEdison03 from "@/assets/spec-edison-03.jpg";
+import specEdison04 from "@/assets/spec-edison-04.jpg";
+import specEdison05 from "@/assets/spec-edison-05.jpg";
+import specEdison06 from "@/assets/spec-edison-06.jpg";
 
 
 
@@ -21,7 +29,7 @@ export const Route = createFileRoute("/brands/$brand/")({
     const b = isBrandSlug(params.brand) ? BRANDS[params.brand] : null;
     return {
       meta: [
-        { title: b ? `${b.name} — ${b.focus}` : "Brand — Verto Group" },
+        { title: b ? `${b.name} – ${b.focus}` : "Brand – Verto Group" },
         { name: "description", content: b?.positioning ?? "" },
         { property: "og:title", content: b?.name ?? "Verto Group" },
         { property: "og:description", content: b?.positioning ?? "" },
@@ -39,25 +47,25 @@ function BrandHome() {
 
 /* ─────────────────────────────────────────────────────────────
  * Per-brand landing configuration
- * (feature row + hero subhead — everything else is from BRANDS)
+ * (feature row + hero subhead – everything else is from BRANDS)
  * ───────────────────────────────────────────────────────────── */
 type Feature = { icon: LucideIcon; title: string; body: string };
 
 const FEATURES: Record<BrandSlug, Feature[]> = {
   vertek: [
-    { icon: Crosshair, title: "Product-Owned Desks", body: "Every consultant owns one product area. Fluid power, HVAC, rotating equipment, automation — no generalists." },
+    { icon: Crosshair, title: "Product-Owned Desks", body: "Every consultant owns one product area. Fluid power, HVAC, rotating equipment, automation – no generalists." },
     { icon: BarChart3, title: "Verto Engage", body: "Our committed model, 100% success rate. Structured process, guaranteed shortlist, get it right first time." },
     { icon: Shield, title: "94% Second Hire", body: "Nearly all our clients come back. We're an extension of the commercial team, not a vendor." },
     { icon: Leaf, title: "14,000+ On CRM", body: "A specialist database of technical sales, service and engineering talent LinkedIn can't surface." },
   ],
   "edison-lux": [
-    { icon: Users, title: "US Energy.\nNothing Else.", body: "It's all we do — so no client brief sits outside our knowledge base." },
-    { icon: Star, title: "Basement To Boardroom", body: "Control room operators, shift supervisors, VPs, C-suite — the full talent hierarchy staffed." },
-    { icon: Handshake, title: "World-Class\nNPS", body: "Feedback captured from every candidate and client interaction — and it shows." },
-    { icon: TrendingUp, title: "100% Engaged\nSuccess", body: "Speed and accuracy together — because when a COD is at risk, you shouldn't have to choose." },
+    { icon: Users, title: "US Energy.\nNothing Else.", body: "It's all we do – so no client brief sits outside our knowledge base." },
+    { icon: Star, title: "Basement To Boardroom", body: "Control room operators, shift supervisors, VPs, C-suite – the full talent hierarchy staffed." },
+    { icon: Handshake, title: "World-Class\nNPS", body: "Feedback captured from every candidate and client interaction – and it shows." },
+    { icon: TrendingUp, title: "100% Engaged\nSuccess", body: "Speed and accuracy together – because when a COD is at risk, you shouldn't have to choose." },
   ],
   modulr: [
-    { icon: Globe2, title: "US & EU", body: "Data centres, colocation and celebrated architecture practices — two regions, one network." },
+    { icon: Globe2, title: "US & EU", body: "Data centres, colocation and celebrated architecture practices – two regions, one network." },
     { icon: Compass, title: "Curated Introductions", body: "Considered shortlists with real context. Never CVs into the void." },
     { icon: Lock, title: "NDA-Grade Discretion", body: "Sensitive, pre-announcement and competitor-adjacent search handled as standard." },
     { icon: Handshake, title: "Long-Game Relationships", body: "We track careers and project pipelines to add value before the urgent need arises." },
@@ -65,8 +73,8 @@ const FEATURES: Record<BrandSlug, Feature[]> = {
 };
 
 const HERO_SUB: Record<BrandSlug, string> = {
-  vertek: "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving — across the US and Europe. Every consultant owns one product area.",
-  "edison-lux": "Edison Lux delivers talent solutions for the US energy sector — from control room operators to the C-suite leaders responsible for billion-dollar assets. One market. Done properly.",
+  vertek: "Vertek recruits technical sales, service and engineering professionals for the manufacturers and distributors that keep industry moving – across the US and Europe. Every consultant owns one product area.",
+  "edison-lux": "Edison Lux delivers talent solutions for the US energy sector – from control room operators to the C-suite leaders responsible for billion-dollar assets. One market. Done properly.",
   modulr: "Modulr connects the very best talent in Data Centres and Architecture with the companies building the future. Covering both the US and EU.",
 };
 
@@ -76,8 +84,14 @@ const SPECIALISM_ICONS: Record<BrandSlug, LucideIcon[]> = {
   modulr: [Server, Network, Building2, Zap, Layers, HeartHandshake],
 };
 
+/* Round 5, item 3: optional per-card sector images (Edison only for now –
+   interim crops of licensed assets; icons are kept underneath). */
+const SPECIALISM_IMAGES: Partial<Record<BrandSlug, string[]>> = {
+  "edison-lux": [specEdison01, specEdison02, specEdison03, specEdison04, specEdison05, specEdison06],
+};
+
 /* ─────────────────────────────────────────────────────────────
- * Unified brand landing — Vertek-style structure for every brand
+ * Unified brand landing – Vertek-style structure for every brand
  * ───────────────────────────────────────────────────────────── */
 function BrandLandingHome({ brand }: { brand: BrandSlug }) {
   const b = BRANDS[brand];
@@ -151,7 +165,7 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
 
       {/* ─── About: copy left (light), image+stats overlay right ─── */}
       <section style={{ background: "#f3f3f5", color: "#0a0a0a" }}>
-        <div className="grid lg:grid-cols-2 items-stretch">
+        <div className="grid lg:grid-cols-2 items-center">
           <div className="flex items-center px-6 md:px-12 lg:px-20 py-16 lg:py-24">
             <div className="max-w-md">
               <div className="flex flex-col gap-2">
@@ -166,19 +180,35 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
               <p className="mt-6 text-base leading-relaxed" style={{ color: "#3a3a3a" }}>
                 {b.about.mission}
               </p>
-              <Link
-                to="/brands/$brand/about"
-                params={{ brand }}
-                className="inline-flex items-center gap-2 mt-8 px-6 py-3.5 text-[11px] uppercase tracking-[0.2em] font-bold border transition hover:bg-[var(--brand)] hover:text-white"
-                style={{ borderColor: "var(--brand)", color: "var(--brand)" }}
-              >
-                Learn more about us
-              </Link>
+              {/* Round 5, item 2 (Edison): "Talk to us" in the brand gradient,
+                  straight to the clients contact form. */}
+              {brand === "edison-lux" ? (
+                <Link
+                  to="/brands/$brand/for-companies"
+                  params={{ brand }}
+                  hash="contact"
+                  className="inline-flex items-center gap-2 mt-8 px-6 py-3.5 text-[11px] uppercase tracking-[0.2em] font-bold transition hover:opacity-90"
+                  style={{ background: "var(--brand-gradient, var(--brand))", color: "#ffffff" }}
+                >
+                  Talk to us
+                </Link>
+              ) : (
+                <Link
+                  to="/brands/$brand/about"
+                  params={{ brand }}
+                  className="inline-flex items-center gap-2 mt-8 px-6 py-3.5 text-[11px] uppercase tracking-[0.2em] font-bold border transition hover:bg-[var(--brand)] hover:text-white"
+                  style={{ borderColor: "var(--brand)", color: "var(--brand)" }}
+                >
+                  Learn more about us
+                </Link>
+              )}
             </div>
           </div>
 
-          <div className="relative min-h-[420px] lg:min-h-[540px]">
-            <img src={getBrandImage(b, "landingAbout").src} alt={getBrandImage(b, "landingAbout").alt} className="absolute inset-0 h-full w-full object-cover" />
+          {/* Round 5, item 2: symmetric split – image inset on the grey panel
+              (padding mirrors the copy column) instead of full-bleed. */}
+          <div className="relative min-h-[360px] lg:min-h-[460px] mx-6 mb-12 md:mx-12 lg:my-16 lg:ml-0 lg:mr-16">
+            <img src={getBrandImage(b, "landingAbout").src} alt={getBrandImage(b, "landingAbout").alt} className="absolute inset-0 h-full w-full object-cover rounded-xl" />
             <div
               className="absolute right-6 top-6 md:right-10 md:top-10 w-[78%] md:w-[300px] p-7 md:p-8"
               style={{
@@ -210,16 +240,27 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {b.specialisms.map((s, i) => {
               const Icon = SPECIALISM_ICONS[brand][i] ?? Crosshair;
+              const img = SPECIALISM_IMAGES[brand]?.[i];
               return (
                 <div
                   key={s.title}
-                  className="group relative overflow-hidden p-8 transition-colors duration-300"
+                  className={`group relative overflow-hidden px-8 pb-8 transition-colors duration-300 ${img ? "pt-0" : "pt-8"}`}
                   style={{ background: "color-mix(in oklab, var(--foreground) 6%, var(--background))" }}
                 >
                   <span
-                    className="absolute top-0 left-0 h-[3px] w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                    className="absolute top-0 left-0 z-10 h-[3px] w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
                     style={{ background: "var(--brand)" }}
                   />
+                  {/* Round 5, item 3: sector image band above the icon (icon kept) */}
+                  {img && (
+                    <div className="relative -mx-8 mb-7 overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+                      <img src={img} alt={s.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{ background: "linear-gradient(180deg, color-mix(in oklab, var(--ink) 18%, transparent) 0%, transparent 45%, color-mix(in oklab, var(--ink) 22%, transparent) 100%)" }}
+                      />
+                    </div>
+                  )}
                   <Icon className="h-9 w-9" strokeWidth={1.5} style={{ color: "var(--brand)" }} />
                   <div className="font-display text-sm mt-4 tracking-[0.22em] uppercase opacity-60">0{i + 1}</div>
                   <h3 className="mt-2 font-display text-2xl">{s.title}</h3>
@@ -231,7 +272,8 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
         </div>
       </section>
 
-      <LogoMarquee />
+      {/* Round 5, item 6: "Trusted by" logo marquee removed everywhere – the
+          testimonials band (WP build) takes its slot on the live sites. */}
 
 
 
@@ -284,7 +326,7 @@ function AudienceCard({ kind, brand }: { kind: "company" | "candidate"; brand: B
       </div>
       <h3 className="font-display text-3xl md:text-4xl mt-5 leading-tight">{data.headline}</h3>
       <p className="mt-5 text-base opacity-80">{data.body}</p>
-      <ul className="mt-7 space-y-3 text-sm">
+      <ul className="mt-7 mb-8 space-y-3 text-sm">
         {data.bullets.map((bp) => (
           <li key={bp} className="flex gap-3">
             <span className="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style={{ background: "var(--brand)" }} />
@@ -292,9 +334,11 @@ function AudienceCard({ kind, brand }: { kind: "company" | "candidate"; brand: B
           </li>
         ))}
       </ul>
+      {/* Round 5, item 8: mt-auto pins both CTAs to the card base so the
+          buttons align on one line across the pair. */}
       <Link to={kind === "company" ? "/brands/$brand/for-companies" : "/brands/$brand/for-candidates"}
         params={{ brand: b.slug }}
-        className="btn-base btn-primary self-start mt-8">
+        className="btn-base btn-primary self-start mt-auto">
         {data.cta} <ArrowUpRight className="h-4 w-4" />
       </Link>
     </article>

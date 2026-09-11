@@ -10,7 +10,7 @@ export const Route = createFileRoute("/brands/$brand/for-companies")({
     const b = isBrandSlug(params.brand) ? BRANDS[params.brand] : null;
     return {
       meta: [
-        { title: b ? `Clients — ${b.name}` : "Clients" },
+        { title: b ? `Clients – ${b.name}` : "Clients" },
         { name: "description", content: b?.audiences.company.body ?? "" },
         { property: "og:title", content: b ? `Hire with ${b.name}` : "Clients" },
         { property: "og:description", content: b?.audiences.company.headline ?? "" },
@@ -24,7 +24,7 @@ const SOLUTIONS = [
   {
     title: "Engaged Search",
     tagline: "Our flagship model",
-    body: "A committed partnership with a structured process — market mapping, verified shortlists, offer management. Built to remove the chance of failure and get it right first time. 100% success rate on the Engage model.",
+    body: "A committed partnership with a structured process – market mapping, verified shortlists, offer management. Built to remove the chance of failure and get it right first time. 100% success rate on the Engage model.",
     bullets: ["Exclusive partnership", "Structured milestones", "Frequent read-outs"],
   },
   {
@@ -36,7 +36,7 @@ const SOLUTIONS = [
   {
     title: "Team Builds",
     tagline: "Partnerships, not placements",
-    body: "When a new plant, project or region needs staffing from the ground up — we build the whole team. Proactively, against your timeline, reducing time-to-hire and the cost of the empty seat.",
+    body: "When a new plant, project or region needs staffing from the ground up – we build the whole team. Proactively, against your timeline, reducing time-to-hire and the cost of the empty seat.",
     bullets: ["Land-and-expand", "Contract and permanent", "Against your project timeline"],
   },
 ];
@@ -49,7 +49,7 @@ function Page() {
 
   return (
     <>
-      {/* HERO — parallax image band with overlay copy */}
+      {/* HERO – parallax image band with overlay copy */}
       <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
         <ParallaxImage
           src={getBrandImage(b, "companiesHero").src}
@@ -84,14 +84,14 @@ function Page() {
         </div>
       </section>
 
-      {/* INTRO — split panel with copy + image + floating stat */}
+      {/* INTRO – split panel with copy + image + floating stat */}
       <SplitFeature
         eyebrow={`About ${b.name}`}
         headline="A partnership, not a placement."
         body={
           <>
             <p>
-              We exist to find you the best technical commercial talent on the market — and we've earned that right by building trust with our partners over more than a decade.
+              We exist to find you the best technical commercial talent on the market – and we've earned that right by building trust with our partners over more than a decade.
             </p>
             <p>
               Every consultant specialises in a product area. We recruit across the manufacturer and distributor landscape and represent your business as if it were our own.
@@ -111,7 +111,7 @@ function Page() {
       />
 
 
-      {/* SOLUTIONS — offset staggered cards */}
+      {/* SOLUTIONS – offset staggered cards */}
       <section className="py-24" style={{ background: "var(--muted)" }}>
         <div className="container-wide">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] items-end mb-14">
@@ -120,7 +120,7 @@ function Page() {
               <h2 className="display-2 mt-5">Sized to the project.<br />Built for the market.</h2>
             </div>
             <p className="text-base opacity-75 max-w-md lg:justify-self-end">
-              We construct a tailored hiring plan to meet your requirements — whether you're filling one role or building an entire commercial team.
+              We construct a tailored hiring plan to meet your requirements – whether you're filling one role or building an entire commercial team.
             </p>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
@@ -158,7 +158,7 @@ function Page() {
         </div>
       </section>
 
-      {/* PROCESS — horizontal rail with connector line */}
+      {/* PROCESS – horizontal rail with connector line */}
       {b.process && b.process.length > 0 && (
         <section className="container-wide py-24">
           <div className="max-w-2xl">
@@ -189,7 +189,7 @@ function Page() {
         </section>
       )}
 
-      {/* CASE STUDY — dark parallax */}
+      {/* CASE STUDY – dark parallax */}
       {b.caseStudy && (
         <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
           <ParallaxImage
@@ -236,7 +236,7 @@ function Page() {
         </section>
       )}
 
-      {/* TESTIMONIALS — alternating alignment */}
+      {/* TESTIMONIALS – alternating alignment */}
       {b.testimonials && b.testimonials.length > 0 && (
         <section className="container-wide py-24">
           <div className="max-w-2xl">
@@ -252,7 +252,7 @@ function Page() {
               >
                 <div className="font-display text-5xl leading-none absolute -top-2 -left-3 bg-[var(--background)] px-1" style={{ color: "var(--brand)" }}>"</div>
                 <blockquote className="text-base leading-relaxed opacity-90">{t.quote}</blockquote>
-                <figcaption className="mt-6 text-xs uppercase tracking-[0.18em] opacity-70">— {t.attribution}</figcaption>
+                <figcaption className="mt-6 text-xs uppercase tracking-[0.18em] opacity-70">– {t.attribution}</figcaption>
               </figure>
             ))}
           </div>
@@ -273,8 +273,8 @@ function Page() {
 
       <TeamStrip brand={brand} brandName={b.name} />
 
-      {/* CONTACT */}
-      <section className="container-wide py-24 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+      {/* CONTACT – id anchors the Edison landing "Talk to us" CTA (round 5, item 2) */}
+      <section id="contact" className="container-wide py-24 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <span className="eyebrow">Talk to us</span>
           <h2 className="display-2 mt-5">Tell us what you need to build.</h2>

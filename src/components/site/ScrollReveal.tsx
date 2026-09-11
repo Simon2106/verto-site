@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * Tags every `main > section` (plus anything opting in with [data-reveal])
  * with a hidden initial state, then fades/slides it up when it enters the
  * viewport. Sections already on screen at load get a small stagger so the
- * page "builds" in. SPA navigations are covered by a MutationObserver —
+ * page "builds" in. SPA navigations are covered by a MutationObserver –
  * new pages' sections are tagged as they mount. Respects reduced motion.
  *
  * CSS lives in styles.css (.reveal-init / .reveal-in).
@@ -34,7 +34,7 @@ export function ScrollReveal() {
       if (!(el instanceof HTMLElement) || el.classList.contains("reveal-init")) return;
       el.classList.add("reveal-init");
       el.dataset.revealTagged = String(Date.now());
-      // Stagger only the sections visible on first paint — the "page build" feel
+      // Stagger only the sections visible on first paint – the "page build" feel
       if (staggerIndex !== undefined && staggerIndex >= 0) {
         el.style.setProperty("--reveal-delay", `${Math.min(staggerIndex * 110, 440)}ms`);
       }
@@ -58,7 +58,7 @@ export function ScrollReveal() {
       document.querySelectorAll(".reveal-init:not(.reveal-in)").forEach((el) => {
         const t = (el as HTMLElement).dataset.revealTagged;
         if (!t || Date.now() - Number(t) < 1600) return;
-        // Only force-reveal elements actually in the viewport — off-screen
+        // Only force-reveal elements actually in the viewport – off-screen
         // sections keep their scroll-triggered entrance.
         const r = el.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("reveal-in");

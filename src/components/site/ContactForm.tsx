@@ -30,7 +30,7 @@ export function ContactForm({ brand, defaultAudience = "general", compact }: Pro
           message: String(fd.get("message") ?? ""),
         },
       });
-      toast.success("Thanks — we'll be in touch shortly.");
+      toast.success("Thanks – we'll be in touch shortly.");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong");

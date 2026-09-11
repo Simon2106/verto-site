@@ -5,7 +5,7 @@ import modulrAsset from "@/assets/modulr-logo.svg";
 import type { BrandSlug } from "@/lib/brands";
 
 const ASSETS: Record<BrandSlug, { url: string; lightUrl?: string; alt: string }> = {
-  "edison-lux": { url: edisonAsset, alt: "Edison Lux — Power and Energy Talent" },
+  "edison-lux": { url: edisonAsset, alt: "Edison Lux – Power and Energy Talent" },
   "vertek":     { url: vertekLightAsset, lightUrl: vertekLightAsset, alt: "Vertek" },
   "modulr":     { url: modulrAsset, alt: "Modulr" },
 };
@@ -16,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-/** Unified sub-brand logo lockup — uses the supplied PNG artwork. */
+/** Unified sub-brand logo lockup – uses the supplied PNG artwork. */
 export function BrandLogo({ brand, variant = "default", className = "" }: Props) {
   const a = ASSETS[brand];
   const sizeClass =

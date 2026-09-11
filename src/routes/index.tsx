@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import summitVideo from "@/assets/client/summit-video.mp4";
 import summitPoster from "@/assets/client/summit-poster.jpg";
 import ibizaTeam from "@/assets/client/ibiza8.jpg";
+import shareCerts from "@/assets/client/share-certificates.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 import shortlistBadge from "@/assets/weve-been-shortlisted.png";
 
@@ -31,15 +32,15 @@ const BRAND_LOGOS: Record<BrandSlug, string> = {
 };
 
 /* The Verto "V" mark as a CSS mask (multi-polygon, so clip-path won't do) */
-const V_MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 80"><g fill="#fff"><polygon points="48.81,66.34 43.18,76.08 1.64,4.14 12.9,4.14 34.11,40.89 37.08,46.04 48.81,66.34"/><polygon points="37.59,66.34 43.22,76.08 79.35,13.51 68.09,13.51 52.28,40.89 49.31,46.04 37.59,66.34"/><polygon points="48.81,39.2 43.2,48.91 43.18,48.94 22.72,13.51 33.97,13.51 34.11,13.75 37.08,18.9 43.2,29.49 48.81,39.2"/><polygon points="69.09,4.14 43.22,48.94 43.2,48.91 37.59,39.2 43.2,29.49 49.31,18.9 52.28,13.75 57.83,4.14 69.09,4.14"/></g></svg>`;
+const V_MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.85 80.06"><g fill="#fff"><polygon points="48.81 66.34 43.18 76.08 1.64 4.14 12.9 4.14 34.11 40.89 37.08 46.04 48.81 66.34"/><polygon points="37.59 66.34 43.22 76.08 79.35 13.51 68.09 13.51 52.28 40.89 49.31 46.04 37.59 66.34"/><polygon points="48.81 39.2 43.2 48.91 43.18 48.94 22.72 13.51 33.97 13.51 34.11 13.75 37.08 18.9 43.2 29.49 48.81 39.2"/><polygon points="69.09 4.14 43.22 48.94 43.2 48.91 37.59 39.2 43.2 29.49 49.31 18.9 52.28 13.75 57.83 4.14 69.09 4.14"/></g></svg>`;
 const V_MASK = `url("data:image/svg+xml,${encodeURIComponent(V_MARK_SVG)}")`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Verto Group — Precision talent for energy, engineering and the built environment" },
-      { name: "description", content: "Verto builds high-performance teams for the industries that keep everything else running — energy, engineering, and the built environment. Three focused brands: Edison Lux, Vertek and Modulr. One process-driven standard." },
-      { property: "og:title", content: "Verto Group — Precision talent. Specialist brands. One group." },
+      { title: "Verto Group – Precision talent for energy, engineering and the built environment" },
+      { name: "description", content: "Verto builds high-performance teams for the industries that keep everything else running – energy, engineering, and the built environment. Three focused brands: Edison Lux, Vertek and Modulr. One process-driven standard." },
+      { property: "og:title", content: "Verto Group – Precision talent. Specialist brands. One group." },
       { property: "og:description", content: "Three specialist brands. One process-driven standard. Building the teams that build, power and run the world." },
     ],
   }),
@@ -108,20 +109,20 @@ function CountValue({ target, suffix = "", format = true }: { target: number; su
 }
 
 
-/* ─────────── HERO — dark, giant Verto "V" mark with the summer-summit video inside ─────────── */
+/* ─────────── HERO – dark, giant Verto "V" mark with the summer-summit video inside ─────────── */
 function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
 
       <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
-        {/* Verto "V" mark — summit video clipped inside the mark.
+        {/* Verto "V" mark – summit video clipped inside the mark.
             Client feedback round 3, item 1: the mask panel is letterboxed to
             the video's native 16:9 (vertically centred) instead of stretching
             to the full hero height, so the 16:9 footage no longer has to
-            scale up to cover a near-square panel — no more zoomed-in faces. */}
+            scale up to cover a near-square panel – no more zoomed-in faces. */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[58.9%] hidden md:block">
           <div
-            className="absolute inset-0 flex items-end justify-center"
+            className="absolute inset-0 flex justify-center overflow-hidden"
             style={{
               maskImage: V_MASK,
               WebkitMaskImage: V_MASK,
@@ -133,9 +134,12 @@ function Hero() {
               WebkitMaskPosition: "center",
             }}
           >
-            <AutoplayVideo />
+            <div className="relative h-full max-w-full overflow-hidden" style={{ aspectRatio: "79.85 / 80.06" }}>
+              <img src={summitPoster} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover scale-110" style={{ filter: "blur(26px) brightness(0.65) saturate(1.05)" }} />
+              <AutoplayVideo />
+            </div>
             <div
-              className="absolute inset-0 flex items-end justify-center"
+              className="absolute inset-0 flex justify-center overflow-hidden"
               style={{ background: "color-mix(in oklab, var(--ink) 20%, transparent)" }}
             />
           </div>
@@ -146,7 +150,7 @@ function Hero() {
             <div className="text-[11px] uppercase tracking-[0.3em] opacity-70">The Verto Group · Precision talent, specialist brands</div>
             <TitleReveal as="h1" className="display-2 mt-8 tracking-tight" lines={["Precision talent.", "Specialist brands.", "One group."]} />
             <p className="mt-8 max-w-xl text-base md:text-lg opacity-80">
-              Verto builds high-performance teams for the industries that keep everything else running — energy, engineering and the built environment. Three focused brands. One process-driven standard.
+              Verto builds high-performance teams for the industries that keep everything else running – energy, engineering and the built environment. Three focused brands. One process-driven standard.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link to="/careers" className="btn-base btn-primary on-ink">
@@ -171,17 +175,18 @@ function Hero() {
       </div>
 
 
-      {/* Extended hero — what a seat at Verto comes with */}
+      {/* Extended hero – what a seat at Verto comes with */}
       <div className="relative">
         <div
           className="container-wide relative grid grid-cols-2 md:grid-cols-4 pt-14 pb-24 lg:pt-20 lg:pb-32"
           style={{ borderTop: "1px solid color-mix(in oklab, var(--ink-foreground) 14%, transparent)" }}
         >
           {[
-            { node: <><CountValue target={40} />%</>, label: "Commission — one of the market's best splits" },
-            { node: <>Equity</>, label: "Share scheme — everyone owns a piece" },
+            { node: <><CountValue target={40} />%</>, label: "Commission – one of the market's best splits" },
+            { node: <>Equity</>, label: "Share scheme – everyone owns a piece" },
             { node: <><CountValue target={2} format={false} />×</>, label: "Holiday incentives every year" },
-            { node: <RegionRotator />, label: "International relocation opportunities" },
+            // Round 5, item 9: client wants "US" only (was the UK/US rotator).
+            { node: <>US</>, label: "International relocation opportunities" },
           ].map((s, i) => (
             <div
               key={s.label}
@@ -227,7 +232,7 @@ function AutoplayVideo() {
       ref={ref}
       src={summitVideo}
       poster={summitPoster}
-      className="block h-[80%] w-auto max-w-full object-contain"
+      className="relative block w-full h-auto" style={{ marginTop: "-35%" }}
       autoPlay
       muted
       loop
@@ -239,29 +244,7 @@ function AutoplayVideo() {
 }
 
 /* ─────────── REGION ROTATOR ─────────── */
-function RegionRotator() {
-  const regions = ["UK", "US"];
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setI((v) => (v + 1) % regions.length), 1800);
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <span className="inline-block relative align-baseline" style={{ minWidth: "1.6em" }}>
-      <span
-        key={i}
-        className="inline-block"
-        style={{ animation: "region-fade 600ms ease" }}
-      >
-        {regions[i]}
-      </span>
-    </span>
-  );
-}
-
-
-
-/* ─────────── OUR PRACTICES — logo-led brand tiles ─────────── */
+/* ─────────── OUR PRACTICES – logo-led brand tiles ─────────── */
 function Practices() {
   return (
     <section className="py-24 lg:py-32" style={{ background: "var(--muted)" }}>
@@ -270,7 +253,7 @@ function Practices() {
           <span className="eyebrow">The brands</span>
           <TitleReveal className="display-2 mt-5" lines={["Three brands.", "One process-driven standard."]} />
           <p className="mt-6 text-muted-foreground max-w-xl">
-            Founded in 2020, Verto connects exceptional technical and commercial people with the businesses that need them. Today, three focused brands — each with its own market, its own network and its own consultants — united by how we work.
+            Founded in 2020, Verto connects exceptional technical and commercial people with the businesses that need them. Today, three focused brands – each with its own market, its own network and its own consultants – united by how we work.
           </p>
           <Link
             to="/about"
@@ -290,7 +273,7 @@ function Practices() {
               data-brand={b.slug}
               aria-label={`Enter ${b.name}`}
               className="group relative block"
-              /* Round 4, item 12: 480 → 540 — Vertek's hover face now lists
+              /* Round 4, item 12: 480 → 540 – Vertek's hover face now lists
                  six sectors and needs the extra room. */
               style={{ perspective: "1400px", minHeight: 540 }}
             >
@@ -298,15 +281,15 @@ function Practices() {
                 className="relative w-full h-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]"
                 style={{ transformStyle: "preserve-3d", minHeight: 540 }}
               >
-                {/* ── FRONT — the brand's own logo, front and centre ── */}
+                {/* ── FRONT – the brand's own logo, front and centre ── */}
                 <div
                   className="absolute inset-0 overflow-hidden flex flex-col items-center justify-center p-10"
                   style={{
-                    /* glow baked into the face background — a separate glow
+                    /* glow baked into the face background – a separate glow
                        layer composites as a solid block during the 3D flip.
                        Client feedback round 3, item 2: Edison Lux carries the
                        COLOURED primary logo (gradient mark), which clashes on
-                       the gradient ground — so its face is white/very-light
+                       the gradient ground – so its face is white/very-light
                        with dark text, and its blue top stripe is removed. */
                     background:
                       b.slug === "edison-lux"
@@ -317,7 +300,7 @@ function Practices() {
                     WebkitBackfaceVisibility: "hidden",
                   }}
                 >
-                  {/* brand stripe top (removed on the Edison tile — round 3, item 2) */}
+                  {/* brand stripe top (removed on the Edison tile – round 3, item 2) */}
                   {b.slug !== "edison-lux" && (
                     <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
                   )}
@@ -401,7 +384,7 @@ function Practices() {
   );
 }
 
-/* ─────────── VALUES — Verto's five values ─────────── */
+/* ─────────── VALUES – Verto's five values ─────────── */
 function Values() {
   const values = [
     { title: "Committed", body: "Passionate about working hard by doing everything in your power to hit results and ensure our candidates and clients receive the best possible experience. Be committed to own your day, be results driven and take satisfaction from doing what we say we are going to do." },
@@ -444,7 +427,7 @@ function Values() {
           <span className="eyebrow">Verto&apos;s values</span>
           <TitleReveal className="display-2 mt-5" lines={["Five values.", "Every desk, every day."]} />
           <p className="mt-6 text-muted-foreground">
-            Every desk runs its own market and its own network. What&apos;s shared is what we stand for — the five values every person across the group works by.
+            Every desk runs its own market and its own network. What&apos;s shared is what we stand for – the five values every person across the group works by.
           </p>
         </div>
 
@@ -484,7 +467,7 @@ function Values() {
       </div>
 
       <style>{`
-        /* Round 4, items 1+8: light cards — ivory ground, ink text, gold
+        /* Round 4, items 1+8: light cards – ivory ground, ink text, gold
            numerals. Hover keeps the gold-fill signature (ink text on gold). */
         .value-card { background: var(--surface, var(--background)); color: var(--foreground); }
         .value-card__accent { background: var(--brand); }
@@ -503,28 +486,28 @@ function Values() {
 }
 
 /* ─────────── WHAT EMPLOYEES SAY ───────────
-   ⚠️ PLACEHOLDER QUOTES — the client is gathering real employee quotes.
+   ⚠️ PLACEHOLDER QUOTES – the client is gathering real employee quotes.
    Structure and design are final; the words below are stand-ins. */
 function EmployeeVoices() {
   const items = [
     {
       quote: "I joined as a graduate with no recruitment experience. Four years on I run my own market, I've been to Barcelona and Prague on incentive trips, and I own a piece of the business I helped build.",
-      who: "Placeholder — Senior Consultant",
+      who: "Placeholder – Senior Consultant",
       org: "Joined 2022 · Solent",
     },
     {
-      quote: "The 40% commission is what got my attention. The reason I've stayed is the way we work — phone first, plan led, and a team that actually celebrates each other's deals.",
-      who: "Placeholder — Recruitment Consultant",
+      quote: "The 40% commission is what got my attention. The reason I've stayed is the way we work – phone first, plan led, and a team that actually celebrates each other's deals.",
+      who: "Placeholder – Recruitment Consultant",
       org: "Joined 2023 · Solent",
     },
     {
-      quote: "I moved from the UK to Austin with Verto. The relocation wasn't a perk buried in a handbook — the business planned my desk, my visa and my first three months before I flew.",
-      who: "Placeholder — Principal Consultant",
+      quote: "I moved from the UK to Austin with Verto. The relocation wasn't a perk buried in a handbook – the business planned my desk, my visa and my first three months before I flew.",
+      who: "Placeholder – Principal Consultant",
       org: "Joined 2021 · Austin",
     },
     {
       quote: "Two incentive holidays a year sounds like a gimmick until you're on the second one, sat with the whole company, and nobody's checking their phone.",
-      who: "Placeholder — Consultant",
+      who: "Placeholder – Consultant",
       org: "Joined 2024 · Solent",
     },
   ];
@@ -540,7 +523,7 @@ function EmployeeVoices() {
             <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">What employees say about us</div>
             <TitleReveal className="display-1 mt-6" lines={["Don't take our", "word for it."]} />
             <p className="mt-6 opacity-70 max-w-xl">
-              Real quotes from the team are on their way — these are placeholders while we collect them.
+              Real quotes from the team are on their way – these are placeholders while we collect them.
             </p>
           </div>
           <div
@@ -598,13 +581,13 @@ function EmployeeVoices() {
           <div className="flex items-center gap-6 shrink-0">
             <img
               src={bptwBadge}
-              alt="The Sunday Times Best Places to Work 2026 — Small Organisation"
+              alt="The Sunday Times Best Places to Work 2026 – Small Organisation"
               className="h-24 w-auto shrink-0"
               loading="lazy"
             />
             <img
               src={shortlistBadge}
-              alt="Recruiter Awards 2026 — We've been shortlisted"
+              alt="Recruiter Awards 2026 – We've been shortlisted"
               className="h-24 w-auto shrink-0"
               loading="lazy"
             />
@@ -656,7 +639,7 @@ function WhatsGoingOn() {
             <span className="eyebrow">What&apos;s going on</span>
             <TitleReveal className="display-2 mt-5" lines={["Life inside the group."]} />
             <p className="mt-6 text-muted-foreground">
-              Incentive trips, awards, sales days and everything in between — straight from the team, not a marketing department.
+              Incentive trips, awards, sales days and everything in between – straight from the team, not a marketing department.
             </p>
           </div>
           <Link to="/whats-going-on" className="text-sm font-medium inline-flex items-center gap-2" style={{ color: "var(--accent)" }}>
@@ -688,7 +671,7 @@ function WhatsGoingOn() {
   );
 }
 
-/* ─────────── WHAT WE OFFER — round 4, item 11 ───────────
+/* ─────────── WHAT WE OFFER – round 4, item 11 ───────────
    The client-logo strip is dead for good; the 14 perks take its place as a
    notched-corner dark card grid (also on the careers page). */
 function WhatWeOffer() {
@@ -699,9 +682,23 @@ function WhatWeOffer() {
           <span className="eyebrow">What we offer</span>
           <TitleReveal className="display-2 mt-5" lines={["The package,", "in full."]} />
           <p className="mt-6 text-muted-foreground max-w-xl">
-            Fourteen reasons a desk here beats the one you&apos;re at — in money, ownership, travel and the things other agencies call perks and we call standard.
+            Fourteen reasons a desk here beats the one you&apos;re at – in money, ownership, travel and the things other agencies call perks and we call standard.
           </p>
         </div>
+        {/* Round 5, item 10: the share-scheme awards-night photo – wide,
+            rounded, above the perks grid. */}
+        <figure className="mt-14 m-0">
+          <img
+            src={shareCerts}
+            alt="The Verto team holding their share-scheme award certificates at the awards night"
+            loading="lazy"
+            className="w-full rounded-3xl object-cover"
+            style={{ aspectRatio: "2 / 1" }}
+          />
+          <figcaption className="mt-4 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            Share scheme awards – everyone owns a piece
+          </figcaption>
+        </figure>
         <div className="mt-14">
           <OfferGrid />
         </div>
@@ -710,7 +707,7 @@ function WhatWeOffer() {
   );
 }
 
-/* ─────────── SOCIALS — Instagram feed on the homepage (item 13) ─────────── */
+/* ─────────── SOCIALS – Instagram feed on the homepage (item 13) ─────────── */
 function Socials() {
   return (
     <section className="py-24 hairline-top" style={{ background: "var(--background)" }}>
@@ -721,7 +718,7 @@ function Socials() {
   );
 }
 
-/* ─────────── JOIN US — internal jobs board ─────────── */
+/* ─────────── JOIN US – internal jobs board ─────────── */
 function JoinUs() {
   return (
     <section

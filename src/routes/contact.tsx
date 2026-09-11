@@ -9,9 +9,9 @@ import { LOCATIONS } from "@/lib/locations";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Join us — Verto Group" },
-      { name: "description", content: "Thinking about a career at Verto? Tell us about yourself — we reply to every note within one business day." },
-      { property: "og:title", content: "Join us — Verto Group" },
+      { title: "Join us – Verto Group" },
+      { name: "description", content: "Thinking about a career at Verto? Tell us about yourself – we reply to every note within one business day." },
+      { property: "og:title", content: "Join us – Verto Group" },
       { property: "og:description", content: "40% commission, a share scheme for everyone and two incentive trips a year. Start the conversation." },
     ],
   }),
@@ -28,7 +28,7 @@ function ContactPage() {
             <span className="eyebrow">Join us</span>
             <TitleReveal as="h1" className="display-1 mt-6" lines={["Start the", "conversation."]} />
             <p className="mt-6 text-lg text-muted-foreground max-w-md">
-              This page is about joining Verto — whether you're an experienced consultant or just think you'd be good at this. Tell us about yourself and we'll come back within one business day. (Hiring or job-seeking? Head to the brand that owns your market.)
+              This page is about joining Verto – whether you're an experienced consultant or just think you'd be good at this. Tell us about yourself and we'll come back within one business day. (Hiring or job-seeking? Head to the brand that owns your market.)
             </p>
             <div className="mt-12 space-y-5 text-sm">
               <Row icon={Mail}>hello@vertogroup.com</Row>
@@ -40,7 +40,7 @@ function ContactPage() {
             <ContactForm brand="verto" />
           </div>
         </div>
-        {/* LOCATION HUB — LHi-style office pages */}
+        {/* LOCATION HUB – LHi-style office pages */}
         <div className="mt-24 hairline-top pt-16">
           <span className="eyebrow">Or say hello in person</span>
           <h2 className="display-3 mt-5">Three places to find us.</h2>

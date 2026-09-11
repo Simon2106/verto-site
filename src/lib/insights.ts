@@ -3,7 +3,7 @@ import type { BrandSlug } from "./brands";
 export type ContentType = "Market Report" | "Guide" | "Article" | "Case Study" | "Salary Guide" | "Template";
 export type Audience = "Candidates" | "Companies" | "All";
 
-/* What's-going-on magazine categories — mirror the WP post categories
+/* What's-going-on magazine categories – mirror the WP post categories
    (Trips / Wins / Community / News) seeded by the installer. */
 export type WgoCategory = "Trips" | "Wins" | "Community" | "News";
 
@@ -31,7 +31,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "us-energy-skills-gap-2026",
     title: "The US Energy Skills Gap: who's hiring, who's leaving, and what it costs",
-    excerpt: "America is building more generating capacity than at any point in a generation. The talent pipeline isn't keeping up — here's what plant owners and EPCs need to know in 2026.",
+    excerpt: "America is building more generating capacity than at any point in a generation. The talent pipeline isn't keeping up – here's what plant owners and EPCs need to know in 2026.",
     brand: "edison-lux",
     contentType: "Market Report",
     audience: "Companies",
@@ -42,7 +42,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "ccgt-shift-supervisor-salary-guide-2026",
-    title: "CCGT Shift Supervisor Salary Guide — US, 2026",
+    title: "CCGT Shift Supervisor Salary Guide – US, 2026",
     excerpt: "Base, shift premium, total comp and relocation packages benchmarked across PJM, ERCOT and CAISO.",
     brand: "edison-lux",
     contentType: "Salary Guide",
@@ -54,7 +54,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "reducing-time-to-cod",
     title: "Reducing time-to-COD on large-scale EPC projects",
-    excerpt: "Why the bottleneck is rarely concrete, steel or turbines — and almost always the people you can't find fast enough.",
+    excerpt: "Why the bottleneck is rarely concrete, steel or turbines – and almost always the people you can't find fast enough.",
     brand: "edison-lux",
     contentType: "Article",
     audience: "Companies",
@@ -77,7 +77,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "us-architecture-aor-market-update",
-    title: "US Architecture & AOR market update — Q2 2026",
+    title: "US Architecture & AOR market update – Q2 2026",
     excerpt: "Where the principals, directors and partners are moving across mixed-use, hospitality and healthcare practices.",
     brand: "modulr",
     contentType: "Market Report",
@@ -111,7 +111,7 @@ export const INSIGHTS: Insight[] = [
 
   {
     slug: "fluid-power-sales-engineer-salary-guide",
-    title: "Fluid Power Sales Engineer Salary Guide — UK & US, 2026",
+    title: "Fluid Power Sales Engineer Salary Guide – UK & US, 2026",
     excerpt: "Base, OTE, equity and benefit benchmarks across hydraulics, pneumatics and compressed air distributors.",
     brand: "vertek",
     contentType: "Salary Guide",
@@ -124,7 +124,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "advanced-manufacturing-talent-trends",
     title: "Advanced manufacturing talent trends: defence, semis and robotics",
-    excerpt: "Where the next wave of US engineering and commercial talent will come from — and what founders are paying to secure it.",
+    excerpt: "Where the next wave of US engineering and commercial talent will come from – and what founders are paying to secure it.",
     brand: "vertek",
     contentType: "Market Report",
     audience: "Companies",
@@ -135,7 +135,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "hvac-aftermarket-hiring-playbook",
     title: "The HVAC aftermarket hiring playbook",
-    excerpt: "Service managers, aftermarket sales leads and field engineers — building the commercial muscle behind the install base.",
+    excerpt: "Service managers, aftermarket sales leads and field engineers – building the commercial muscle behind the install base.",
     brand: "vertek",
     contentType: "Guide",
     audience: "Companies",
@@ -157,7 +157,7 @@ export const INSIGHTS: Insight[] = [
 
   {
     slug: "verto-state-of-specialist-search",
-    title: "The state of specialist search — 2026 outlook",
+    title: "The state of specialist search – 2026 outlook",
     excerpt: "How specialist recruitment is outperforming generalist firms across energy, built environment and engineering sectors.",
     brand: "verto",
     contentType: "Market Report",
@@ -169,7 +169,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "verto-why-specialism-matters",
-    title: "Why specialism beats scale — every time",
+    title: "Why specialism beats scale – every time",
     excerpt: "The argument for fewer, deeper relationships in talent: what we've learned building three specialist brands inside one group.",
     brand: "verto",
     contentType: "Article",
@@ -185,15 +185,29 @@ export const CONTENT_TYPES: ContentType[] = [
 ];
 
 /* ─────────── WHAT'S GOING ON ───────────
- * Culture & company-news posts for the Verto (group) site — replaces the old
+ * Culture & company-news posts for the Verto (group) site – replaces the old
  * "insights" concept at group level per client feedback.
  * Aug 2026: real stories + photography from the client's media drop
  * (Barcelona incentive, summer summit, Milly / Sade promotion films). */
 export const WHATS_GOING_ON: Insight[] = [
+  // Round 5, item 10: the share-scheme awards night (mirrors the WP batch-3
+  // seeded post – featured image is the certificates photo).
+  {
+    slug: "share-scheme-awards-night",
+    title: "Share scheme awards night",
+    excerpt: "Gold balloons, a certificate in every pair of hands – the night the share scheme stopped being a line in the handbook and became a piece of paper with your name on it.",
+    brand: "verto",
+    contentType: "Article",
+    audience: "All",
+    sector: "Life at Verto",
+    readMinutes: 1,
+    date: "2026-09-05",
+    category: "Wins",
+  },
   {
     slug: "sade-kendall-promoted",
     title: "Sade Kendall promoted",
-    excerpt: "The ModulR desk had the confetti ready — Sade Kendall's promotion, announced in front of the whole office. Watch the moment it landed.",
+    excerpt: "The ModulR desk had the confetti ready – Sade Kendall's promotion, announced in front of the whole office. Watch the moment it landed.",
     brand: "verto",
     contentType: "Article",
     audience: "All",
@@ -205,7 +219,7 @@ export const WHATS_GOING_ON: Insight[] = [
   {
     slug: "milly-compton-promoted",
     title: "Milly Compton promoted",
-    excerpt: "Confetti cannons in the Edison Lux corner — Milly Compton walked into an office that knew something she didn't. Promotion, announced the Verto way.",
+    excerpt: "Confetti cannons in the Edison Lux corner – Milly Compton walked into an office that knew something she didn't. Promotion, announced the Verto way.",
     brand: "verto",
     contentType: "Article",
     audience: "All",
@@ -217,7 +231,7 @@ export const WHATS_GOING_ON: Insight[] = [
   {
     slug: "inside-the-summer-summit",
     title: "Inside the summer summit",
-    excerpt: "The whole group at Southsea Castle for the Verto Summer Summit — the numbers, the plans, then the flag over the ramparts and the letters lit up for the evening.",
+    excerpt: "The whole group at Southsea Castle for the Verto Summer Summit – the numbers, the plans, then the flag over the ramparts and the letters lit up for the evening.",
     brand: "verto",
     contentType: "Article",
     audience: "All",
@@ -228,7 +242,7 @@ export const WHATS_GOING_ON: Insight[] = [
   },
   {
     slug: "barcelona-where-the-incentive-trips-started",
-    title: "Barcelona — where the incentive trips started",
+    title: "Barcelona – where the incentive trips started",
     excerpt: "September 2025, the first international incentive: the whole qualifying team at the W Barcelona. Two trips a year has been the rhythm ever since.",
     brand: "verto",
     contentType: "Article",
@@ -241,7 +255,7 @@ export const WHATS_GOING_ON: Insight[] = [
   {
     slug: "sunday-times-best-places-to-work-2026",
     title: "Verto named in The Sunday Times Best Places to Work 2026",
-    excerpt: "Officially one of the UK's best small organisations to work for. Six years from a lockdown start-up to a Sunday Times listing — built on the same five values we started with.",
+    excerpt: "Officially one of the UK's best small organisations to work for. Six years from a lockdown start-up to a Sunday Times listing – built on the same five values we started with.",
     brand: "verto",
     contentType: "Article",
     audience: "All",
@@ -253,8 +267,8 @@ export const WHATS_GOING_ON: Insight[] = [
   },
   {
     slug: "prague-2026-incentive-trip",
-    title: "Prague 2026 — the whole company, one incentive trip",
-    excerpt: "Our second international incentive trip. Everyone who hit target, flights and all — this is what the 2× annual holiday incentive actually looks like.",
+    title: "Prague 2026 – the whole company, one incentive trip",
+    excerpt: "Our second international incentive trip. Everyone who hit target, flights and all – this is what the 2× annual holiday incentive actually looks like.",
     brand: "verto",
     contentType: "Article",
     audience: "All",
@@ -265,7 +279,7 @@ export const WHATS_GOING_ON: Insight[] = [
   },
   {
     slug: "ibiza-2026-reveal",
-    title: "Next stop: Ibiza — the 2026 summer incentive revealed",
+    title: "Next stop: Ibiza – the 2026 summer incentive revealed",
     excerpt: "Barcelona 2025. Prague, January 2026. And this summer, the team that delivers gets Ibiza. The countdown is on.",
     brand: "verto",
     contentType: "Article",

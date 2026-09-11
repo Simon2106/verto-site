@@ -28,7 +28,7 @@ function BrandAbout() {
 
   return (
     <>
-      {/* HERO — striking dark parallax band */}
+      {/* HERO – striking dark parallax band */}
       <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
         <ParallaxImage
           src={getBrandImage(b, "aboutHero").src}
@@ -54,7 +54,7 @@ function BrandAbout() {
               <br />{b.aboutHero.line2}
             </h1>
             <p className="mt-8 max-w-xl text-lg" style={{ color: "var(--ink-foreground)" }}>
-              {b.about.headline} — and it's how we've built {b.name} into the firm clients and candidates in {b.focus.toLowerCase()} reach out to first.
+              {b.about.headline} – and it's how we've built {b.name} into the firm clients and candidates in {b.focus.toLowerCase()} reach out to first.
             </p>
           </div>
           {b.stats[0] && (
@@ -76,7 +76,7 @@ function BrandAbout() {
         </div>
       </section>
 
-      {/* STORY — editorial split: narrative column left, stats column right with vertical rule */}
+      {/* STORY – editorial split: narrative column left, stats column right with vertical rule */}
       <section className="py-24 lg:py-32" style={{ background: "var(--background)" }}>
         <div className="container-wide">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
@@ -94,7 +94,7 @@ function BrandAbout() {
               <div className="space-y-8 text-lg md:text-xl leading-relaxed" style={{ color: "color-mix(in oklab, var(--foreground) 80%, transparent)" }}>
                 <p>{b.positioning}</p>
                 <p>
-                  We started in technical sales in 2011 — the roots of the Verto Group. {b.name} is the brand built specifically for the part of the market we know best: the engineers, operators and commercial leaders our sector runs on.
+                  We started in technical sales in 2011 – the roots of the Verto Group. {b.name} is the brand built specifically for the part of the market we know best: the engineers, operators and commercial leaders our sector runs on.
                 </p>
               </div>
             </div>
@@ -124,7 +124,7 @@ function BrandAbout() {
         </div>
       </section>
 
-      {/* PILLARS — staggered offset grid */}
+      {/* PILLARS – staggered offset grid */}
       {b.pillars && b.pillars.length > 0 && (
         <section className="container-wide py-24">
           <div className="grid gap-10 lg:grid-cols-[1fr_2fr] items-end">
@@ -158,7 +158,7 @@ function BrandAbout() {
 
 
 
-      {/* VALUES — bordered grid with alternating emphasis */}
+      {/* VALUES – bordered grid with alternating emphasis */}
       {b.values && b.values.length > 0 && (
         <section className="container-wide py-24">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr] items-start">
@@ -201,7 +201,7 @@ function BrandAbout() {
         </section>
       )}
 
-      {/* WHAT WE DO — split (image left, copy right) */}
+      {/* WHAT WE DO – split (image left, copy right) */}
       {b.whatWeDo && (
         <SplitFeature
           eyebrow="What we do today"
@@ -221,7 +221,7 @@ function BrandAbout() {
       )}
 
 
-      {/* MISSION / VISION / PURPOSE — dark parallax band */}
+      {/* MISSION / VISION / PURPOSE – dark parallax band */}
       <section className="relative overflow-hidden" style={{ color: "var(--ink-foreground)" }}>
         <ParallaxImage
           src={getBrandImage(b, "aboutMission").src}
@@ -263,7 +263,7 @@ function BrandAbout() {
         </div>
       </section>
 
-      {/* JOURNEY — horizontal rail */}
+      {/* JOURNEY – horizontal rail */}
       {b.journey && b.journey.length > 0 && (
         <section className="container-wide py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -287,7 +287,7 @@ function BrandAbout() {
         </section>
       )}
 
-      {/* PROOF — staggered numbered list */}
+      {/* PROOF – staggered numbered list */}
       <section className="py-24" style={{ background: "var(--muted)" }}>
         <div className="container-wide">
           <div className="max-w-2xl">

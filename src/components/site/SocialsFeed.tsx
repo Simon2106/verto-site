@@ -1,13 +1,13 @@
 import { Instagram } from "lucide-react";
 
 /**
- * Verto-only socials feed (@verto_people). Uses Instagram's public embed —
+ * Verto-only socials feed (@verto_people). Uses Instagram's public embed –
  * shows the live profile grid without any API keys.
  */
 export function SocialsFeed({
   eyebrow = "Life at Verto",
   heading = "The moments between the meetings.",
-  body = "Awards, incentive trips, sales days and the occasional inflatable — what working here actually looks like.",
+  body = "Awards, incentive trips, sales days and the occasional inflatable – what working here actually looks like.",
 }: {
   eyebrow?: string;
   heading?: string;

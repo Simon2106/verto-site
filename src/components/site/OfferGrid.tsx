@@ -1,26 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Round 4, item 11 — "What we offer": the client's 14 perks as a
+ * Round 4, item 11 – "What we offer": the client's 14 perks as a
  * notched-corner dark card grid (per Martin's reference; replaces the old
  * four-card "Why Verto" block and the client-logo idea for good).
  * Card chrome lives in styles.css (.offer-card). Mirrors the verto-perks
  * widget in verto-core.
  */
 export const OFFER_PERKS: { title: string; sub: string }[] = [
-  { title: "Up to 40% commission", sub: "One of the strongest splits in the market — transparent from day one." },
-  { title: "Share scheme", sub: "Every person in the business owns a piece of the group." },
-  { title: "Two international trips a year", sub: "Barcelona, Prague, Ibiza — hit target and you're on the plane." },
+  { title: "40% commission", sub: "One of the strongest splits in the market – transparent from day one." },
+  { title: "Share scheme", sub: "Rewarding the people who build the business." },
+  { title: "Two international trips a year", sub: "Barcelona, Prague, Ibiza – hit target and you're on the plane." },
   { title: "Award-winning culture", sub: "The Sunday Times Best Places to Work 2026." },
-  { title: "Clear progression", sub: "A published ladder from trainee to principal — no mystery promotions." },
-  { title: "Structured L&D", sub: "Training that starts on day one and never really stops." },
-  { title: "Winners' lunches", sub: "Hit the number, book the table — on us." },
+  { title: "Clear progression", sub: "A published ladder from trainee to principal – no mystery promotions." },
+  { title: "Structured L&D", sub: "Training built around you, from day one onwards." },
+  { title: "Winners' lunches", sub: "Hit the number, book the table – on us." },
   { title: "Monthly sales days", sub: "A day of competition, prizes and noise, every month." },
   { title: "Milestone Miles", sub: "Three years in: a week working from any international office." },
-  { title: "Wear Your Success", sub: "Billing milestones, marked in Nike — pick your pair." },
-  { title: "The 3650 Club", sub: "Ten years in: a Rolex, a designer handbag — or four weeks off." },
+  { title: "Wear Your Success", sub: "Billing milestones, marked in Nike." },
+  { title: "The 3650 Club", sub: "Ten years in: a Rolex, a designer handbag – or four weeks off." },
   { title: "Referral scheme", sub: "Bring good people with you and get paid for it." },
-  { title: "Healthcare cash-back", sub: "Dental, optical, physio — everyday health costs claimed back." },
+  { title: "Healthcare cash-back", sub: "Dental, optical, physio – everyday health costs claimed back." },
   { title: "Pension", sub: "Company pension from day one, on top of everything above." },
 ];
 

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/locations/$location")({
     const loc = isLocationSlug(params.location) ? getLocation(params.location) : undefined;
     return {
       meta: [
-        { title: `${loc?.name ?? "Locations"} — Verto Group` },
+        { title: `${loc?.name ?? "Locations"} – Verto Group` },
         { name: "description", content: loc?.statement ?? "Verto Group locations." },
       ],
     };
@@ -38,7 +38,7 @@ function LocationPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
-      {/* key={loc.slug} remounts the page per office — all scroll reveals,
+      {/* key={loc.slug} remounts the page per office – all scroll reveals,
           the headline mask animation and the section stagger replay on click */}
       <main className="flex-1 location-page-enter" key={loc.slug}>
         {/* HELLO, {CITY}. + location switcher */}
@@ -69,7 +69,7 @@ function LocationPage() {
         {/* HERO BANNER */}
         <section className="container-wide mt-12">
           <div className="relative aspect-[16/5] overflow-hidden rounded-3xl">
-            <img src={loc.heroImage} alt={`${loc.name} — Verto office`} className="h-full w-full object-cover" loading="lazy" />
+            <img src={loc.heroImage} alt={`${loc.name} – Verto office`} className="h-full w-full object-cover" loading="lazy" />
             {loc.status && (
               <div
                 className="absolute top-5 left-5 rounded-full px-4 py-1.5 text-[10px] uppercase tracking-[0.24em] font-semibold"
@@ -80,7 +80,7 @@ function LocationPage() {
             )}
           </div>
           <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground opacity-70">
-            Placeholder imagery — real office / team photos to follow
+            Placeholder imagery – real office / team photos to follow
           </p>
         </section>
 
@@ -128,7 +128,7 @@ function LocationPage() {
               </div>
             </div>
             {loc.leader.placeholder && (
-              <p className="mt-4 text-xs opacity-50">⚠️ Placeholder — name &amp; photo from client</p>
+              <p className="mt-4 text-xs opacity-50">⚠️ Placeholder – name &amp; photo from client</p>
             )}
           </div>
         </section>
@@ -186,7 +186,7 @@ function LocationPage() {
           <div className="container-wide">
             <JobsBoard
               heading={`Roles in ${loc.name}.`}
-              intro={`Open seats at this office — filtered for you. Clear the location filter to see every role across the group.`}
+              intro={`Open seats at this office – filtered for you. Clear the location filter to see every role across the group.`}
               initialLocation={loc.jobLocation}
             />
           </div>
@@ -199,7 +199,7 @@ function LocationPage() {
               <span className="eyebrow">Say hello</span>
               <h2 className="display-3 mt-5">Talk to the {loc.name} team.</h2>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                Thinking about joining, relocating{loc.status ? ", or want in on the founding team" : ""} — or just want to see the office? Send a note and it goes straight to {loc.name}.
+                Thinking about joining, relocating{loc.status ? ", or want in on the founding team" : ""} – or just want to see the office? Send a note and it goes straight to {loc.name}.
               </p>
               <Link to="/careers" className="btn-base btn-pill btn-ink mt-8 inline-flex">
                 Why join Verto <ArrowRight className="h-4 w-4" />

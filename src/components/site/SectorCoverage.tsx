@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { TitleReveal } from "@/components/site/TitleReveal";
 import type { BrandSlug } from "@/lib/brands";
 
-/** Per-brand sector lists — shared by the sector-coverage block and the
+/** Per-brand sector lists – shared by the sector-coverage block and the
  *  brand-tile hover faces on the home page. */
 export const BRAND_SECTORS: Record<BrandSlug, string[]> = {
   "edison-lux": [
@@ -30,9 +30,9 @@ export const BRAND_SECTORS: Record<BrandSlug, string[]> = {
   ],
 };
 
-/* ─────────── SECTOR COVERAGE — per-brand desk lists ───────────
+/* ─────────── SECTOR COVERAGE – per-brand desk lists ───────────
    Client feedback (round 2, img004): the Edison Lux row must read as
-   Edison — Energy Green, not the Electric Blue that made it identical
+   Edison – Energy Green, not the Electric Blue that made it identical
    to ModulR's row. Green is decorative on light ground, so the small
    "Enter Edison Lux" text link uses a darkened green for contrast. */
 export function SectorCoverage() {
@@ -75,7 +75,7 @@ export function SectorCoverage() {
     {
       key: "verto",
       wordmark: "VERTO GROUP",
-      descriptor: "Life Sciences — held at group level",
+      descriptor: "Life Sciences – held at group level",
       color: "var(--accent)",
       items: ["Drug Development", "Clinical Operations", "Biometrics & Data", "Commercial & Medical Affairs"],
     },
@@ -88,7 +88,7 @@ export function SectorCoverage() {
             <span className="eyebrow">Sector coverage</span>
             <TitleReveal className="display-2 mt-5" lines={["Whatever you're building,", "we know who builds it."]} />
             <p className="mt-6 text-muted-foreground">
-              Every consultant at Verto is a former operator, engineer or in-market recruiter — not a generalist. The sectors below aren&apos;t categories on a website; they&apos;re desks that ship hires every month.
+              Every consultant at Verto is a former operator, engineer or in-market recruiter – not a generalist. The sectors below aren&apos;t categories on a website; they&apos;re desks that ship hires every month.
             </p>
             <p className="mt-4 text-muted-foreground">
               Each links through to the brand that owns it. Our life sciences desk sits with the group while it grows.

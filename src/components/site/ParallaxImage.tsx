@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Subtle parallax image — moves at ~0.35x scroll speed.
+ * Subtle parallax image – moves at ~0.35x scroll speed.
  * Respects prefers-reduced-motion and disables on touch/coarse pointers.
  */
 export function ParallaxImage({

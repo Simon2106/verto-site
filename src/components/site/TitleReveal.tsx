@@ -1,7 +1,7 @@
 import { createElement, useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * LHi-style headline reveal — each line rises out of an overflow mask,
+ * LHi-style headline reveal – each line rises out of an overflow mask,
  * staggered, when the title enters the viewport.
  *
  * Usage:
@@ -35,7 +35,7 @@ export function TitleReveal({
       { threshold: 0.3 },
     );
     io.observe(el);
-    // Failsafe — never leave a headline hidden
+    // Failsafe – never leave a headline hidden
     const t = window.setTimeout(() => setInView(true), 2500);
     return () => {
       io.disconnect();

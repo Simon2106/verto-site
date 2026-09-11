@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-/** Verto brand lockup — gold gradient V mark + wordmark. */
+/** Verto brand lockup – gold gradient V mark + wordmark. */
 export function VertoLogo({ variant = "default", className = "" }: Props) {
   const needsInvert = variant === "light";
   return (

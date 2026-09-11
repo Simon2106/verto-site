@@ -7,9 +7,9 @@ import { teamForTier } from "@/lib/team";
 export const Route = createFileRoute("/team")({
   head: () => ({
     meta: [
-      { title: "Meet the Team — Verto Group" },
-      { name: "description", content: "The operators, engineers and market specialists behind Edison Lux, Vertek and Modulr — the people who run every search across the Verto Group." },
-      { property: "og:title", content: "Meet the Team — Verto Group" },
+      { title: "Meet the Team – Verto Group" },
+      { name: "description", content: "The operators, engineers and market specialists behind Edison Lux, Vertek and Modulr – the people who run every search across the Verto Group." },
+      { property: "og:title", content: "Meet the Team – Verto Group" },
       { property: "og:description", content: "Meet the specialists behind Edison Lux, Vertek and Modulr." },
     ],
   }),
@@ -37,7 +37,7 @@ const TIER_SECTIONS = [
     id: "team",
     eyebrow: "The team",
     heading: "Every desk, every brand.",
-    body: "Consultants across Vertek, ModulR, Edison Lux and the group's life sciences desk — plus the operations team behind every search.",
+    body: "Consultants across Vertek, ModulR, Edison Lux and the group's life sciences desk – plus the operations team behind every search.",
     people: teamForTier("team"),
   },
 ];
@@ -51,7 +51,7 @@ function TeamPage() {
           <span className="eyebrow">The people</span>
           <h1 className="display-1 mt-6 max-w-4xl">Meet the team.</h1>
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Every consultant across the group sits inside one practice — operators, engineers and in-market specialists, not generalists. This is who you'll be working with.
+            Every consultant across the group sits inside one practice – operators, engineers and in-market specialists, not generalists. This is who you'll be working with.
           </p>
           <nav className="mt-10 flex flex-wrap gap-2">
             {TIER_SECTIONS.map((s) => (

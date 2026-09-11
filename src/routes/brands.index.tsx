@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/brands/")({
   head: () => ({
     meta: [
-      { title: "The brands — Verto Group" },
+      { title: "The brands – Verto Group" },
       { name: "description", content: "Three specialist brands inside the Verto Group. Edison Lux for US energy staffing. Vertek for technical sales, service and engineering. Modulr for architecture and data centres." },
       { property: "og:title", content: "The Verto brands" },
       { property: "og:description", content: "Three markets, three specialist teams, one process-driven standard." },
@@ -29,12 +29,12 @@ function BrandsIndex() {
               <h1 className="display-1 mt-5">Three brands.<br/>One standard.</h1>
             </div>
             <p className="lg:col-span-5 text-base opacity-75 max-w-md">
-              US energy staffing. Technical sales &amp; engineering. Architecture &amp; data centres. Each brand runs on its own network and P&amp;L — held to a shared group bar on research, quality and delivery.
+              US energy staffing. Technical sales &amp; engineering. Architecture &amp; data centres. Each brand runs on its own network and P&amp;L – held to a shared group bar on research, quality and delivery.
             </p>
           </div>
         </section>
 
-        {/* Three-up panels — all visible at once */}
+        {/* Three-up panels – all visible at once */}
         <section className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "color-mix(in oklab, var(--ink-foreground) 12%, transparent)" }}>
           {BRAND_LIST.map((b, idx) => {
             const clipId = `v-mark-${b.slug}`;
@@ -62,7 +62,7 @@ function BrandsIndex() {
                 />
               </div>
 
-              {/* V mark — brand image clipped inside, echoes the home hero */}
+              {/* V mark – brand image clipped inside, echoes the home hero */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute -top-6 -right-8 md:-right-10 w-[78%] md:w-[72%] aspect-square opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
@@ -100,7 +100,7 @@ function BrandsIndex() {
               {/* Content */}
               <div className="relative p-8 lg:p-10 flex flex-col gap-5">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-[10px] uppercase tracking-[0.28em] opacity-60">0{idx + 1} — Brand</span>
+                  <span className="text-[10px] uppercase tracking-[0.28em] opacity-60">0{idx + 1} – Brand</span>
                   <span className="text-[10px] uppercase tracking-[0.22em]" style={{ color: "var(--brand)" }}>{b.qualifier}</span>
                 </div>
 

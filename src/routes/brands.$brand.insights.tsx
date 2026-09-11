@@ -11,7 +11,7 @@ export const Route = createFileRoute("/brands/$brand/insights")({
     const b = isBrandSlug(params.brand) ? BRANDS[params.brand] : null;
     return {
       meta: [
-        { title: b ? `Insights — ${b.name}` : "Insights" },
+        { title: b ? `Insights – ${b.name}` : "Insights" },
         { name: "description", content: b ? `Market reports, salary guides and case studies from ${b.name}.` : "" },
       ],
     };
@@ -63,7 +63,7 @@ function Page() {
         ))}
         {items.length === 0 && (
           <div className="col-span-full rounded-2xl card-surface p-10 text-center text-muted-foreground">
-            Nothing here yet — try a different filter.
+            Nothing here yet – try a different filter.
           </div>
         )}
       </section>

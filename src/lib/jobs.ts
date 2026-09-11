@@ -1,9 +1,9 @@
 /**
- * Internal roles at Verto Group — the jobs WE are hiring for, not client
+ * Internal roles at Verto Group – the jobs WE are hiring for, not client
  * vacancies. Rendered by <JobsBoard /> on the home and careers pages with
  * brand + location + level filters (pattern modelled on wearelhi.com/jobs).
  *
- * ⚠️ PLACEHOLDER DATA — replace with the client's real internal jobs list
+ * ⚠️ PLACEHOLDER DATA – replace with the client's real internal jobs list
  * when it arrives. Structure is final; content is not.
  */
 
@@ -28,7 +28,7 @@ export const JOB_BRAND_LABEL: Record<JobBrand, string> = {
   modulr: "ModulR",
 };
 
-/** Brand accent colours for dark (ink) backgrounds — guideline hexes,
+/** Brand accent colours for dark (ink) backgrounds – guideline hexes,
  *  ModulR lightened for small-text contrast on navy. */
 export const JOB_BRAND_COLOR: Record<JobBrand, string> = {
   verto: "var(--accent)",
@@ -37,7 +37,7 @@ export const JOB_BRAND_COLOR: Record<JobBrand, string> = {
   modulr: "color-mix(in oklab, #0464FA 55%, white)",
 };
 
-/** Recruitment sector per brand — shown as hover tooltips on brand chips/tags */
+/** Recruitment sector per brand – shown as hover tooltips on brand chips/tags */
 export const JOB_BRAND_SECTOR: Record<JobBrand, string> = {
   verto: "Life Sciences (group desk)",
   "edison-lux": "Power & Energy recruitment",
@@ -51,7 +51,7 @@ export const JOB_LEVELS: JobLevel[] = ["Entry-level", "Senior", "Manager"];
 export const INTERNAL_JOBS: InternalJob[] = [
   {
     id: "el-senior-austin",
-    title: "Senior Recruitment Consultant — US Energy",
+    title: "Senior Recruitment Consultant – US Energy",
     brand: "edison-lux",
     location: "Austin, TX",
     level: "Senior",
@@ -60,7 +60,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "el-entry-austin",
-    title: "Entry-Level Recruitment Consultant — Power & Energy",
+    title: "Entry-Level Recruitment Consultant – Power & Energy",
     brand: "edison-lux",
     location: "Austin, TX",
     level: "Entry-level",
@@ -69,7 +69,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "vt-senior-solent",
-    title: "Senior Recruitment Consultant — Technical Sales",
+    title: "Senior Recruitment Consultant – Technical Sales",
     brand: "vertek",
     location: "Solent, UK",
     level: "Senior",
@@ -78,7 +78,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "vt-entry-solent",
-    title: "Entry-Level Recruitment Consultant — Engineering",
+    title: "Entry-Level Recruitment Consultant – Engineering",
     brand: "vertek",
     location: "Solent, UK",
     level: "Entry-level",
@@ -87,7 +87,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "vt-senior-austin",
-    title: "Recruitment Consultant — HVAC & Refrigeration",
+    title: "Recruitment Consultant – HVAC & Refrigeration",
     brand: "vertek",
     location: "Austin, TX",
     level: "Senior",
@@ -96,7 +96,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "md-senior-miami",
-    title: "Recruitment Consultant — Data Centres & Critical Environments",
+    title: "Recruitment Consultant – Data Centres & Critical Environments",
     brand: "modulr",
     location: "Miami, FL",
     level: "Senior",
@@ -105,7 +105,7 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "md-manager-miami",
-    title: "Team Manager — ModulR US",
+    title: "Team Manager – ModulR US",
     brand: "modulr",
     location: "Miami, FL",
     level: "Manager",
@@ -114,16 +114,16 @@ export const INTERNAL_JOBS: InternalJob[] = [
   },
   {
     id: "vg-senior-solent",
-    title: "Recruitment Consultant — Life Sciences",
+    title: "Recruitment Consultant – Life Sciences",
     brand: "verto",
     location: "Solent, UK",
     level: "Senior",
     package: "£35–45k base + 40% commission + share scheme",
-    blurb: "Our newest desk — drug development & clinical hires, held at group level.",
+    blurb: "Our newest desk – drug development & clinical hires, held at group level.",
   },
   {
     id: "vg-entry-solent",
-    title: "Talent & Resourcing Partner — Group",
+    title: "Talent & Resourcing Partner – Group",
     brand: "verto",
     location: "Solent, UK",
     level: "Entry-level",

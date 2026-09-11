@@ -38,7 +38,7 @@ export function TeamStrip({ brand, brandName }: { brand: BrandSlug; brandName: s
 export function TeamCard({ person, compact = false }: { person: TeamMember; compact?: boolean }) {
   void compact;
   /* Round 4, item 16: 2px ring + soft tint in the MEMBER's own brand colour
-     (first brand in their list) — a visual answer to "brand profile pics". */
+     (first brand in their list) – a visual answer to "brand profile pics". */
   const ring = memberBrandColor(person);
   return (
     <div

@@ -232,7 +232,7 @@ function AutoplayVideo() {
       ref={ref}
       src={summitVideo}
       poster={summitPoster}
-      className="relative block w-full h-auto" style={{ marginTop: "-35%" }}
+      className="relative block h-full w-full object-cover"
       autoPlay
       muted
       loop

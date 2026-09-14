@@ -9,7 +9,7 @@ import shareCerts from "@/assets/client/share-certificates.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 import shortlistBadge from "@/assets/weve-been-shortlisted.png";
 
-import edisonColourLogo from "@/assets/edison-lux-logo-colour.png";
+import edisonLogoWhite from "@/assets/edison-lux-logo.png";
 import modulrLogo from "@/assets/modulr-logo.svg";
 import vertekLogo from "@/assets/vertek-logo-light.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -26,7 +26,7 @@ import { WHATS_GOING_ON } from "@/lib/insights";
 const BRAND_LOGOS: Record<BrandSlug, string> = {
   // Client feedback round 3, item 2: the tile carries the COLOURED Edison
   // primary logo (gradient mark + dark text), so it sits on a light face.
-  "edison-lux": edisonColourLogo,
+  "edison-lux": edisonLogoWhite,
   modulr: modulrLogo,
   vertek: vertekLogo,
 };
@@ -293,17 +293,14 @@ function Practices() {
                        with dark text, and its blue top stripe is removed. */
                     background:
                       b.slug === "edison-lux"
-                        ? "linear-gradient(180deg, #FFFFFF 0%, #F2F6F4 100%)"
+                        ? "radial-gradient(58% 52% at 88% 8%, rgba(60,199,55,0.38), transparent 66%), radial-gradient(62% 56% at 6% 94%, rgba(43,142,229,0.42), transparent 66%), #0B1A2B"
                         : "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%), var(--ink)",
-                    color: b.slug === "edison-lux" ? "#0B1A2B" : "var(--ink-foreground)",
+                    color: "var(--ink-foreground)",
                     backfaceVisibility: "hidden",
                     WebkitBackfaceVisibility: "hidden",
                   }}
                 >
-                  {/* brand stripe top (removed on the Edison tile – round 3, item 2) */}
-                  {b.slug !== "edison-lux" && (
-                    <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
-                  )}
+                  <div className="absolute top-0 left-0 right-0 h-[3px] z-10" style={{ background: "var(--brand)" }} />
 
                   <img
                     src={BRAND_LOGOS[b.slug]}
@@ -356,7 +353,7 @@ function Practices() {
                         : undefined
                     }
                   >
-                    {b.name}
+                    {b.slug === "modulr" ? <span style={{ letterSpacing: "0.06em" }}>MODULR</span> : b.name}
                   </div>
                   <p className="mt-4 text-sm opacity-85 leading-relaxed">{b.positioning}</p>
                   {/* Sector coverage on the hover face (client feedback, item 9) */}

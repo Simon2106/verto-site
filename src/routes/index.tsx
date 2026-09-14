@@ -9,7 +9,7 @@ import shareCerts from "@/assets/client/share-certificates.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 import shortlistBadge from "@/assets/weve-been-shortlisted.png";
 
-import edisonLogoWhite from "@/assets/edison-lux-logo.png";
+import edisonLogoWhite from "@/assets/edison-lux-logo-white.png";
 import modulrLogo from "@/assets/modulr-logo.svg";
 import vertekLogo from "@/assets/vertek-logo-light.png";
 import { SiteHeader } from "@/components/site/SiteHeader";

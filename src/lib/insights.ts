@@ -20,6 +20,8 @@ export interface Insight {
   featured?: boolean;
   /** Magazine category chip on /whats-going-on. Missing → "News". */
   category?: WgoCategory;
+  /** Round 6, item 3: the post embeds a video – its cards carry a play badge. */
+  video?: boolean;
 }
 
 /** Resolve an insight's magazine category (market notes default to News). */
@@ -203,6 +205,7 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 1,
     date: "2026-09-05",
     category: "Wins",
+    video: true,
   },
   {
     slug: "sade-kendall-promoted",
@@ -215,6 +218,7 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 1,
     date: "2026-08-04",
     category: "Wins",
+    video: true,
   },
   {
     slug: "milly-compton-promoted",
@@ -227,6 +231,7 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 1,
     date: "2026-07-30",
     category: "Wins",
+    video: true,
   },
   {
     slug: "inside-the-summer-summit",

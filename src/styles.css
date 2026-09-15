@@ -477,9 +477,11 @@
     background: currentColor;
   }
 
-  .display-1 { @apply font-display font-bold text-5xl leading-[1.02] md:text-7xl lg:text-[5.5rem]; }
-  .display-2 { @apply font-display font-bold text-4xl leading-[1.05] md:text-6xl; }
-  .display-3 { @apply font-display font-bold text-3xl leading-[1.1] md:text-5xl; }
+  /* Round 6, item 4: desktop display sizes reduced ~15-20%
+     (5.5→4.5rem, 3.75→3.25rem, 3→2.5rem); mobile bases unchanged. */
+  .display-1 { @apply font-display font-bold text-5xl leading-[1.02] md:text-6xl lg:text-[4.5rem]; }
+  .display-2 { @apply font-display font-bold text-4xl leading-[1.05] md:text-[3.25rem]; }
+  .display-3 { @apply font-display font-bold text-3xl leading-[1.1] md:text-[2.5rem]; }
   .display-4 { @apply font-display font-bold text-2xl leading-[1.15] md:text-4xl; }
 
 

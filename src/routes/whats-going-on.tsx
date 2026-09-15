@@ -6,6 +6,7 @@ import { INSIGHTS, WHATS_GOING_ON, wgoCategory, type Insight } from "@/lib/insig
 import { BRANDS } from "@/lib/brands";
 import { ArrowUpRight } from "lucide-react";
 import { InsightThumb } from "@/components/site/InsightThumb";
+import { PlayBadge } from "@/components/site/PlayBadge";
 import ibiza11 from "@/assets/client/ibiza-11.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 import pragueTeam from "@/assets/client/verto-01-800.jpg";
@@ -173,12 +174,14 @@ function CategoryChip({ insight, onDark = false }: { insight: Insight; onDark?: 
   );
 }
 
-function StoryMedia({ insight, className = "" }: { insight: Insight; className?: string }) {
+function StoryMedia({ insight, className = "", large = false }: { insight: Insight; className?: string; large?: boolean }) {
   const photo = IMAGE_BY_SLUG[insight.slug];
   if (photo) {
     return (
       <div className={`relative overflow-hidden ${className}`} style={{ background: "#0a0a0a" }}>
         <img src={photo} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-90" aria-hidden="true" />
+        {/* Round 6, item 3: video stories read as video before the click */}
+        {insight.video && <PlayBadge large={large} />}
       </div>
     );
   }
@@ -199,7 +202,7 @@ function FeaturedStory({ insight }: { insight: Insight }) {
     <article className="grid overflow-hidden rounded-3xl lg:grid-cols-[3fr_2fr]"
       style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
       {/* Image left ~60% */}
-      <StoryMedia insight={insight} className="relative min-h-[260px] lg:min-h-[460px] h-full w-full" />
+      <StoryMedia insight={insight} large className="relative min-h-[260px] lg:min-h-[460px] h-full w-full" />
       {/* Copy right */}
       <div className="p-8 lg:p-12 flex flex-col">
         <div className="flex items-center gap-4">
@@ -233,7 +236,7 @@ function StoryCard({ insight }: { insight: Insight }) {
         <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
           <span style={{ color: "var(--accent)" }}>{brandLabel(insight.brand)}</span>
           <span aria-hidden="true">·</span>
-          <span>{insight.contentType}</span>
+          <span>{insight.video ? "Video" : insight.contentType}</span>
         </div>
         <h3 className="mt-4 font-display text-2xl leading-tight">{insight.title}</h3>
         <p className="mt-3 text-base text-muted-foreground line-clamp-3">{insight.excerpt}</p>

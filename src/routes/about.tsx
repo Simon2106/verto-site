@@ -230,7 +230,7 @@ function AboutPage() {
           </div>
         </section>
 
-        <section className="container-wide py-24 grid gap-14 lg:grid-cols-[1fr_2fr]">
+        <section className="container-wide py-16 lg:py-20 grid gap-14 lg:grid-cols-[1fr_2fr]">
           <div>
             <span className="eyebrow">The thesis</span>
             <h2 className="display-3 mt-5">Why the group exists.</h2>
@@ -249,7 +249,7 @@ function AboutPage() {
         </section>
 
         {/* TIMELINE */}
-        <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+        <section className="hairline-top py-16 lg:py-20" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">The story so far</div>
@@ -260,7 +260,7 @@ function AboutPage() {
           <TimelineCarousel />
         </section>
 
-        <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
+        <section className="hairline-top py-16 lg:py-20" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <span className="eyebrow">The three brands</span>
@@ -290,7 +290,7 @@ function AboutPage() {
         {/* SECTOR COVERAGE – duplicated from the homepage (client feedback, item 9) */}
         <SectorCoverage />
 
-        <section className="container-wide py-24">
+        <section className="container-wide py-16 lg:py-20">
           <div className="max-w-2xl">
             <span className="eyebrow">The Verto standard</span>
             <h2 className="display-2 mt-5">Four principles every desk is held to.</h2>
@@ -307,7 +307,7 @@ function AboutPage() {
         </section>
 
         {/* FOOTPRINT */}
-        <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+        <section className="hairline-top py-16 lg:py-20" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Our footprint</div>
@@ -346,7 +346,7 @@ function AboutPage() {
         </section>
 
         {/* LEADERSHIP + FULL TEAM */}
-        <section className="container-wide py-24">
+        <section className="container-wide py-16 lg:py-20">
           <div className="grid gap-10 lg:grid-cols-[1fr_2fr] items-start">
             <div>
               <span className="eyebrow">Leadership</span>
@@ -412,7 +412,7 @@ function AboutPage() {
         </section>
 
         {/* COMMUNITY & DE&I – real gala photography; DE&I card still pending client numbers */}
-        <section className="container-wide py-24 hairline-top">
+        <section className="container-wide py-16 lg:py-20 hairline-top">
           <div className="max-w-2xl">
             <span className="eyebrow">Community &amp; DE&amp;I</span>
             <h2 className="display-2 mt-5">More than the numbers.</h2>
@@ -451,7 +451,7 @@ function AboutPage() {
         </section>
 
         {/* BEHIND THE SCENES / SOCIALS */}
-        <section className="container-wide py-24 hairline-top">
+        <section className="container-wide py-16 lg:py-20 hairline-top">
           <SocialsFeed
             eyebrow="Behind the scenes"
             heading="Us, off the phones."

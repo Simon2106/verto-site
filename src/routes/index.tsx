@@ -6,6 +6,9 @@ import summitVideo from "@/assets/client/summit-video.mp4";
 import summitPoster from "@/assets/client/summit-poster.jpg";
 import ibizaTeam from "@/assets/client/ibiza8.jpg";
 import shareCerts from "@/assets/client/share-certificates.jpg";
+import shareCerts800 from "@/assets/client/share-certificates-800.jpg";
+import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
+import sadePoster from "@/assets/client/sade-promotion-poster.jpg";
 import bptwBadge from "@/assets/client/BPTW_2026_SMALL_ORGANISATION_WHITE.png";
 import shortlistBadge from "@/assets/weve-been-shortlisted.png";
 
@@ -15,6 +18,7 @@ import vertekLogo from "@/assets/vertek-logo-light.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { InsightThumb } from "@/components/site/InsightThumb";
+import { PlayBadge } from "@/components/site/PlayBadge";
 import { JobsBoard } from "@/components/site/JobsBoard";
 import { OfferGrid } from "@/components/site/OfferGrid";
 import { BRAND_SECTORS } from "@/components/site/SectorCoverage";
@@ -54,16 +58,15 @@ function Index() {
       <main className="flex-1">
         <Hero />
 
-        {/* Client feedback round 3, item 3: jobs directly below the brand
-            tiles, then What's Going On, employee voices + awards, and Values
-            before the Instagram feed. Round 4, item 11: "What we offer"
-            (14 perks, notched dark cards) sits between Values and Socials. */}
+        {/* Round 6, item 6 – home order: Hero → Brands → Jobs → What We
+            Offer ("The package, in full") → What's Going On → Employee
+            voices + awards → Values → Instagram. */}
         <Practices />
         <JoinUs />
+        <WhatWeOffer />
         <WhatsGoingOn />
         <EmployeeVoices />
         <Values />
-        <WhatWeOffer />
         <Socials />
       </main>
       <SiteFooter />
@@ -245,9 +248,22 @@ function AutoplayVideo() {
 
 /* ─────────── REGION ROTATOR ─────────── */
 /* ─────────── OUR PRACTICES – logo-led brand tiles ─────────── */
+
+/* Tile front-face grounds. Round 6, items 1+2: ModulR gets a brighter
+   royal-blue (#0464FA) presence, Vertek more of the Signal Red (#F82B60)
+   from its logo – glows over the brand ink, logo contrast kept. */
+const TILE_FACE: Record<BrandSlug, string> = {
+  "edison-lux":
+    "radial-gradient(58% 52% at 88% 8%, rgba(60,199,55,0.38), transparent 66%), radial-gradient(62% 56% at 6% 94%, rgba(43,142,229,0.42), transparent 66%), #0B1A2B",
+  modulr:
+    "radial-gradient(60% 55% at 85% 10%, rgba(4,100,250,0.5), transparent 65%), radial-gradient(55% 60% at 10% 90%, rgba(4,100,250,0.32), transparent 65%), #000724",
+  vertek:
+    "radial-gradient(60% 55% at 85% 10%, rgba(248,43,96,0.34), transparent 65%), radial-gradient(55% 60% at 10% 90%, rgba(248,43,96,0.22), transparent 65%), #0E1013",
+};
+
 function Practices() {
   return (
-    <section className="py-24 lg:py-32" style={{ background: "var(--muted)" }}>
+    <section className="py-16 lg:py-20" style={{ background: "var(--muted)" }}>
       <div className="container-wide">
         <div className="max-w-2xl">
           <span className="eyebrow">The brands</span>
@@ -264,7 +280,7 @@ function Practices() {
           </Link>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {BRAND_LIST.map((b) => (
             <Link
               key={b.slug}
@@ -287,14 +303,8 @@ function Practices() {
                   style={{
                     /* glow baked into the face background – a separate glow
                        layer composites as a solid block during the 3D flip.
-                       Client feedback round 3, item 2: Edison Lux carries the
-                       COLOURED primary logo (gradient mark), which clashes on
-                       the gradient ground – so its face is white/very-light
-                       with dark text, and its blue top stripe is removed. */
-                    background:
-                      b.slug === "edison-lux"
-                        ? "radial-gradient(58% 52% at 88% 8%, rgba(60,199,55,0.38), transparent 66%), radial-gradient(62% 56% at 6% 94%, rgba(43,142,229,0.42), transparent 66%), #0B1A2B"
-                        : "radial-gradient(ellipse 70% 50% at 50% 55%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%), var(--ink)",
+                       Round 6, items 1+2: per-brand faces from TILE_FACE. */
+                    background: TILE_FACE[b.slug],
                     color: "var(--ink-foreground)",
                     backfaceVisibility: "hidden",
                     WebkitBackfaceVisibility: "hidden",
@@ -406,7 +416,7 @@ function Values() {
     /* Round 4, items 1+8: Values goes LIGHT (ivory, ink text, gold numerals)
        so Awards + Values no longer read as two navy bands in a row. */
     <section
-      className="relative py-28 overflow-hidden"
+      className="relative py-20 overflow-hidden"
       style={{ background: "var(--background)", color: "var(--foreground)" }}
     >
       {/* whisper of gold vignette so the ivory doesn't go flat */}
@@ -428,7 +438,7 @@ function Values() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px md:grid-cols-2 lg:grid-cols-5"
+        <div className="mt-12 grid gap-px md:grid-cols-2 lg:grid-cols-5"
           style={{ background: "var(--border)" }}
         >
           {values.map((v, i) => (
@@ -513,7 +523,7 @@ function EmployeeVoices() {
   const loop = [...items, ...items];
 
   return (
-    <section className="py-24 lg:py-32" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+    <section className="py-16 lg:py-20" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
       <div className="container-wide">
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
           <div className="max-w-3xl">
@@ -523,27 +533,39 @@ function EmployeeVoices() {
               Real quotes from the team are on their way – these are placeholders while we collect them.
             </p>
           </div>
-          <div
-            className="hidden lg:block h-40 w-40 xl:h-56 xl:w-56 self-start"
-            style={{
-              maskImage: V_MASK,
-              WebkitMaskImage: V_MASK,
-              maskSize: "contain",
-              WebkitMaskSize: "contain",
-              maskRepeat: "no-repeat",
-              WebkitMaskRepeat: "no-repeat",
-              maskPosition: "center",
-              WebkitMaskPosition: "center",
-            }}
-          >
-            <img src={ibizaTeam} alt="" aria-hidden className="h-full w-full object-cover" loading="lazy" />
+          {/* Round 6, item 7: the media column is a composed stack – the
+              V-mask team image with the share-certificates photo tucked
+              beneath it, rounded and slightly offset. */}
+          <div className="hidden lg:block self-start w-fit">
+            <div
+              className="h-40 w-40 xl:h-56 xl:w-56"
+              style={{
+                maskImage: V_MASK,
+                WebkitMaskImage: V_MASK,
+                maskSize: "contain",
+                WebkitMaskSize: "contain",
+                maskRepeat: "no-repeat",
+                WebkitMaskRepeat: "no-repeat",
+                maskPosition: "center",
+                WebkitMaskPosition: "center",
+              }}
+            >
+              <img src={ibizaTeam} alt="" aria-hidden className="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <img
+              src={shareCerts800}
+              alt="The Verto team with their share-scheme certificates"
+              loading="lazy"
+              className="relative z-10 -mt-5 ml-5 w-36 xl:w-48 rounded-2xl object-cover shadow-2xl"
+              style={{ aspectRatio: "4 / 3", border: "1px solid rgba(255,255,255,0.14)" }}
+            />
           </div>
         </div>
       </div>
 
-      {/* Smooth-scrolling marquee */}
+      {/* Smooth-scrolling marquee (round 6, item 7: tighter rhythm) */}
       <div
-        className="mt-14 relative overflow-hidden testimonials-marquee-mask"
+        className="mt-10 relative overflow-hidden testimonials-marquee-mask"
         style={{ ["--testimonial-count" as string]: items.length }}
       >
         <div className="testimonials-track flex gap-6 w-max">
@@ -565,7 +587,7 @@ function EmployeeVoices() {
       </div>
 
       {/* Awards strip */}
-      <div className="container-wide mt-14 lg:mt-16">
+      <div className="container-wide mt-10 lg:mt-12">
         <div
           className="flex flex-col md:flex-row md:items-center gap-8 p-8 md:p-10 border border-white/10"
           /* Round 4, item 8: subtle gold top hairline sets the awards band
@@ -627,9 +649,18 @@ function EmployeeVoices() {
 
 
 /* ─────────── WHAT'S GOING ON ─────────── */
+
+/* Round 6, item 3: the home trio mirrors the WP featured images, and video
+   stories carry a play badge so they read as video. */
+const WGO_PHOTOS: Record<string, string> = {
+  "share-scheme-awards-night": shareCerts800,
+  "sade-kendall-promoted": sadePoster,
+  "milly-compton-promoted": millyPoster,
+};
+
 function WhatsGoingOn() {
   return (
-    <section className="py-24 lg:py-32">
+    <section className="py-16 lg:py-20">
       <div className="container-wide">
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div className="max-w-xl">
@@ -643,10 +674,27 @@ function WhatsGoingOn() {
             See everything that's going on <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {WHATS_GOING_ON.slice(0, 3).map((i) => (
             <article key={i.slug} className="group flex flex-col card-surface overflow-hidden">
-              <InsightThumb brand={i.brand} contentType={i.contentType} sector={i.sector} />
+              {WGO_PHOTOS[i.slug] ? (
+                <div className="relative overflow-hidden aspect-[16/10]" style={{ background: "#0a0a0a" }}>
+                  <img
+                    src={WGO_PHOTOS[i.slug]}
+                    alt=""
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover opacity-90"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-semibold text-white">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
+                    {i.video ? "Video" : "Article"}
+                  </div>
+                  {i.video && <PlayBadge />}
+                </div>
+              ) : (
+                <InsightThumb brand={i.brand} contentType={i.contentType} sector={i.sector} />
+              )}
               <div className="p-7 flex flex-col flex-1">
                 <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   <span style={{ color: "var(--accent)" }}>Verto Group</span>
@@ -673,7 +721,7 @@ function WhatsGoingOn() {
    notched-corner dark card grid (also on the careers page). */
 function WhatWeOffer() {
   return (
-    <section className="py-24 lg:py-32 hairline-top" style={{ background: "var(--muted)" }}>
+    <section className="py-16 lg:py-20 hairline-top" style={{ background: "var(--muted)" }}>
       <div className="container-wide">
         <div className="max-w-2xl">
           <span className="eyebrow">What we offer</span>
@@ -684,7 +732,7 @@ function WhatWeOffer() {
         </div>
         {/* Round 5, item 10: the share-scheme awards-night photo – wide,
             rounded, above the perks grid. */}
-        <figure className="mt-14 m-0">
+        <figure className="mt-10 m-0">
           <img
             src={shareCerts}
             alt="The Verto team holding their share-scheme award certificates at the awards night"
@@ -696,7 +744,7 @@ function WhatWeOffer() {
             Share scheme awards – everyone owns a piece
           </figcaption>
         </figure>
-        <div className="mt-14">
+        <div className="mt-10">
           <OfferGrid />
         </div>
       </div>
@@ -707,7 +755,7 @@ function WhatWeOffer() {
 /* ─────────── SOCIALS – Instagram feed on the homepage (item 13) ─────────── */
 function Socials() {
   return (
-    <section className="py-24 hairline-top" style={{ background: "var(--background)" }}>
+    <section className="py-16 hairline-top" style={{ background: "var(--background)" }}>
       <div className="container-wide">
         <SocialsFeed />
       </div>
@@ -719,7 +767,7 @@ function Socials() {
 function JoinUs() {
   return (
     <section
-      className="py-24 lg:py-32 hairline-top"
+      className="py-16 lg:py-20 hairline-top"
       style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}
     >
       <div className="container-wide">

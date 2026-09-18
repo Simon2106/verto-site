@@ -2,18 +2,20 @@ import type { BrandSlug } from "./brands";
 import lAlex from "@/assets/alex-hatfield.webp";
 import lMartin from "@/assets/martin-doig.jpg";
 import lRobbie from "@/assets/robbie-sturgess.webp";
-import eMilly from "@/assets/edison-milly-compton.jpg";
+// Sep-2026 client drop: treated brand headshots for Milly, Sade and Gary
+// (mirrors installer.php migrate_team_photos() in verto-core).
+import eMilly from "@/assets/edison-milly-compton-v2.png";
 import eNoah from "@/assets/edison-noah-ward.jpg";
 import eMatthew from "@/assets/edison-matthew-pearce.jpg";
 import eJoe from "@/assets/edison-joe-williams.jpg";
 import eLewisD from "@/assets/edison-lewis-dominy.jpg";
-import mSade from "@/assets/modulr-sade-kendall.webp";
+import mSade from "@/assets/modulr-sade-kendall-v2.png";
 import mCharlotte from "@/assets/modulr-charlotte-northam.jpg";
 import mMonira from "@/assets/modulr-monira-aktar.jpg";
 import mLewisW from "@/assets/modulr-lewis-wright.jpg";
 import mNatasha from "@/assets/vertek-natasha-sykes.jpg";
 import vDan from "@/assets/vertek-dan-bisset.jpg";
-import vGary from "@/assets/vertek-gary-hunt.jpg";
+import vGary from "@/assets/vertek-gary-hunt-v2.png";
 import vBen from "@/assets/vertek-ben-tiffin.jpg";
 import vGeorge from "@/assets/vertek-george-east.jpg";
 import vAlex from "@/assets/vertek-alex-wright.jpg";

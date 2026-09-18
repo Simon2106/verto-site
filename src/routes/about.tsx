@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import { Camera, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SectorCoverage } from "@/components/site/SectorCoverage";
@@ -10,7 +10,8 @@ import ibizaSea from "@/assets/client/ibiza-11.jpg";
 import summitLetters from "@/assets/client/summit-02-800.jpg";
 import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
 import galaStage from "@/assets/client/gala-01-800.jpg";
-import galaGroup from "@/assets/client/gala-02-800.jpg";
+import charityFilm from "@/assets/client/charity-film.mp4";
+import charityFilmPoster from "@/assets/client/charity-film-poster.jpg";
 import aboutImage from "@/assets/about-image.jpg";
 import skylineUK from "@/assets/skyline-uk.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
@@ -34,10 +35,11 @@ const COLLAGE: { src: string; alt: string; caption?: string; span: string }[] = 
   { src: skylineUS, alt: "Austin, TX – the US build-out", caption: "Austin, TX", span: "col-span-2" },
 ];
 
-/* ── Community & DE&I – the gala cards carry the client's real charity-gala
-      photography; the DE&I card stays a placeholder until the client's
-      commitments/numbers arrive. ── */
-const COMMUNITY: { title: string; body: string; image?: string; alt?: string }[] = [
+/* ── Community & DE&I – the gala card carries the client's real charity-gala
+      photography; the charity card carries the Sep-2026 charity-gala film
+      (poster + click-to-play, nothing loads until pressed); the DE&I card
+      stays a placeholder until the client's commitments/numbers arrive. ── */
+const COMMUNITY: { title: string; body: string; image?: string; alt?: string; video?: string; poster?: string }[] = [
   {
     title: "Gala nights",
     // Round 4, item 17: two galas now – most recent for Maeve's Mission,
@@ -49,8 +51,9 @@ const COMMUNITY: { title: string; body: string; image?: string; alt?: string }[]
   {
     title: "Charity & fundraising",
     body: "Every office backs a cause the team chooses – fundraisers, sponsored events and hands-on volunteering through the year.",
-    image: galaGroup,
-    alt: "Black-tie group at the charity gala",
+    video: charityFilm,
+    poster: charityFilmPoster,
+    alt: "The Verto charity gala for Maeve's Mission, on film",
   },
   {
     title: "DE&I commitments",
@@ -423,7 +426,9 @@ function AboutPage() {
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {COMMUNITY.map((card) => (
               <article key={card.title} className="flex flex-col rounded-2xl card-surface overflow-hidden">
-                {card.image ? (
+                {card.video ? (
+                  <CommunityFilm video={card.video} poster={card.poster} title={card.title} alt={card.alt ?? card.title} />
+                ) : card.image ? (
                   <div className="aspect-[16/10] overflow-hidden">
                     <img src={card.image} alt={card.alt ?? card.title} loading="lazy" className="h-full w-full object-cover" />
                   </div>
@@ -460,6 +465,37 @@ function AboutPage() {
         </section>
       </main>
       <SiteFooter />
+    </div>
+  );
+}
+
+/* Community-card film (the charity gala) – poster + play badge in the
+   card's 16/10 media slot; the video only mounts (and its bytes only
+   move) once the visitor presses play. Mirrors the WP charity card. */
+function CommunityFilm({ video, poster, title, alt }: { video: string; poster?: string; title: string; alt: string }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden" style={{ background: "#000" }}>
+      {playing ? (
+        <video src={video} poster={poster} controls autoPlay playsInline className="h-full w-full object-cover" />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="group block h-full w-full cursor-pointer"
+          aria-label={`Play – ${title}`}
+        >
+          {poster && <img src={poster} alt={alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span
+              className="flex h-14 w-14 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
+              style={{ background: "color-mix(in oklab, var(--accent) 24%, transparent)", color: "var(--accent)", backdropFilter: "blur(4px)" }}
+            >
+              <Play className="h-6 w-6 translate-x-[2px]" strokeWidth={1.5} fill="currentColor" />
+            </span>
+          </span>
+        </button>
+      )}
     </div>
   );
 }

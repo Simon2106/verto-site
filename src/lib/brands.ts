@@ -323,13 +323,13 @@ export const BRANDS: Record<BrandSlug, BrandDefinition> = {
     slug: "modulr",
     name: "Modulr",
     wordmark: "MODULR",
-    qualifier: "Architecture & Data Centres",
+    qualifier: "Architecture, Data Centres & Built Environment",
     tagline: "Connecting talent.",
     taglineAccent: "Powering progress.",
     // Round 4, item 13: client-approved positioning.
     positioning:
       "Modulr connects the very best talent in Data Centres and Architecture with the companies building the future. Covering both the US and EU.",
-    focus: "Architecture & Data Centres",
+    focus: "Architecture, Data Centres & Built Environment",
     heroImage: modulrHero,
     heroAlt: "Glowing globe at night with arcs of light connecting cities",
     images: {

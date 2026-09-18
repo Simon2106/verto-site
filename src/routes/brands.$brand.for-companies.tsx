@@ -20,24 +20,33 @@ export const Route = createFileRoute("/brands/$brand/for-companies")({
   component: Page,
 });
 
-const SOLUTIONS = [
+const SOLUTIONS: { title: string; tagline: string; badge?: string; body: string; bullets: string[] }[] = [
+  // The four Verto engagement models – Engage (flagship) / Exclusive /
+  // Contingent / Contract. No fees or percentages on the site (CLIENT-NEEDS.md).
   {
-    title: "Engaged Search",
-    tagline: "Our flagship model",
-    body: "A committed partnership with a structured process – market mapping, verified shortlists, offer management. Built to remove the chance of failure and get it right first time. 100% success rate on the Engage model.",
-    bullets: ["Exclusive partnership", "Structured milestones", "Frequent read-outs"],
+    title: "Verto Engage",
+    tagline: "A true partnership",
+    badge: "Our flagship",
+    body: "Engage puts your business in the spotlight: co-branded adverts promoted to our 35,000 LinkedIn followers, a fully structured and managed recruitment process tailored to your systems, and a six-month candidate guarantee with free replacement.",
+    bullets: ["Maximum visibility", "Better fill rates", "Fewer offer rejections"],
   },
   {
-    title: "Retained Executive Search",
-    tagline: "Director and C-suite mandates",
-    body: "Discreet, confidential search for VP, MD, director and C-suite appointments. Off-market approaches, NDA-protected mandates and full lifecycle stakeholder management for the roles that can't be advertised.",
-    bullets: ["Retained, fully confidential", "NDA-protected searches", "Stakeholder & offer management"],
+    title: "Exclusive",
+    tagline: "One search, one partner",
+    body: "We commit senior resource to an exclusive brief and you get a faster, deeper shortlist without managing multiple agencies.",
+    bullets: ["Senior resource on the brief", "Faster, deeper shortlists", "One process to manage"],
   },
   {
-    title: "Team Builds",
-    tagline: "Partnerships, not placements",
-    body: "When a new plant, project or region needs staffing from the ground up – we build the whole team. Proactively, against your timeline, reducing time-to-hire and the cost of the empty seat.",
-    bullets: ["Land-and-expand", "Contract and permanent", "Against your project timeline"],
+    title: "Contingent",
+    tagline: "The classic model",
+    body: "We search, you interview, and a fee applies only when you hire. Backed by a free-replacement guarantee.",
+    bullets: ["You only pay on a hire", "Free-replacement guarantee", "Simple to switch on"],
+  },
+  {
+    title: "Contract",
+    tagline: "Interim & project specialists",
+    body: "Contractors and interim specialists, compliantly engaged and ready fast, for projects, cover and peaks in demand.",
+    bullets: ["Compliantly engaged", "Ready fast", "Projects, cover and peaks"],
   },
 ];
 
@@ -117,29 +126,40 @@ function Page() {
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] items-end mb-14">
             <div>
               <span className="eyebrow">Hiring solutions</span>
-              <h2 className="display-2 mt-5">Sized to the project.<br />Built for the market.</h2>
+              <h2 className="display-2 mt-5">Four ways to work with us.<br />One standard.</h2>
             </div>
             <p className="text-base opacity-75 max-w-md lg:justify-self-end">
-              We construct a tailored hiring plan to meet your requirements – whether you're filling one role or building an entire commercial team.
+              From a fully managed partnership to flexible contract cover – we build the hiring plan around your requirement, whether you're filling one role or an entire team.
             </p>
           </div>
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {SOLUTIONS.map((s, i) => (
               <div
                 key={s.title}
                 className="group relative overflow-hidden p-8 flex flex-col transition-colors duration-300"
                 style={{
                   background: "color-mix(in oklab, var(--foreground) 6%, var(--background))",
-                  transform: i === 1 ? "translateY(2rem)" : undefined,
+                  /* Engage leads: brand inset ring; the rest stagger gently on desktop. */
+                  boxShadow: s.badge ? "inset 0 0 0 1px color-mix(in oklab, var(--brand) 45%, transparent)" : undefined,
+                  transform: !s.badge && i % 2 === 1 ? "translateY(2rem)" : undefined,
                 }}
               >
                 <span
-                  className="absolute top-0 left-0 h-[3px] w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                  className={`absolute top-0 left-0 h-[3px] w-full origin-left transition-transform duration-500 group-hover:scale-x-100 ${s.badge ? "scale-x-100" : "scale-x-0"}`}
                   style={{ background: "var(--brand)" }}
                 />
                 <div className="flex items-baseline justify-between">
                   <div className="font-display text-3xl" style={{ color: "var(--brand)" }}>0{i + 1}</div>
-                  <span className="h-[2px] w-10" style={{ background: "var(--brand)" }} />
+                  {s.badge ? (
+                    <span
+                      className="text-[10px] uppercase tracking-[0.18em] font-semibold px-2.5 py-1"
+                      style={{ background: "var(--brand)", color: "var(--background)" }}
+                    >
+                      {s.badge}
+                    </span>
+                  ) : (
+                    <span className="h-[2px] w-10" style={{ background: "var(--brand)" }} />
+                  )}
                 </div>
                 <h3 className="mt-6 font-display text-2xl">{s.title}</h3>
                 <p className="text-xs uppercase tracking-[0.18em] mt-1 opacity-65">{s.tagline}</p>

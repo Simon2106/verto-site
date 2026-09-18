@@ -244,6 +244,8 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 3,
     date: "2026-07-28",
     category: "Community",
+    // Sep-2026 event films: the post embeds the summit film in WP.
+    video: true,
   },
   {
     slug: "barcelona-where-the-incentive-trips-started",
@@ -293,5 +295,7 @@ export const WHATS_GOING_ON: Insight[] = [
     readMinutes: 2,
     date: "2026-02-10",
     category: "Trips",
+    // Sep-2026 event films: the post embeds the Ibiza trip film in WP.
+    video: true,
   },
 ];

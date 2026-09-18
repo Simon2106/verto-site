@@ -171,7 +171,7 @@ function Hero() {
               <span className="opacity-40">·</span>
               <span className="pillar-glow" style={{ animationDelay: "1.6s" }}>Technical Sales &amp; Engineering</span>
               <span className="opacity-40">·</span>
-              <span className="pillar-glow" style={{ animationDelay: "3.2s" }}>Architecture &amp; Data Centres</span>
+              <span className="pillar-glow" style={{ animationDelay: "3.2s" }}>Architecture, Data Centres &amp; Built Environment</span>
             </p>
           </div>
         </div>
@@ -493,29 +493,34 @@ function Values() {
 }
 
 /* ─────────── WHAT EMPLOYEES SAY ───────────
-   ⚠️ PLACEHOLDER QUOTES – the client is gathering real employee quotes.
-   Structure and design are final; the words below are stand-ins. */
+   REAL employee quotes, verbatim from the team; attribution is job title
+   only. Long quotes take a wider card so no single card towers – the
+   track's stretch alignment keeps the row equal height (round 6). */
 function EmployeeVoices() {
   const items = [
     {
-      quote: "I joined as a graduate with no recruitment experience. Four years on I run my own market, I've been to Barcelona and Prague on incentive trips, and I own a piece of the business I helped build.",
-      who: "Placeholder – Senior Consultant",
-      org: "Joined 2022 · Solent",
+      quote: "I like the togetherness. Everyone has the same goals and it's great to work in an environment that matches how you want to shape your future. Well looked after, and the opportunity to earn life-changing money is fantastic.",
+      who: "Team Leader",
     },
     {
-      quote: "The 40% commission is what got my attention. The reason I've stayed is the way we work – phone first, plan led, and a team that actually celebrates each other's deals.",
-      who: "Placeholder – Recruitment Consultant",
-      org: "Joined 2023 · Solent",
+      quote: "The best thing about Verto is the earning potential, and the flexibility. I've earned more commission in one month at Verto than I did across the year in previous companies. I'm also able to work around my life schedule, and trusted to be left to my own devices to build my own desk.",
+      who: "Senior Recruitment Consultant",
     },
     {
-      quote: "I moved from the UK to Austin with Verto. The relocation wasn't a perk buried in a handbook – the business planned my desk, my visa and my first three months before I flew.",
-      who: "Placeholder – Principal Consultant",
-      org: "Joined 2021 · Austin",
+      quote: "Verto is a dynamic and exciting place to work. The pace of growth and change is unlike anything I've experienced before, and there's a real sense that we're constantly moving forward. What really makes Verto stand out is the team. It's a fun, ambitious and engaging environment where everyone gets involved. From team sprints and sales days to the everyday buzz around the office, there's always something driving us forward. The opportunity to grow here feels wide open. Combine that with great earning potential, genuine career progression and a brilliant team to work alongside, and there's only one question: why didn't I get the call to join Verto sooner?",
+      who: "VP of Engineering",
     },
     {
-      quote: "Two incentive holidays a year sounds like a gimmick until you're on the second one, sat with the whole company, and nobody's checking their phone.",
-      who: "Placeholder – Consultant",
-      org: "Joined 2024 · Solent",
+      quote: "Verto gives you the opportunity to thrive and really sees the potential in you. There's no limit to how far you can go, and you're always encouraged and supported to grow and achieve more. I also really like how transparent Verto is. You always know where you stand, and your hard work is recognised. Coming from an architecture background, Verto has given me the opportunity to use my industry knowledge and turn it into a career in recruitment, while continuing to learn and grow every day.",
+      who: "Recruitment Consultant",
+    },
+    {
+      quote: "Verto People gives me the best of both worlds: real autonomy to run my desk like my own business, plus the team and infrastructure to back it up. It's a place that rewards hustle, and it keeps me hungry to hit bigger numbers.",
+      who: "Recruitment Consultant",
+    },
+    {
+      quote: "Working at Verto is a good mix of hard work, focus and fun. The team culture is both collaborative and competitive, and that gets emphasised in the monthly Sales Days, which are always good fun. It's a business that genuinely gives you the opportunity to be the best version of yourself and build a fantastic career.",
+      who: "Recruitment Consultant",
     },
   ];
 
@@ -530,7 +535,7 @@ function EmployeeVoices() {
             <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">What employees say about us</div>
             <TitleReveal className="display-1 mt-6" lines={["Don't take our", "word for it."]} />
             <p className="mt-6 opacity-70 max-w-xl">
-              Real quotes from the team are on their way – these are placeholders while we collect them.
+              Straight from the team – what working here is actually like.
             </p>
           </div>
           {/* Round 6, item 7: the media column is a composed stack – the
@@ -572,14 +577,15 @@ function EmployeeVoices() {
           {loop.map((t, i) => (
             <figure
               key={`${t.who}-${i}`}
-              className="p-8 border border-white/10 shrink-0 w-[340px] md:w-[380px] flex flex-col"
+              className={`p-8 border border-white/10 shrink-0 flex flex-col ${
+                t.quote.length > 380 ? "w-[min(560px,88vw)]" : "w-[340px] md:w-[380px]"
+              }`}
               style={{ background: "color-mix(in oklab, var(--ink-foreground) 3%, transparent)" }}
             >
               <span className="font-display text-5xl leading-none block" style={{ color: "var(--accent)" }}>&ldquo;</span>
               <blockquote className="mt-2 text-base leading-relaxed opacity-90 flex-1">{t.quote}</blockquote>
               <figcaption className="mt-8 hairline-top pt-5">
                 <div className="text-sm font-semibold">{t.who}</div>
-                <div className="text-xs uppercase tracking-[0.18em] opacity-60 mt-1">{t.org}</div>
               </figcaption>
             </figure>
           ))}

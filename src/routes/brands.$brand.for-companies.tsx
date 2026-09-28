@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { SplitFeature } from "@/components/site/SplitFeature";
 import { TeamStrip } from "@/components/site/TeamStrip";
+import specEdison01 from "@/assets/spec-edison-01.jpg";
 
 export const Route = createFileRoute("/brands/$brand/for-companies")({
   head: ({ params }) => {
@@ -107,8 +108,10 @@ function Page() {
             </p>
           </>
         }
-        image={getBrandImage(b, "companiesIntro").src}
-        imageAlt={getBrandImage(b, "companiesIntro").alt}
+        /* Round 9, item 16: Edison's intro split no longer repeats the hero
+           pylon image – a plant crop from the licensed spec set instead. */
+        image={brand === "edison-lux" ? specEdison01 : getBrandImage(b, "companiesIntro").src}
+        imageAlt={brand === "edison-lux" ? "A critical power facility at dusk" : getBrandImage(b, "companiesIntro").alt}
         grayscale
         panelBg="#ffffff"
         stats={[
@@ -120,33 +123,33 @@ function Page() {
       />
 
 
-      {/* SOLUTIONS – offset staggered cards */}
+      {/* SOLUTIONS – round 9, item 17: one flat row, equal height, no
+          stagger; accent bars always on and in the brand gradient. */}
       <section className="py-24" style={{ background: "var(--muted)" }}>
         <div className="container-wide">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] items-end mb-14">
             <div>
               <span className="eyebrow">Hiring solutions</span>
-              <h2 className="display-2 mt-5">Four ways to work with us.<br />One standard.</h2>
+              <h2 className="display-2 mt-5">Four ways to work with us.<br />One standard.</h2>
             </div>
             <p className="text-base opacity-75 max-w-md lg:justify-self-end">
               From a fully managed partnership to flexible contract cover – we build the hiring plan around your requirement, whether you're filling one role or an entire team.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 items-stretch">
             {SOLUTIONS.map((s, i) => (
               <div
                 key={s.title}
-                className="group relative overflow-hidden p-8 flex flex-col transition-colors duration-300"
+                className="group relative overflow-hidden p-8 flex flex-col transition-colors duration-300 h-full"
                 style={{
                   background: "color-mix(in oklab, var(--foreground) 6%, var(--background))",
-                  /* Engage leads: brand inset ring; the rest stagger gently on desktop. */
+                  /* Engage leads with a brand inset ring; no stagger. */
                   boxShadow: s.badge ? "inset 0 0 0 1px color-mix(in oklab, var(--brand) 45%, transparent)" : undefined,
-                  transform: !s.badge && i % 2 === 1 ? "translateY(2rem)" : undefined,
                 }}
               >
                 <span
-                  className={`absolute top-0 left-0 h-[3px] w-full origin-left transition-transform duration-500 group-hover:scale-x-100 ${s.badge ? "scale-x-100" : "scale-x-0"}`}
-                  style={{ background: "var(--brand)" }}
+                  className="absolute top-0 left-0 h-[3px] w-full origin-left scale-x-100"
+                  style={{ background: "var(--brand-gradient, var(--brand))" }}
                 />
                 <div className="flex items-baseline justify-between">
                   <div className="font-display text-3xl" style={{ color: "var(--brand)" }}>0{i + 1}</div>

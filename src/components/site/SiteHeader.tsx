@@ -20,25 +20,28 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
           <VertoLogo />
         </Link>
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Round 9, item 6: nav items as individual buttons – padded pill
+            hover + gold underline growing from the left; the current page
+            keeps gold text and a standing underline (.nav-item). */}
+        <nav className="hidden lg:flex items-center gap-1.5">
           {BRAND_LIST.map((b) => (
             <Link
               key={b.slug}
               to="/brands/$brand"
               params={{ brand: b.slug }}
-              activeProps={{ style: { color: "var(--brand)" } }}
-              className="text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/80 hover:text-foreground transition-colors"
+              activeProps={{ className: "nav-item--active" }}
+              className="nav-item text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/80 hover:text-foreground"
             >
               {b.name}
             </Link>
           ))}
-          <span className="h-4 w-px bg-[var(--border)]" />
+          <span className="mx-2 h-4 w-px bg-[var(--border)]" />
           {SECONDARY.map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              activeProps={{ style: { color: "var(--brand)" } }}
-              className="text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/80 hover:text-foreground transition-colors"
+              activeProps={{ className: "nav-item--active" }}
+              className="nav-item text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/80 hover:text-foreground"
             >
               {n.label}
             </Link>

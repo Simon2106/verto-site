@@ -5,6 +5,9 @@ import { SplitFeature } from "@/components/site/SplitFeature";
 import { TeamStrip } from "@/components/site/TeamStrip";
 import { BrandLogo } from "@/components/site/BrandLogo";
 import aboutImage from "@/assets/about-image.jpg";
+// Round 9, item 13: Edison's "What we do today" uses sector (plant) imagery
+// instead of the stock office/clouds photo.
+import specEdison02 from "@/assets/spec-edison-02.jpg";
 
 export const Route = createFileRoute("/brands/$brand/about")({
   head: ({ params }) => {
@@ -99,8 +102,9 @@ function BrandAbout() {
               </div>
             </div>
 
-            {/* Stats column */}
-            <div className="lg:col-span-5 pt-4 lg:pt-20 space-y-10">
+            {/* Stats column – round 9, item 12: top-aligned with the copy
+                ("in line with the writing"; the old lg:pt-20 drop is gone). */}
+            <div className="lg:col-span-5 pt-4 lg:pt-1 space-y-10">
               <BrandLogo brand={brand} className="h-10 md:h-12 w-auto" />
               <div className="grid grid-cols-1 gap-12 pl-8 lg:pl-12 border-l" style={{ borderColor: "color-mix(in oklab, var(--foreground) 12%, transparent)" }}>
                 {b.stats.slice(0, 3).map((s, i) => (
@@ -213,8 +217,8 @@ function BrandAbout() {
               ))}
             </>
           }
-          image={aboutImage}
-          imageAlt="A specialist team at work"
+          image={brand === "edison-lux" ? specEdison02 : aboutImage}
+          imageAlt={brand === "edison-lux" ? "A combined-cycle gas plant – the market Edison Lux staffs" : "A specialist team at work"}
           panelBg="#ffffff"
           reverse
         />
@@ -294,14 +298,12 @@ function BrandAbout() {
             <span className="eyebrow">Proof points</span>
             <h2 className="display-3 mt-5">Why clients hire us a second time.</h2>
           </div>
+          {/* Round 9, item 14: clean 2-col grid – no stagger, numbers on one
+              shared text edge. */}
           <ul className="mt-14 grid gap-x-16 gap-y-10 md:grid-cols-2">
             {b.proofPoints.map((p, i) => (
-              <li
-                key={p}
-                className="flex gap-6"
-                style={{ transform: i % 2 === 1 ? "translateY(2rem)" : undefined }}
-              >
-                <div className="font-display text-5xl leading-none shrink-0" style={{ color: "var(--brand)" }}>0{i + 1}</div>
+              <li key={p} className="flex gap-6">
+                <div className="font-display text-5xl leading-none shrink-0 min-w-[3.5rem]" style={{ color: "var(--brand)" }}>0{i + 1}</div>
                 <p className="text-base leading-relaxed opacity-85 pt-1">{p}</p>
               </li>
             ))}
@@ -311,11 +313,11 @@ function BrandAbout() {
 
       <TeamStrip brand={b.slug} brandName={b.name} />
 
-      {/* CTA */}
-      <section className="container-wide py-24">
-        <div className="rounded-3xl p-12 text-center" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+      {/* CTA – round 9, item 15: substantially smaller box */}
+      <section className="container-wide py-14">
+        <div className="rounded-3xl px-10 py-8 text-center" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <h2 className="display-3 max-w-2xl mx-auto">Ready to talk?</h2>
-          <div className="mt-8 flex justify-center gap-3 flex-wrap">
+          <div className="mt-6 flex justify-center gap-3 flex-wrap">
             <Link to="/brands/$brand/for-companies" params={{ brand: b.slug }} className="btn-base btn-primary">Hire with {b.name}</Link>
             <Link to="/brands/$brand/for-candidates" params={{ brand: b.slug }} className="btn-base btn-ghost-outline" style={{ color: "var(--ink-foreground)", borderColor: "color-mix(in oklab, var(--ink-foreground) 30%, transparent)" }}>
               Explore roles

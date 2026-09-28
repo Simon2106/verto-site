@@ -3,6 +3,8 @@ import ibiza8 from "@/assets/client/ibiza8.jpg";
 import ibiza9 from "@/assets/client/ibiza9.jpg";
 import summitPoster from "@/assets/client/summit-poster.jpg";
 import skylineUK from "@/assets/skyline-uk.jpg";
+/* Round 9, item 24: the Austin rooftop drinks team photo joins the office gallery. */
+import austinRooftop from "@/assets/client/austin-rooftop-800.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
 import skylineEU from "@/assets/skyline-eu.jpg";
 
@@ -83,7 +85,7 @@ export const LOCATIONS: OfficeLocation[] = [
     statement:
       "Our US headquarters on Balcones Drive – home of Edison Lux and the fastest-growing desks in the group. First US placement: December 2022. We haven't slowed down since.",
     heroImage: skylineUS,
-    photos: [summitPoster, ibiza8, ibiza9],
+    photos: [austinRooftop, summitPoster, ibiza8],
     culture: [
       { category: "We're eating at", title: "Placeholder – client to confirm", body: "Breakfast tacos are non-negotiable. Content to come." },
       { category: "We're listening to", title: "Placeholder – client to confirm", body: "Live-music capital of the world – the office playlist reflects it. Content to come." },

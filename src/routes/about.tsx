@@ -4,18 +4,22 @@ import { Camera, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SectorCoverage } from "@/components/site/SectorCoverage";
-import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { TitleReveal } from "@/components/site/TitleReveal";
 import ibizaSea from "@/assets/client/ibiza-11.jpg";
 import summitLetters from "@/assets/client/summit-02-800.jpg";
 import barcelonaTeam from "@/assets/client/barcelona-01-800.jpg";
+import barcelonaStreet from "@/assets/client/barcelona-03-800.jpg";
+import summitRamparts from "@/assets/client/summit-05-800.jpg";
+import vertoBirthday from "@/assets/client/verto-03-800.jpg";
+import vertoOffice from "@/assets/client/verto-04-800.jpg";
 import galaStage from "@/assets/client/gala-01-800.jpg";
 import charityFilm from "@/assets/client/charity-film.mp4";
 import charityFilmPoster from "@/assets/client/charity-film-poster.jpg";
-import aboutImage from "@/assets/about-image.jpg";
-import skylineUK from "@/assets/skyline-uk.jpg";
 import skylineUS from "@/assets/skyline-us.jpg";
 import skylineEU from "@/assets/skyline-eu.jpg";
+import edisonLogoWhite from "@/assets/edison-lux-logo-white.png";
+import modulrLogo from "@/assets/modulr-logo.svg";
+import vertekLogoLight from "@/assets/vertek-logo-light.png";
 import martinDoig from "@/assets/martin-doig.jpg";
 import robbieSturgess from "@/assets/robbie-sturgess.webp";
 import alexHatfield from "@/assets/alex-hatfield.webp";
@@ -26,13 +30,19 @@ import { teamForTier, initials, memberBrandColor, type TeamMember } from "@/lib/
       tile spans map to a 4-col grid; subtle stagger via --reveal-delay.
       Aug-2026 media drop: real Ibiza sea shot leads, plus the summit letters
       and a Barcelona group shot from the client's event photography. ── */
+/* Round 9, item 7: an exact 4x3 fill – smaller tiles so every photo is in
+   view at 100%, with more real photography from the client's pool. Item 11:
+   the Solent tile drops the (wrong, London) skyline for office photography
+   until the Spinnaker photo lands. */
 const COLLAGE: { src: string; alt: string; caption?: string; span: string }[] = [
   { src: ibizaSea, alt: "The Verto team in the sea in Ibiza", caption: "Ibiza – the 2026 summer incentive", span: "col-span-2 row-span-2" },
-  { src: summitLetters, alt: "The Verto summer summit", caption: "The summer summit", span: "col-span-2" },
-  { src: barcelonaTeam, alt: "The team outside the W Barcelona", span: "col-span-1" },
-  { src: aboutImage, alt: "The team at work", span: "col-span-1" },
-  { src: skylineUK, alt: "Solent, UK – where it started", caption: "Solent, UK", span: "col-span-2" },
-  { src: skylineUS, alt: "Austin, TX – the US build-out", caption: "Austin, TX", span: "col-span-2" },
+  { src: summitLetters, alt: "The Verto summer summit", caption: "The summit", span: "col-span-1" },
+  { src: barcelonaTeam, alt: "The team outside the W Barcelona", caption: "Barcelona", span: "col-span-1" },
+  { src: vertoBirthday, alt: "Verto's 6th birthday in the Solent office", caption: "Solent, UK", span: "col-span-1" },
+  { src: skylineUS, alt: "Austin, TX – the US build-out", caption: "Austin, TX", span: "col-span-1" },
+  { src: summitRamparts, alt: "The team on the ramparts at Southsea Castle", span: "col-span-2" },
+  { src: vertoOffice, alt: "An office party at Verto", span: "col-span-1" },
+  { src: barcelonaStreet, alt: "The team on the street in Barcelona", span: "col-span-1" },
 ];
 
 /* ── Community & DE&I – the gala card carries the client's real charity-gala
@@ -181,8 +191,12 @@ const PRINCIPLES = [
   },
 ];
 
+/* Round 9, items 11 + 25: the Solent tile drops the wrong London skyline for
+   office photography (Spinnaker photo still awaited); Austin carries the
+   client's real daytime river skyline; every tile links to the careers
+   locations section. */
 const FOOTPRINT = [
-  { region: "Solent, UK", cities: "Arena Business Centre, Havant, Portsmouth", desks: "Vertek · ModulR · Verto Life Sciences", image: skylineUK, note: "Where it started – Feb 2020" },
+  { region: "Solent, UK", cities: "Arena Business Centre, Havant, Portsmouth", desks: "Vertek · ModulR · Verto Life Sciences", image: vertoBirthday, note: "Where it started – Feb 2020" },
   { region: "Austin, TX", cities: "5900 Balcones Drive, Austin", desks: "Edison Lux · Vertek US", image: skylineUS, note: "US HQ" },
   { region: "Miami, FL", cities: "Opening soon", desks: "ModulR US", image: skylineEU, note: "Coming soon" },
 ];
@@ -194,15 +208,18 @@ function AboutPage() {
       <main className="flex-1">
         <section className="container-wide pt-20 lg:pt-28">
           <span className="eyebrow">About the Verto Group</span>
-          <TitleReveal as="h1" className="display-1 mt-6 max-w-4xl" lines={["Made in 2020.", "Built the hard way."]} />
+          {/* Round 9, item 7: title steps down a size so the collage fits
+              the first view. */}
+          <TitleReveal as="h1" className="display-2 mt-6 max-w-4xl" lines={["Made in 2020.", "Built the hard way."]} />
           <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
             We opened our doors in February 2020 – and you know what happened next. Powered by determination and a lack of other options, Verto took its first steps as many others shut down. Today that lockdown business is all grown up: three specialist brands, a life sciences desk, and teams across the UK and US.
           </p>
         </section>
 
         {/* PHOTO COLLAGE – replaces the single Ibiza hero image */}
-        <section className="container-wide mt-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[140px] md:auto-rows-[180px] lg:auto-rows-[210px] gap-3 md:gap-4">
+        <section className="container-wide mt-12">
+          {/* Round 9, item 7: tighter grid – smaller tiles, exact 4x3 fill */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[120px] md:auto-rows-[140px] lg:auto-rows-[150px] gap-2.5 md:gap-3">
             {COLLAGE.map((tile, i) => (
               <div
                 key={tile.src + tile.alt}
@@ -276,16 +293,32 @@ function AboutPage() {
                 Each brand runs independently – its own P&amp;L, its own MD, its own client relationships. What&apos;s shared is the standard every search is held to. Our life sciences desk sits with the group while it grows.
               </p>
             </div>
+            {/* Round 9, item 9: brand-tile-style cards – the brand LOGO heads
+                each card on its own brand ink (Edison on the guideline navy
+                #0B1A2B with Electric Blue accents, never a clashing white
+                card). data-brand scopes --brand per card. */}
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
-              {BRAND_LIST.map((b) => (
-                <Link key={b.slug} to="/brands/$brand" params={{ brand: b.slug }} data-brand={b.slug}
-                  className="group rounded-2xl card-surface p-8">
-                  <div className="font-display text-2xl tracking-tight">{b.wordmark}</div>
-                  <div className="text-[10px] uppercase tracking-[0.28em] mt-1" style={{ color: "var(--brand)" }}>{b.qualifier}</div>
-                  <p className="mt-5 text-base text-muted-foreground">{b.positioning}</p>
-                  <div className="mt-6 text-sm font-medium" style={{ color: "var(--brand)" }}>Visit {b.name} →</div>
-                </Link>
-              ))}
+              {BRAND_LIST.map((b) => {
+                const card = {
+                  "edison-lux": { bg: "#0B1A2B", logo: edisonLogoWhite },
+                  modulr: { bg: "#000724", logo: modulrLogo },
+                  vertek: { bg: "#0E1013", logo: vertekLogoLight },
+                }[b.slug] ?? { bg: "var(--ink)", logo: "" };
+                return (
+                  <Link key={b.slug} to="/brands/$brand" params={{ brand: b.slug }} data-brand={b.slug}
+                    className="group rounded-2xl p-8 border border-white/10"
+                    style={{ background: card.bg, color: "#fff" }}>
+                    {card.logo ? (
+                      <img src={card.logo} alt={`${b.name} logo`} loading="lazy" className="h-9 w-auto max-w-[70%] object-contain object-left" />
+                    ) : (
+                      <div className="font-display text-2xl tracking-tight">{b.wordmark}</div>
+                    )}
+                    <div className="text-[10px] uppercase tracking-[0.28em] mt-4" style={{ color: "var(--brand)" }}>{b.qualifier}</div>
+                    <p className="mt-4 text-base text-white/75">{b.positioning}</p>
+                    <div className="mt-6 text-sm font-medium" style={{ color: "var(--brand)" }}>Visit {b.name} →</div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -319,11 +352,13 @@ function AboutPage() {
                 Where it started, where it&apos;s grown, and where it&apos;s going next. Every location runs on the same platform, so a US brief with UK candidates – or the reverse – moves through one team.
               </p>
             </div>
+            {/* Round 9, item 25: tiles link through to the careers locations
+                section. */}
             <div className="mt-14 grid gap-0 md:grid-cols-3">
               {FOOTPRINT.map((f, i) => (
-                <div key={f.region}
-                  className="relative overflow-hidden p-8 min-h-[260px] flex flex-col justify-end"
-                  style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : undefined }}>
+                <Link key={f.region} to="/careers" hash="locations"
+                  className="group relative overflow-hidden p-8 min-h-[260px] flex flex-col justify-end"
+                  style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.12)" : undefined, color: "inherit" }}>
                   <img
                     src={f.image}
                     alt={`${f.region}`}
@@ -338,12 +373,15 @@ function AboutPage() {
                     <div className="mt-3 font-display text-2xl">{f.region}</div>
                     <div className="mt-2 text-sm opacity-80">{f.cities}</div>
                     <div className="mt-3 text-sm opacity-70">{f.desks}</div>
+                    <div className="mt-3 text-[10px] font-semibold uppercase tracking-[0.22em] opacity-0 translate-y-1 transition duration-300 group-hover:opacity-100 group-hover:translate-y-0" style={{ color: "var(--accent)" }}>
+                      Explore this location →
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             <p className="mt-6 text-[10px] uppercase tracking-[0.2em] opacity-50">
-              Location imagery is placeholder – real office / team photos to follow
+              Solent / Miami imagery is interim – Spinnaker and office identity photos to follow
             </p>
           </div>
         </section>
@@ -455,14 +493,8 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* BEHIND THE SCENES / SOCIALS */}
-        <section className="container-wide py-16 lg:py-20 hairline-top">
-          <SocialsFeed
-            eyebrow="Behind the scenes"
-            heading="Us, off the phones."
-            body="Summer summits, sales days, charity galas and two incentive trips a year – follow along on Instagram."
-          />
-        </section>
+        {/* Round 9, item 10: the socials/Instagram section is gone from the
+            About page (it stays on Home and the WGO hub). */}
       </main>
       <SiteFooter />
     </div>

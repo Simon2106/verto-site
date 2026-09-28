@@ -4,6 +4,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { SplitFeature } from "@/components/site/SplitFeature";
 import { TeamStrip } from "@/components/site/TeamStrip";
+import specEdison03 from "@/assets/spec-edison-03.jpg";
 
 export const Route = createFileRoute("/brands/$brand/for-candidates")({
   head: ({ params }) => {
@@ -80,8 +81,10 @@ function Page() {
             </p>
           </>
         }
-        image={getBrandImage(b, "candidatesIntro").src}
-        imageAlt={getBrandImage(b, "candidatesIntro").alt}
+        /* Round 9, item 18: Edison's candidates split uses spec imagery
+           (matching the What-we-cover cards) instead of the pylon repeat. */
+        image={brand === "edison-lux" ? specEdison03 : getBrandImage(b, "candidatesIntro").src}
+        imageAlt={brand === "edison-lux" ? "A renewables site – solar and storage under construction" : getBrandImage(b, "candidatesIntro").alt}
         grayscale
         panelBg="#ffffff"
         stats={[

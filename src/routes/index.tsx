@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 
 import summitVideo from "@/assets/client/summit-video.mp4";
 import summitPoster from "@/assets/client/summit-poster.jpg";
-import ibizaTeam from "@/assets/client/ibiza8.jpg";
 import shareCerts from "@/assets/client/share-certificates.jpg";
 import shareCerts800 from "@/assets/client/share-certificates-800.jpg";
 import millyPoster from "@/assets/client/milly-promotion-poster.jpg";
@@ -117,7 +116,11 @@ function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
 
-      <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
+      {/* Round 9, item 3: tighter above-the-fold rhythm – hero + the four
+          stat cards fit a typical 1440x900 desktop without scrolling. The
+          V-mask panel spans the hero's block size, so it scales with the
+          section. */}
+      <div className="relative pt-20 pb-12 lg:pt-24 lg:pb-14 overflow-hidden">
         {/* Verto "V" mark – summit video clipped inside the mark.
             Client feedback round 3, item 1: the mask panel is letterboxed to
             the video's native 16:9 (vertically centred) instead of stretching
@@ -151,11 +154,11 @@ function Hero() {
         <div className="container-wide relative">
           <div className="max-w-2xl">
             <div className="text-[11px] uppercase tracking-[0.3em] opacity-70">The Verto Group · Precision talent, specialist brands</div>
-            <TitleReveal as="h1" className="display-2 mt-8 tracking-tight" lines={["Precision talent.", "Specialist brands.", "One group."]} />
-            <p className="mt-8 max-w-xl text-base md:text-lg opacity-80">
+            <TitleReveal as="h1" className="display-2 hero-headline mt-6 tracking-tight" lines={["Precision talent.", "Specialist brands.", "One group."]} />
+            <p className="mt-6 max-w-xl text-base opacity-80">
               Verto builds high-performance teams for the industries that keep everything else running – energy, engineering and the built environment. Three focused brands. One process-driven standard.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/careers" className="btn-base btn-primary on-ink">
                 Join us <ArrowRight className="h-4 w-4" />
               </Link>
@@ -166,7 +169,7 @@ function Hero() {
                 Explore the brands
               </Link>
             </div>
-            <p className="mt-16 lg:mt-20 max-w-3xl text-[10px] lg:text-xs uppercase tracking-[0.26em] flex flex-nowrap items-center gap-x-3 whitespace-nowrap">
+            <p className="mt-10 lg:mt-12 max-w-3xl text-[10px] lg:text-xs uppercase tracking-[0.26em] flex flex-nowrap items-center gap-x-3 whitespace-nowrap">
               <span className="pillar-glow" style={{ animationDelay: "0s" }}>US Energy</span>
               <span className="opacity-40">·</span>
               <span className="pillar-glow" style={{ animationDelay: "1.6s" }}>Technical Sales &amp; Engineering</span>
@@ -181,7 +184,7 @@ function Hero() {
       {/* Extended hero – what a seat at Verto comes with */}
       <div className="relative">
         <div
-          className="container-wide relative grid grid-cols-2 md:grid-cols-4 pt-14 pb-24 lg:pt-20 lg:pb-32"
+          className="container-wide relative grid grid-cols-2 md:grid-cols-4 pt-9 pb-14 lg:pt-10 lg:pb-16"
           style={{ borderTop: "1px solid color-mix(in oklab, var(--ink-foreground) 14%, transparent)" }}
         >
           {[
@@ -527,73 +530,23 @@ function EmployeeVoices() {
   // Duplicate for seamless loop
   const loop = [...items, ...items];
 
+  /* Round 9, item 5: quote-card surfaces alternate – lighter navy / base
+     tint / every third outlined on transparent – so the strip stops reading
+     as one blue slab. Keyed to the ORIGINAL item index so the duplicated
+     loop keeps the same pattern. */
+  const quoteSurface = (i: number) => {
+    const k = i % items.length;
+    if (k % 3 === 2) return { background: "transparent", borderColor: "color-mix(in oklab, var(--ink-foreground) 24%, transparent)" };
+    if (k % 2 === 0) return { background: "color-mix(in oklab, var(--ink-foreground) 8%, var(--ink))" };
+    return { background: "color-mix(in oklab, var(--ink-foreground) 3%, transparent)" };
+  };
+
   return (
-    <section className="py-16 lg:py-20" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
-      <div className="container-wide">
-        <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-start">
-          <div className="max-w-3xl">
-            <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">What employees say about us</div>
-            <TitleReveal className="display-1 mt-6" lines={["Don't take our", "word for it."]} />
-            <p className="mt-6 opacity-70 max-w-xl">
-              Straight from the team – what working here is actually like.
-            </p>
-          </div>
-          {/* Round 6, item 7: the media column is a composed stack – the
-              V-mask team image with the share-certificates photo tucked
-              beneath it, rounded and slightly offset. */}
-          <div className="hidden lg:block self-start w-fit">
-            <div
-              className="h-40 w-40 xl:h-56 xl:w-56"
-              style={{
-                maskImage: V_MASK,
-                WebkitMaskImage: V_MASK,
-                maskSize: "contain",
-                WebkitMaskSize: "contain",
-                maskRepeat: "no-repeat",
-                WebkitMaskRepeat: "no-repeat",
-                maskPosition: "center",
-                WebkitMaskPosition: "center",
-              }}
-            >
-              <img src={ibizaTeam} alt="" aria-hidden className="h-full w-full object-cover" loading="lazy" />
-            </div>
-            <img
-              src={shareCerts800}
-              alt="The Verto team with their share-scheme certificates"
-              loading="lazy"
-              className="relative z-10 -mt-5 ml-5 w-36 xl:w-48 rounded-2xl object-cover shadow-2xl"
-              style={{ aspectRatio: "4 / 3", border: "1px solid rgba(255,255,255,0.14)" }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Smooth-scrolling marquee (round 6, item 7: tighter rhythm) */}
-      <div
-        className="mt-10 relative overflow-hidden testimonials-marquee-mask"
-        style={{ ["--testimonial-count" as string]: items.length }}
-      >
-        <div className="testimonials-track flex gap-6 w-max">
-          {loop.map((t, i) => (
-            <figure
-              key={`${t.who}-${i}`}
-              className={`p-8 border border-white/10 shrink-0 flex flex-col ${
-                t.quote.length > 380 ? "w-[min(560px,88vw)]" : "w-[340px] md:w-[380px]"
-              }`}
-              style={{ background: "color-mix(in oklab, var(--ink-foreground) 3%, transparent)" }}
-            >
-              <span className="font-display text-5xl leading-none block" style={{ color: "var(--accent)" }}>&ldquo;</span>
-              <blockquote className="mt-2 text-base leading-relaxed opacity-90 flex-1">{t.quote}</blockquote>
-              <figcaption className="mt-8 hairline-top pt-5">
-                <div className="text-sm font-semibold">{t.who}</div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-
-      {/* Awards strip */}
-      <div className="container-wide mt-10 lg:mt-12">
+    <section className="pb-16 lg:pb-20" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
+      {/* Round 9, item 4: the awards band now LEADS the ink block – above
+          the employee voices; the voices heading goes full width and the
+          V-mask photo media column is gone ("not keen" – Alex). */}
+      <div className="container-wide pt-16 lg:pt-20">
         <div
           className="flex flex-col md:flex-row md:items-center gap-8 p-8 md:p-10 border border-white/10"
           /* Round 4, item 8: subtle gold top hairline sets the awards band
@@ -626,6 +579,41 @@ function EmployeeVoices() {
               Alongside Best New Recruitment Agency of the Year at the British Recruitment Awards (2023), two category wins at the Business Awards UK (2023), Recruiter Awards shortlists in 2023 and 2026, and a finalist place at the News Business Excellence Awards (2024).
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Voices – full-width intro (no media column) */}
+      <div className="container-wide mt-14 lg:mt-16">
+        <div className="max-w-3xl">
+          <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">What employees say about us</div>
+          <TitleReveal className="display-1 mt-6" lines={["Don't take our", "word for it."]} />
+          <p className="mt-6 opacity-70 max-w-xl">
+            Straight from the team – what working here is actually like.
+          </p>
+        </div>
+      </div>
+
+      {/* Smooth-scrolling marquee – round 9, item 5: smaller cards, no giant
+          quote glyph, alternating surfaces. */}
+      <div
+        className="mt-10 relative overflow-hidden testimonials-marquee-mask"
+        style={{ ["--testimonial-count" as string]: items.length }}
+      >
+        <div className="testimonials-track flex gap-6 w-max items-stretch">
+          {loop.map((t, i) => (
+            <figure
+              key={`${t.who}-${i}`}
+              className={`p-6 border border-white/10 shrink-0 flex flex-col ${
+                t.quote.length > 380 ? "w-[min(560px,88vw)]" : "w-[340px]"
+              }`}
+              style={quoteSurface(i)}
+            >
+              <blockquote className="text-[0.9375rem] leading-relaxed opacity-90 flex-1">{t.quote}</blockquote>
+              <figcaption className="mt-6 hairline-top pt-4">
+                <div className="text-sm font-semibold">{t.who}</div>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 

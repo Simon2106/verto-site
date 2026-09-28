@@ -28,15 +28,17 @@ export function BrandHeader() {
           </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Round 9, item 6: shared .nav-item hover treatment – the brand
+            token recolours the pill + underline per site. */}
+        <nav className="hidden lg:flex items-center gap-1.5">
           {nav.map((n) => (
             <Link
               key={n.to}
               to={n.to}
               params={{ brand: brand.slug }}
               activeOptions={{ exact: n.exact }}
-              activeProps={{ style: { color: "var(--brand)" } }}
-              className="text-sm font-medium opacity-80 hover:opacity-100 transition"
+              activeProps={{ className: "nav-item--active" }}
+              className="nav-item text-sm font-medium opacity-80 hover:opacity-100"
             >
               {n.label}
             </Link>

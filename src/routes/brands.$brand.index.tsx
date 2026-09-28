@@ -15,6 +15,7 @@ import { TeamStrip } from "@/components/site/TeamStrip";
 // Round 5, item 3: interim sector images for the Edison specialism cards –
 // 16:9 crops of the existing licensed energy assets (real per-sector shots
 // are on the CLIENT-NEEDS list).
+import insightManufacturing from "@/assets/insight-manufacturing.jpg";
 import specEdison01 from "@/assets/spec-edison-01.jpg";
 import specEdison02 from "@/assets/spec-edison-02.jpg";
 import specEdison03 from "@/assets/spec-edison-03.jpg";
@@ -208,7 +209,13 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
           {/* Round 5, item 2: symmetric split – image inset on the grey panel
               (padding mirrors the copy column) instead of full-bleed. */}
           <div className="relative min-h-[360px] lg:min-h-[460px] mx-6 mb-12 md:mx-12 lg:my-16 lg:ml-0 lg:mr-16">
-            <img src={getBrandImage(b, "landingAbout").src} alt={getBrandImage(b, "landingAbout").alt} className="absolute inset-0 h-full w-full object-cover rounded-xl" />
+            {/* Round 9, item 21: Vertek no longer repeats the hero's bridge
+                image here – the advanced-manufacturing asset instead. */}
+            <img
+              src={brand === "vertek" ? insightManufacturing : getBrandImage(b, "landingAbout").src}
+              alt={brand === "vertek" ? "Precision machinery on an advanced manufacturing line" : getBrandImage(b, "landingAbout").alt}
+              className="absolute inset-0 h-full w-full object-cover rounded-xl"
+            />
             <div
               className="absolute right-6 top-6 md:right-10 md:top-10 w-[78%] md:w-[300px] p-7 md:p-8"
               style={{
@@ -230,8 +237,10 @@ function BrandLandingHome({ brand }: { brand: BrandSlug }) {
         </div>
       </section>
 
-      {/* ─── Specialisms ─── */}
-      <section className="py-24" style={{ background: "var(--background)" }}>
+      {/* ─── Specialisms ───
+          Round 9, item 21: on Vertek the section runs on the muted graphite
+          to break up the run of near-black slabs. */}
+      <section className="py-24" style={{ background: brand === "vertek" ? "var(--muted)" : "var(--background)" }}>
         <div className="container-wide">
           <div className="max-w-2xl">
             <span className="eyebrow">Specialisms</span>

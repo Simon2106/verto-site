@@ -55,8 +55,11 @@
 :root {
   --radius: 0.5rem;
 
-  /* Verto parent — ivory + blue-grey + gold */
-  --background: oklch(0.985 0.005 85);
+  /* Verto parent — light grey + blue-grey + gold.
+     Round 9, item 8 – TRIAL: fresher light-grey ground (Metric-style
+     crispness) replacing the goldy ivory. INSTANT REVERT: swap each value
+     back to the ivory noted beside it. */
+  --background: #F4F5F6; /* was oklch(0.985 0.005 85) ivory */
   --foreground: oklch(0.18 0.025 260);
 
   --surface: oklch(1 0 0);
@@ -73,8 +76,8 @@
   --secondary: oklch(0.96 0.008 85);
   --secondary-foreground: oklch(0.18 0.025 260);
 
-  --muted: oklch(0.95 0.008 85);
-  --muted-foreground: oklch(0.45 0.015 260);
+  --muted: #E9EBED;                      /* round 9, item 8 trial – was oklch(0.95 0.008 85) */
+  --muted-foreground: oklch(0.44 0.012 260); /* was oklch(0.45 0.015 260) */
 
   /* brand gold accent for parent (client brand: #d19f2f) */
   --accent: #d19f2f;
@@ -93,7 +96,7 @@
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(0.985 0.005 85);
 
-  --border: oklch(0.9 0.012 85);
+  --border: oklch(0.89 0.004 260); /* round 9, item 8 trial - was oklch(0.9 0.012 85) */
   --input: oklch(0.92 0.01 85);
   --ring: #d19f2f;
 }
@@ -843,3 +846,38 @@
   transition: opacity 0.2s, text-decoration-color 0.2s;
 }
 .footer-link:hover { text-decoration-color: var(--accent); }
+
+/* ───────── Round 9 (client feedback) ───────── */
+
+/* Item 3: hero headline steps down a size so the hero + stat strip fit
+   above the fold at 1440x900. */
+.hero-headline { font-size: clamp(2rem, 3.6vw, 2.75rem) !important; line-height: 1.05; }
+
+/* Item 6: nav items as individual buttons - padded hover pill (brand at
+   12%) plus a 2px brand underline growing from the left; the active page
+   keeps brand text + a standing underline. Shared by the group and brand
+   headers (the brand token recolours it per site). */
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.625rem;
+  transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+}
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.3rem;
+  height: 2px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-item:hover { background: color-mix(in oklab, var(--brand) 12%, transparent); }
+.nav-item:hover::after,
+.nav-item--active::after { transform: scaleX(1); }
+.nav-item--active { color: var(--brand); }

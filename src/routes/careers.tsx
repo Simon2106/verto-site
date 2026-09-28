@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { SocialsFeed } from "@/components/site/SocialsFeed";
 import { JobsBoard } from "@/components/site/JobsBoard";
 import { OfferGrid } from "@/components/site/OfferGrid";
 import { TitleReveal } from "@/components/site/TitleReveal";
@@ -152,6 +151,25 @@ function CareersPage() {
           </div>
         </section>
 
+        {/* SALES DAYS – ten short films in one dense hover-to-play mosaic
+            (client brief: no massive video windows, all on one section).
+            Round 7, item 2: moved up to sit between the jobs board and the
+            package, per client. */}
+        <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
+          <div className="container-wide">
+            <div className="max-w-2xl">
+              <span className="eyebrow">Sales days</span>
+              <h2 className="display-2 mt-5">One day a month, all in.</h2>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                A company favourite: a full day of competition, prizes and noise, every month – and something we've been leading in the local area.
+              </p>
+            </div>
+            <div className="mt-12">
+              <SalesDaysMosaic />
+            </div>
+          </div>
+        </section>
+
         {/* WHAT WE OFFER – round 4, item 11: the four-card "Why Verto" becomes
             the full 14-perk notched card grid (shared with the home page). */}
         <section className="container-wide py-24">
@@ -218,63 +236,53 @@ function CareersPage() {
 
         {/* INCENTIVES & SHARE SCHEME – the awards-night photo + the client's
             share-scheme interview film paired with the Ibiza incentive-trip
-            film (Sep-2026 drop), both click-to-play */}
+            film (Sep-2026 drop), both click-to-play. Round 7, item 4:
+            rebalanced – full-width intro on top, then one 3-up media row
+            (photo + the two films) beneath. */}
         <section className="hairline-top py-24" style={{ background: "var(--ink)", color: "var(--ink-foreground)" }}>
           <div className="container-wide">
-            <div className="grid gap-12 lg:grid-cols-2 items-center">
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives &amp; ownership</div>
-                <h2 className="display-2 mt-5">Hit target. Board the plane.</h2>
-                <p className="mt-6 opacity-80 leading-relaxed">
-                  Two international incentive trips a year, winners&apos; lunches, sales days and personal training sessions. Barcelona 2025, Prague in January, Ibiza this summer – and a share scheme that includes every person in the business. Press play to hear what owning a piece of Verto actually means to the team, and to see where hitting target took the winners this summer.
-                </p>
-                {/* Round 5, item 10: the share-scheme awards-night photo sits
-                    beside the share-scheme film (was the Barcelona group shot). */}
-                <figure className="mt-8 m-0">
-                  <img
-                    src={shareCerts}
-                    alt="The Verto team holding their share-scheme award certificates at the awards night"
-                    className="w-full rounded-2xl object-cover"
-                    loading="lazy"
-                  />
-                  <figcaption className="mt-3 text-[10px] uppercase tracking-[0.2em] opacity-60">
-                    Share scheme awards – everyone owns a piece
-                  </figcaption>
-                </figure>
-              </div>
-              <IncentiveFilms />
-            </div>
-          </div>
-        </section>
-
-        {/* SALES DAYS – ten short films in one dense hover-to-play mosaic
-            (client brief: no massive video windows, all on one section) */}
-        <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
-          <div className="container-wide">
-            <div className="max-w-2xl">
-              <span className="eyebrow">Sales days</span>
-              <h2 className="display-2 mt-5">One day a month, all in.</h2>
-              <p className="mt-6 text-muted-foreground leading-relaxed">
-                A company favourite: a full day of competition, prizes and noise, every month – and something we've been leading in the local area.
+            <div className="max-w-3xl">
+              <div className="text-[11px] uppercase tracking-[0.28em] opacity-60">Incentives</div>
+              <h2 className="display-2 mt-5">Hit target. Board the plane.</h2>
+              <p className="mt-6 opacity-80 leading-relaxed">
+                Two international incentive trips a year, winners&apos; lunches, sales days and personal training sessions. Barcelona 2025, Prague in January, Ibiza this summer – and a share scheme that includes every person in the business. Press play to hear what owning a piece of Verto actually means to the team, and to see where hitting target took the winners this summer.
               </p>
             </div>
-            <div className="mt-12">
-              <SalesDaysMosaic />
+            <div className="mt-12 grid gap-4 grid-cols-2 sm:grid-cols-3">
+              <figure className="m-0 col-span-2 sm:col-span-1">
+                <img
+                  src={shareCerts}
+                  alt="The Verto team holding their share-scheme award certificates at the awards night"
+                  className="w-full rounded-2xl object-cover aspect-[16/10] sm:aspect-[3/4]"
+                  loading="lazy"
+                />
+                <figcaption className="mt-3 text-[10px] uppercase tracking-[0.2em] opacity-60">
+                  Share scheme awards – everyone owns a piece
+                </figcaption>
+              </figure>
+              <PortraitFilm
+                video={shareSchemeVideo}
+                poster={shareSchemePoster}
+                label="The share scheme"
+                aria="Play – what the share scheme means to the team"
+                posterAlt="Still from the Verto share-scheme interviews"
+                aspect="3 / 4"
+              />
+              <PortraitFilm
+                video={ibizaTripVideo}
+                poster={ibizaTripPoster}
+                label="The Ibiza trip"
+                aria="Play – the winners' incentive trip to Ibiza"
+                posterAlt="Verto takes Ibiza – the summer incentive trip film"
+                aspect="3 / 4"
+              />
             </div>
           </div>
         </section>
 
-        {/* LIFE AT VERTO / SOCIALS */}
-        <section className="container-wide py-24">
-          <SocialsFeed
-            eyebrow="Life at Verto"
-            heading="The moments between the meetings."
-            body="Awards, incentive trips, sales days and the occasional inflatable – what working here actually looks like, on our socials."
-          />
-        </section>
-
-        {/* LOCATIONS */}
-        <section className="hairline-top py-24" style={{ background: "var(--muted)" }}>
+        {/* LOCATIONS – round 9, item 25: #locations anchor, linked from the
+            About footprint tiles. */}
+        <section id="locations" className="hairline-top py-24" style={{ background: "var(--muted)" }}>
           <div className="container-wide">
             <div className="max-w-2xl">
               <span className="eyebrow">Our locations</span>
@@ -333,36 +341,16 @@ function CareersPage() {
   );
 }
 
-/* Careers incentives pairing – the share-scheme interview film beside the
-   Ibiza incentive-trip film (Sep-2026 drop): two compact portrait films,
-   each poster + play button; a video element (and its bytes) only mounts
-   once the visitor presses play. */
-function IncentiveFilms() {
-  return (
-    <div className="grid w-full grid-cols-2 gap-4 justify-self-center" style={{ maxWidth: 480 }}>
-      <PortraitFilm
-        video={shareSchemeVideo}
-        poster={shareSchemePoster}
-        label="The share scheme"
-        aria="Play – what the share scheme means to the team"
-        posterAlt="Still from the Verto share-scheme interviews"
-      />
-      <PortraitFilm
-        video={ibizaTripVideo}
-        poster={ibizaTripPoster}
-        label="The Ibiza trip"
-        aria="Play – the winners' incentive trip to Ibiza"
-        posterAlt="Verto takes Ibiza – the summer incentive trip film"
-      />
-    </div>
-  );
-}
-
-function PortraitFilm({ video, poster, label, aria, posterAlt }: { video: string; poster: string; label: string; aria: string; posterAlt: string }) {
+/* Careers incentive films – the share-scheme interview film and the Ibiza
+   incentive-trip film (Sep-2026 drop): labelled cards, each poster + play
+   button; a video element (and its bytes) only mounts once the visitor
+   presses play. Round 7, item 4: cropped to the row's card aspect via the
+   `aspect` prop so the media row stays equal-height. */
+function PortraitFilm({ video, poster, label, aria, posterAlt, aspect = "9 / 16" }: { video: string; poster: string; label: string; aria: string; posterAlt: string; aspect?: string }) {
   const [playing, setPlaying] = useState(false);
   return (
     <figure className="m-0 w-full">
-      <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "9 / 16", background: "#000" }}>
+      <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: aspect, background: "#000" }}>
         {playing ? (
           <video
             src={video}
@@ -396,7 +384,7 @@ function PortraitFilm({ video, poster, label, aria, posterAlt }: { video: string
           </button>
         )}
       </div>
-      <figcaption className="mt-3 text-center text-[10px] uppercase tracking-[0.2em] opacity-60">
+      <figcaption className="mt-3 text-[10px] uppercase tracking-[0.2em] opacity-60">
         {label}
       </figcaption>
     </figure>
